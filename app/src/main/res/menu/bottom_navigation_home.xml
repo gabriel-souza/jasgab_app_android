@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home"
+        android:icon="@drawable/ic_nav_home"
+        android:title="Inicio" />
+    <item android:id="@+id/nav_contracts"
+        android:icon="@drawable/ic_nav_contracts"
+        android:title="Serviços" />
+    <item android:id="@+id/nav_bills"
+        android:icon="@drawable/ic_nav_bills"
+        android:title="Pagamento" />
+    <item android:id="@+id/nav_faq"
+        android:icon="@drawable/ic_nav_faq"
+        android:title="Duvidas" />
+    <item android:id="@+id/nav_more"
+        android:icon="@drawable/ic_nav_more"
+        android:title="Mais" />
+</menu>

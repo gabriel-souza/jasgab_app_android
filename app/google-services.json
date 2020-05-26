@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "899260750489",
+    "firebase_url": "https://jasgab-60b59.firebaseio.com",
+    "project_id": "jasgab-60b59",
+    "storage_bucket": "jasgab-60b59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899260750489:android:e4b2a59640a8ccb125f608",
+        "android_client_info": {
+          "package_name": "br.com.jasgab.jasgab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899260750489-84dibffk3b72lh8hpdo4qmkhmsco4nqg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.jasgab.jasgab",
+            "certificate_hash": "6ae50e1c34081746cdefe4060d6b124d60188d7d"
+          }
+        },
+        {
+          "client_id": "899260750489-k365qvuhd0j0jp5af1h31k2ecb0c5dfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmpRYJS-YY8_jSSR7n0s9VA-WA_VNIGnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899260750489-k365qvuhd0j0jp5af1h31k2ecb0c5dfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
