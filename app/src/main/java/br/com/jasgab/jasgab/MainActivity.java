@@ -14,7 +14,6 @@ import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
 
 import br.com.jasgab.jasgab.model.Auth;
-import br.com.jasgab.jasgab.model.RequestAuth;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,11 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
-
         context = this;
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         if(!new JasgabApi().internetOk()){
             //TODO: não conectado a internet
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         Auth auth = AuthDAO.start(context).select();
         if(auth != null) {
-            continueLoading();
+            finishLoading();
             return;
         }
 
@@ -53,20 +49,24 @@ public class MainActivity extends AppCompatActivity {
                 Auth auth = response.body();
                 if(auth != null) {
                     AuthDAO.start(context).insert(auth);
-                    continueLoading();
+                    finishLoading();
                 }else{
-                    //TODO ERRO AO AUTENTICAR TENTE NOVAMENTE MAIS TARDE
+                    AuthDAO.start(context).delete();
+                    finish();
+                    startActivity(getIntent());
                 }
             }
 
             @Override
             public void onFailure(Call<Auth> call, Throwable t) {
-                //TODO: MENSAGEM DE ERRO AO CONECTAR COM SERVIDOR
+                AuthDAO.start(context).delete();
+                finish();
+                startActivity(getIntent());
             }
         });
     }
 
-    private void continueLoading() {
+    private void finishLoading() {
         SharedPreferences prefs = getSharedPreferences(".br.com.jasgab.jasgab", MODE_PRIVATE);
 
         if (prefs.getBoolean("firstrun", true)) {
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        //Verificar se cliente está conectado
         if(CustomerDAO.start(context).selectCustomer() == null){
             startActivity(new Intent(context, LoginActivity.class));
         }else{
