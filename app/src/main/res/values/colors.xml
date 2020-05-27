@@ -36,11 +36,11 @@
 
     <!-- BUTTONS STYLES-->
     <color name="button_blue_default">#428DCB</color>
-    <color name="button_blue_pressed">#4200CB</color>
+    <color name="button_blue_pressed">#085696</color>
     <color name="button_blue_text">#FFFFFF</color>
 
     <color name="button_white_default">#FFFFFF</color>
-    <color name="button_white_pressed">#BBBBBB</color>
+    <color name="button_white_pressed">#C3CFD8</color>
     <color name="button_white_stroke">#428DCB</color>
     <color name="button_white_text">#428DCB</color>
 
