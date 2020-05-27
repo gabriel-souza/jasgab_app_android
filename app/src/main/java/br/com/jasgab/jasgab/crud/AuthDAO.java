@@ -68,7 +68,7 @@ public class AuthDAO {
         return null;
     }
 
-    private void delete(){
+    public void delete(){
         db.delete(table, null, null);
     }
 }

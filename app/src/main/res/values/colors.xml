@@ -33,5 +33,15 @@
     <color name="tab_selected">#ECF5FD</color>
     <color name="tab_background">#A3B2BC</color>
     <color name="tab_ripple">#999999</color>
-    
+
+    <!-- BUTTONS STYLES-->
+    <color name="button_blue_default">#428DCB</color>
+    <color name="button_blue_pressed">#4200CB</color>
+    <color name="button_blue_text">#FFFFFF</color>
+
+    <color name="button_white_default">#FFFFFF</color>
+    <color name="button_white_pressed">#BBBBBB</color>
+    <color name="button_white_stroke">#428DCB</color>
+    <color name="button_white_text">#428DCB</color>
+
 </resources>
