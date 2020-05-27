@@ -9,7 +9,7 @@
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ripple_btn_azul">
+        android:background="@drawable/button_blue">
 
         <ProgressBar
             android:id="@+id/login_button_progressBar"

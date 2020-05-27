@@ -3,10 +3,19 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- TEXT SIZES -->
-    <dimen name="button_blue_size">18sp</dimen>
+    <!-- BUTTON DIMENS -->
+    <dimen name="button_blue_text">18sp</dimen>
+    <dimen name="button_blue_conner">6dp</dimen>
 
     <dimen name="button_white_size">18sp</dimen>
+    <dimen name="button_white_conner">6dp</dimen>
+    <dimen name="button_white_stroke_width">2dp</dimen>
+
+    <!-- EDIT TEXT DIMENS -->
+    <dimen name="edittext_white_text">18sp</dimen>
+    <dimen name="edittext_white_conner">6dp</dimen>
+    <dimen name="edittext_white_stroke_width">2dp</dimen>
+
 
 
 </resources>

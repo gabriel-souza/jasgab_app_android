@@ -59,7 +59,7 @@
     <include
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        layout="@layout/btn_login"
+        layout="@layout/button_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -16,7 +16,7 @@
     </style>
 
     <!-- BUTTON STYLES -->
-    
+
     <style name="button_white" parent="TextAppearance.AppCompat">
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>

@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.util.Objects;
-
 import br.com.jasgab.jasgab.R;
 
 public class ComecarFragment extends Fragment {
@@ -27,7 +25,7 @@ public class ComecarFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = requireFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-                fragmentTransaction.replace(R.id.frameLayout, new IdentifiqueFragment());
+                fragmentTransaction.replace(R.id.content_first_access, new IdentifiqueFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

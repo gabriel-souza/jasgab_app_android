@@ -21,7 +21,7 @@ public class FirstAccessActivity extends AppCompatActivity {
                 R.anim.slide_out_left,
                 R.anim.slide_in_right,
                 R.anim.slide_out_right);
-        fragmentTransaction.add(R.id.frameLayout, new ComecarFragment());
+        fragmentTransaction.add(R.id.content_first_access, new ComecarFragment());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

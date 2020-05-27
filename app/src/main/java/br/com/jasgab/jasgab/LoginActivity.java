@@ -104,12 +104,12 @@ public class LoginActivity extends AppCompatActivity {
         cpf = ed_cpf.getText().toString();
         if(!verifyCpf.isCPF(cpf)){
             tv_errorLogin.setText(getString(R.string.tv_cpfdonotexist));
-            ed_cpf.setBackground(getDrawable(R.drawable.box_white_error));
+            ed_cpf.setBackground(getDrawable(R.drawable.edittext_white_error));
             loginProgressBar.setVisibility(View.INVISIBLE);
             return;
         }else{
             tv_errorLogin.setText(getString(R.string.tv_vazia));
-            ed_cpf.setBackground(getDrawable(R.drawable.box_white));
+            ed_cpf.setBackground(getDrawable(R.drawable.edittext_white));
         }
 
         Auth auth = AuthDAO.start(this).select();

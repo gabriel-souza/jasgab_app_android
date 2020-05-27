@@ -44,4 +44,10 @@
     <color name="button_white_stroke">#428DCB</color>
     <color name="button_white_text">#428DCB</color>
 
+    <!-- EDIT TEXT STYLES -->
+    <color name="edittext_white_default">#FFFFFF</color>
+    <color name="edittext_white_stroke_default">#428DCB</color>
+    <color name="edittext_white_stroke_error">#FF0000</color>
+    <color name="edittext_white_text">#000000</color>
+
 </resources>
