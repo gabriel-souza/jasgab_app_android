@@ -8,11 +8,12 @@
         <item name="colorAccent">@color/jasgab_blue_right</item>
     </style>
 
-    <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
+    <style name="Overview_Button" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
         <item name="fontFamily">@font/roboto_regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/button_overview_text</item>
+        <item name="android:textColor">@color/button_overview_text</item>
     </style>
 
     <!-- BUTTON STYLES -->

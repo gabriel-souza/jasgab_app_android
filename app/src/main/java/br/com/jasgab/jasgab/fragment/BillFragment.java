@@ -39,7 +39,7 @@ public class BillFragment extends Fragment {
         TextView bill_plan = view.findViewById(R.id.bill_plan);
         TextView bill_price = view.findViewById(R.id.bill_price);
         TextView bill_month = view.findViewById(R.id.bill_month);
-        Button bill_barcode = view.findViewById(R.id.barcode_barcode);
+        Button bill_barcode = view.findViewById(R.id.bill_barcode);
         Button bill_gpay = view.findViewById(R.id.bill_gpay);
         Button bill_send_recipe = view.findViewById(R.id.bill_send_recipe);
 

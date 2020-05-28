@@ -28,7 +28,7 @@ public class PayBarcodeFragment extends Fragment {
         TextView barcode_payday = view.findViewById(R.id.barcode_payday);
         TextView barcode_price = view.findViewById(R.id.barcode_price);
         TextView barcode_person = view.findViewById(R.id.barcode_person);
-        TextView barcode_barcode = view.findViewById(R.id.barcode_barcode);
+        TextView barcode_barcode = view.findViewById(R.id.bill_barcode);
 
         Button barcode_bill_status = view.findViewById(R.id.barcode_status);
         Button barcode_copy_paste = view.findViewById(R.id.barcode_copy_paste);

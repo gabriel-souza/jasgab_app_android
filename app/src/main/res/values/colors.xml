@@ -15,7 +15,7 @@
     <color name="transparent">#00000000</color>
     <color name="purple">#0A0E62</color>
 
-    <!-- BARCODE LAYOUT -->
+    <!-- LAYOUT BARCODE -->
     <color name="barcode_box_stroke">#D3D3D3</color>
     <color name="barcode_pay_day">#E4616C</color>
     <color name="barcode_late_payment">#ED5F5F</color>
@@ -34,6 +34,8 @@
     <color name="tab_background">#A3B2BC</color>
     <color name="tab_ripple">#999999</color>
 
+    <!-- TODO CAROL MEXER A BAIXO DESSA LINHA -->
+
     <!-- BUTTONS STYLES-->
     <color name="button_blue_default">#428DCB</color>
     <color name="button_blue_pressed">#085696</color>
@@ -43,6 +45,14 @@
     <color name="button_white_pressed">#C3CFD8</color>
     <color name="button_white_stroke">#428DCB</color>
     <color name="button_white_text">#428DCB</color>
+
+    <color name="button_overview_default">#6AAFDE</color>
+    <color name="button_overview_pressed">#428DCB</color>
+    <color name="button_overview_text">#FFFFFF</color>
+
+    <color name="button_pay_default">#FFFFFF</color>
+    <color name="button_pay_pressed">#999999</color>
+    <color name="button_pay_text">#000000</color>
 
     <!-- EDIT TEXT STYLES -->
     <color name="edittext_white_default">#FFFFFF</color>

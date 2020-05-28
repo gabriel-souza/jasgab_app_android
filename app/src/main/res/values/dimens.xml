@@ -7,9 +7,17 @@
     <dimen name="button_blue_text">18sp</dimen>
     <dimen name="button_blue_conner">6dp</dimen>
 
-    <dimen name="button_white_size">18sp</dimen>
+    <dimen name="button_white_text">18sp</dimen>
     <dimen name="button_white_conner">6dp</dimen>
     <dimen name="button_white_stroke_width">2dp</dimen>
+
+    <dimen name="button_overview_text">14sp</dimen>
+    <dimen name="button_overview_conner">23dp</dimen>
+    <dimen name="button_overview_size">100dp</dimen>
+
+    <dimen name="button_pay_text">14sp</dimen>
+    <dimen name="button_pay_padding">10dp</dimen>
+    <dimen name="button_pay_size">50dp</dimen>
 
     <!-- EDIT TEXT DIMENS -->
     <dimen name="edittext_white_text">18sp</dimen>

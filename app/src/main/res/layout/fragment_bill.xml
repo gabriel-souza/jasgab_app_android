@@ -61,7 +61,7 @@
         android:text="20/05"
         android:textColor="@color/purple"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/barcode_barcode"
+        app:layout_constraintBottom_toTopOf="@+id/bill_barcode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,12 +69,12 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <Button
-        android:id="@+id/barcode_barcode"
+        android:id="@+id/bill_barcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="2dp"
-        android:background="@drawable/bt_pay"
+        android:background="@drawable/button_pay"
         android:drawableStart="@drawable/ic_barcode"
         android:drawableEnd="@drawable/ic_arrow_right"
         android:gravity="center_vertical"
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="2dp"
-        android:background="@drawable/bt_pay"
+        android:background="@drawable/button_pay"
         android:drawableStart="@drawable/googlepay_button_content"
         android:drawableEnd="@drawable/ic_arrow_right"
         android:gravity="center_vertical"
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="0.925" />
 
     <Button
         android:id="@+id/bill_send_recipe"
@@ -111,10 +111,10 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/bt_blue"
+        android:background="@drawable/button_blue"
         android:paddingHorizontal="20dp"
         android:text="ENVIAR COMPROVANTE"
-        android:textColor="@color/white"
+        android:textColor="@color/button_blue_text"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bill_gpay" />

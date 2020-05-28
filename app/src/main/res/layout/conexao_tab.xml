@@ -28,7 +28,7 @@
             app:tabMode="fixed"
             app:tabTextColor="@color/jasgab_blue_center"
             app:tabSelectedTextColor="@color/jasgab_blue_center"
-            app:tabTextAppearance="@style/CustomTextAppearanceTab"
+            app:tabTextAppearance="@style/Overview_Button"
             app:tabIndicatorColor="@null"
             app:tabRippleColor="@null" />
     </FrameLayout>
