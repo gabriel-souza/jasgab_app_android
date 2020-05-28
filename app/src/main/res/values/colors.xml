@@ -54,6 +54,11 @@
     <color name="button_pay_pressed">#999999</color>
     <color name="button_pay_text">#000000</color>
 
+    <color name="button_barcode_default">#FFFFFF</color>
+    <color name="button_barcode_pressed">#C3CFD8</color>
+    <color name="button_barcode_stroke">#428DCB</color>
+    <color name="button_barcode_text">#428DCB</color>
+
     <!-- EDIT TEXT STYLES -->
     <color name="edittext_white_default">#FFFFFF</color>
     <color name="edittext_white_stroke_default">#428DCB</color>

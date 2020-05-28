@@ -1,5 +1,6 @@
 package br.com.jasgab.jasgab.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import br.com.jasgab.jasgab.PayBarcodeActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabUtils;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
@@ -59,10 +61,8 @@ public class BillFragment extends Fragment {
         bill_barcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PayBarcodeFragment payBarcodeFragment = new PayBarcodeFragment();
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_container, payBarcodeFragment)
-                        .commit();
+                Intent intent = new Intent(requireActivity(), PayBarcodeActivity.class);
+                requireActivity().startActivity(intent);
             }
         });
 

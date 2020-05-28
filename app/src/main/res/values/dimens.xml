@@ -19,6 +19,10 @@
     <dimen name="button_pay_padding">10dp</dimen>
     <dimen name="button_pay_size">50dp</dimen>
 
+    <dimen name="button_barcode_text">18sp</dimen>
+    <dimen name="button_barcode_conner">6dp</dimen>
+    <dimen name="button_barcode_stroke_width">2dp</dimen>
+
     <!-- EDIT TEXT DIMENS -->
     <dimen name="edittext_white_text">18sp</dimen>
     <dimen name="edittext_white_conner">6dp</dimen>
