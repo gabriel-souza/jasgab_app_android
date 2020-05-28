@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".fragment.PayBarcodeFragment">
 
-
     <TextView
         android:id="@+id/barcode_bank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/include"
+        android:layout_below="@+id/include_barcode"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-6dp"
         android:background="@drawable/bg_barcode_box"
@@ -22,6 +21,15 @@
         android:text="Banco Santander"
         android:textColor="@color/black"
         android:textSize="16dp" />
+
+    <include
+        android:id="@+id/include_barcode"
+        layout="@layout/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="wrap_content"

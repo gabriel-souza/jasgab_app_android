@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import java.util.Objects;
 
 import br.com.jasgab.jasgab.api.JasgabUtils;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
+import br.com.jasgab.jasgab.fragment.OverviewFragment;
 import br.com.jasgab.jasgab.model.Bill;
 import br.com.jasgab.jasgab.model.Customer;
 
@@ -26,6 +28,16 @@ public class PayBarcodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pay_barcode);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //Set ActionBar
+        TextView actionbar_text = findViewById(R.id.actionbar_text);
+        actionbar_text.setText("Boleto");
+        ImageView actionbar_back = findViewById(R.id.actionbar_back);
+        actionbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //GET ALL LAYOUT
         TextView barcode_bank = findViewById(R.id.barcode_bank);
@@ -65,14 +77,14 @@ public class PayBarcodeActivity extends AppCompatActivity {
         barcode_price.setText(String.valueOf(bill.getAmount()));
         barcode_person.setText(customer.getName());
         //barcode_barcode.setText(bill.getBarcode());
-        
+
         barcode_copy_paste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("barcode", barcode_barcode.getText());
                 clipboard.setPrimaryClip(clipData);
-                Toast.makeText(getApplicationContext(), "Código de barras copiado!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Código de barra copiado!", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -25,10 +25,10 @@ public class BillFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bill, container, false);
 
         //GET LAYOUT OBJECTS
-        TextView container_text = view.findViewById(R.id.container_text);
-        container_text.setText("Pagamento");
-        ImageView container_back = view.findViewById(R.id.container_back);
-        container_back.setOnClickListener(new View.OnClickListener() {
+        TextView actionbar_text = view.findViewById(R.id.actionbar_text);
+        actionbar_text.setText("Pagamento");
+        ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
+        actionbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OverviewFragment overviewFragment = new OverviewFragment();

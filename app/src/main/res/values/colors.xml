@@ -35,6 +35,8 @@
     <color name="tab_ripple">#999999</color>
 
     <!-- TODO CAROL MEXER A BAIXO DESSA LINHA -->
+    <!-- COLOR DEFAULT -->
+    <color name="actionbar">#6AAFDE</color>
 
     <!-- BUTTONS STYLES-->
     <color name="button_blue_default">#428DCB</color>

@@ -6,12 +6,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.StatusMaintenanceFragment">
 
+    <include
+        android:id="@+id/include_status_maintenance"
+        layout="@layout/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/maintenance_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_regular"
         android:text="Manutenção de urgência"
         android:textAlignment="center"
@@ -20,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/maintenance_animation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include_status_maintenance" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/maintenance_animation"

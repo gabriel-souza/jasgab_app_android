@@ -8,8 +8,8 @@
     tools:context=".fragment.BillFragment">
 
     <include
-        android:id="@+id/include"
-        layout="@layout/container_toolbar"
+        android:id="@+id/include_bill"
+        layout="@layout/actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
+        app:layout_constraintTop_toTopOf="@+id/include_bill"
         app:layout_constraintVertical_bias="0.925" />
 
     <Button

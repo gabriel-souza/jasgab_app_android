@@ -156,7 +156,7 @@ public class OverviewFragment extends Fragment {
         Connection connection = responseCustomer.getCustomerData().getConnections().get(0);
 
         //If connection is blocked
-        if(connection.getBlocked()) {
+        /*if(connection.getBlocked()) {
             StatusBlockedFragment statusBlockedFragment = new StatusBlockedFragment();
 
             StatusDAO.start(requireContext()).insert(StatusType.Blocked);
@@ -165,7 +165,7 @@ public class OverviewFragment extends Fragment {
                     .replace(R.id.home_container, statusBlockedFragment)
                     .commit();
             return;
-        }
+        }*/
 
         getMaintenance();
     }
