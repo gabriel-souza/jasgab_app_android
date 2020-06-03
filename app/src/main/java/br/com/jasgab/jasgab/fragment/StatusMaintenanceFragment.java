@@ -10,14 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieComposition;
-import com.airbnb.lottie.LottieCompositionFactory;
-import com.airbnb.lottie.LottieDrawable;
-import com.airbnb.lottie.LottieResult;
-
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.api.StatusType;
+import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 import br.com.jasgab.jasgab.crud.MaintenanceDAO;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 import br.com.jasgab.jasgab.model.Maintenance;
@@ -40,7 +34,7 @@ public class StatusMaintenanceFragment extends Fragment {
         actionbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StatusDAO.start(requireContext()).insert(StatusType.Overview);
+                StatusDAO.start(requireContext()).insert(StatusLayoutType.Overview);
                 OverviewFragment overviewFragment = new OverviewFragment();
                 requireActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.home_container, overviewFragment)

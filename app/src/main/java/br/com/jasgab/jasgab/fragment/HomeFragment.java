@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.api.StatusType;
+import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 
 public class HomeFragment extends Fragment {
@@ -21,10 +21,10 @@ public class HomeFragment extends Fragment {
 
         Fragment fragment;
         switch (status){
-            case StatusType.Blocked :
+            case StatusLayoutType.Blocked :
                 fragment = new StatusBlockedFragment();
                 break;
-            case StatusType.Maintenance :
+            case StatusLayoutType.Maintenance :
                 fragment = new StatusMaintenanceFragment();
                 break;
             default:

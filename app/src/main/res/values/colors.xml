@@ -39,6 +39,10 @@
     <color name="actionbar">#6AAFDE</color>
 
     <!-- BUTTONS STYLES-->
+    <color name="button_bottom_nav_default">#275F8E</color>
+    <color name="button_bottom_nav_pressed">#275F8E</color>
+    <color name="button_bottom_nav_inactive">#275F8E</color>
+
     <color name="button_blue_default">#428DCB</color>
     <color name="button_blue_pressed">#085696</color>
     <color name="button_blue_text">#FFFFFF</color>

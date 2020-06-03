@@ -18,6 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_home"
+        app:itemIconTint="@drawable/button_bottom_nav"
+        app:itemTextColor="@drawable/button_bottom_nav"
         app:labelVisibilityMode="labeled"
         android:background="?android:attr/windowBackground"/>
 </RelativeLayout>

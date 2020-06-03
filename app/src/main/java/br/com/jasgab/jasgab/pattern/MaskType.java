@@ -1,4 +1,4 @@
-package br.com.jasgab.jasgab.api;
+package br.com.jasgab.jasgab.pattern;
 
 public enum  MaskType {
     CPF,

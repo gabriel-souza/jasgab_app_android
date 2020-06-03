@@ -1,7 +1,6 @@
 package br.com.jasgab.jasgab;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,9 +17,9 @@ import android.widget.TextView;
 import java.util.Objects;
 
 import br.com.jasgab.jasgab.api.JasgabApi;
-import br.com.jasgab.jasgab.api.MaskType;
+import br.com.jasgab.jasgab.pattern.MaskType;
 import br.com.jasgab.jasgab.api.MaskUtil;
-import br.com.jasgab.jasgab.api.verifyCpf;
+import br.com.jasgab.jasgab.api.VerifyCpf;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.dialog.LoginDialog;
@@ -41,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
     private String cpf;
     private Context context;
     private ProgressBar loginProgressBar;
-
     private RelativeLayout loginButton;
 
     @Override
@@ -102,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginProgressBar.setVisibility(View.VISIBLE);
         cpf = ed_cpf.getText().toString();
-        if(!verifyCpf.isCPF(cpf)){
+        if(!VerifyCpf.isCPF(cpf)){
             tv_errorLogin.setText(getString(R.string.tv_cpfdonotexist));
             ed_cpf.setBackground(getDrawable(R.drawable.edittext_white_error));
             loginProgressBar.setVisibility(View.INVISIBLE);

@@ -4,6 +4,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import br.com.jasgab.jasgab.pattern.MaskType;
+
 public class MaskUtil {
     private static final String CPFMask = "###.###.###-##";
     private static final String CNPJMask = "##.###.###/####-##";

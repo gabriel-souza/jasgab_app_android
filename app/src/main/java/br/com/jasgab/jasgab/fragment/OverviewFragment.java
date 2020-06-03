@@ -31,7 +31,10 @@ import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.api.JasgabUtils;
-import br.com.jasgab.jasgab.api.StatusType;
+import br.com.jasgab.jasgab.model.Customer;
+import br.com.jasgab.jasgab.model.RequestStatus;
+import br.com.jasgab.jasgab.model.ResponseStatus;
+import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.crud.MaintenanceDAO;
@@ -43,6 +46,7 @@ import br.com.jasgab.jasgab.model.Contract;
 import br.com.jasgab.jasgab.model.Maintenance;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
+import br.com.jasgab.jasgab.pattern.StatusType;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -153,24 +157,8 @@ public class OverviewFragment extends Fragment {
     }
 
     private void verifyStatus() {
-        Connection connection = responseCustomer.getCustomerData().getConnections().get(0);
+        Customer customer = responseCustomer.getCustomer();
 
-        //If connection is blocked
-        /*if(connection.getBlocked()) {
-            StatusBlockedFragment statusBlockedFragment = new StatusBlockedFragment();
-
-            StatusDAO.start(requireContext()).insert(StatusType.Blocked);
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.home_container, statusBlockedFragment)
-                    .commit();
-            return;
-        }*/
-
-        getMaintenance();
-    }
-
-    private void getMaintenance(){
         Auth auth = AuthDAO.start(requireContext()).select();
         if(auth == null){
             startActivity(new Intent(requireContext(), MainActivity.class));
@@ -178,26 +166,40 @@ public class OverviewFragment extends Fragment {
             return;
         }
 
-        Call<ResponseMaintenance> call = new JasgabApi().maintenance(auth.getToken());
-        call.enqueue(new Callback<ResponseMaintenance>() {
+        RequestStatus requestStatus = new RequestStatus(customer.getId());
+        Call<ResponseStatus> call = new JasgabApi().status(requestStatus, auth.getToken());
+        call.enqueue(new Callback<ResponseStatus>() {
             @Override
-            public void onResponse(Call<ResponseMaintenance> call, Response<ResponseMaintenance> response) {
-                ResponseMaintenance responseMaintenance = response.body();
-                if(responseMaintenance != null){
-                    if(responseMaintenance.getStatus()){
-                        checkNeighborhood(responseMaintenance.getMaintenance());
-                    }else{
-                        startStatusOk();
+            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+                ResponseStatus responseStatus = response.body();
+                if(responseStatus != null){
+                    if(responseStatus.getStatus()){
+                        switch (responseStatus.getInternetStatus()){
+                            case StatusType.Online:
+                                startStatusOk();
+                                break;
+                            case StatusType.Blocked:
+                                StatusBlockedFragment statusBlockedFragment = new StatusBlockedFragment();
+                                CustomerDAO.start(requireContext()).updateConnectionBlocked(true);
+                                StatusDAO.start(requireContext()).insert(StatusLayoutType.Blocked);
+                                requireActivity().getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.home_container, statusBlockedFragment)
+                                        .commit();
+                                return;
+                            case StatusType.Maintenance:
+                                checkNeighborhood(responseStatus.getMaintenance());
+                                break;
+                        }
+                        return;
                     }
                 }
-                else{
-                    startStatusOk();
-                }
+                //TODO REQUEST ERROR
             }
 
             @Override
-            public void onFailure(Call<ResponseMaintenance> call, Throwable t) {
-                startStatusOk();
+            public void onFailure(Call<ResponseStatus> call, Throwable t) {
+                //TODO REQUEST ERROR
             }
         });
     }
@@ -215,27 +217,25 @@ public class OverviewFragment extends Fragment {
              @Override
              public void onResponse(Call<ResponseMaintenance> call, Response<ResponseMaintenance> response) {
                  ResponseMaintenance responseMaintenance = response.body();
-                 if(responseMaintenance != null){
-                     if(responseMaintenance.getStatus()){
+                 if(responseMaintenance != null) {
+                     if (responseMaintenance.getStatus()) {
                          MaintenanceDAO.start(requireContext()).insert(maintenance);
                          StatusMaintenanceFragment statusMaintenanceFragment = new StatusMaintenanceFragment();
 
-                         StatusDAO.start(requireContext()).insert(StatusType.Maintenance);
+                         StatusDAO.start(requireContext()).insert(StatusLayoutType.Maintenance);
                          requireActivity().getSupportFragmentManager()
                                  .beginTransaction()
                                  .replace(R.id.home_container, statusMaintenanceFragment)
                                  .commit();
-                     }else{
-                         startStatusOk();
+                         return;
                      }
-                 }else{
-                     startStatusOk();
                  }
+                 //TODO REQUEST ERROR
              }
 
              @Override
              public void onFailure(Call<ResponseMaintenance> call, Throwable t) {
-                 startStatusOk();
+                 //TODO REQUEST ERROR
              }
          });
     }

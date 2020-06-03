@@ -271,7 +271,11 @@ public class CustomerDAO {
         db.insert(customers_table, null, values);
     }
 
-
+    public void updateConnectionBlocked(Boolean blocked){
+        ContentValues values = new ContentValues();
+        values.put(this.blocked, blocked);
+        db.update(connections_table, values, null, null);
+    }
 
     private void delete(){
         db.delete(bills_table, null,null);

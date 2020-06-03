@@ -2,7 +2,7 @@ package br.com.jasgab.jasgab.api;
 
 import java.util.InputMismatchException;
 
-public class verifyCpf {
+public class VerifyCpf {
 
     public static boolean isCPF (String CPF) {
         CPF = CPF.replace(".","").replace("-","");

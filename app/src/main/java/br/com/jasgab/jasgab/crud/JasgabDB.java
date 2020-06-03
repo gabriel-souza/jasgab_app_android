@@ -77,6 +77,11 @@ public class JasgabDB extends SQLiteOpenHelper {
                 MaintenanceDAO.message+" varchar(2048)," +
                 MaintenanceDAO.title +" varchar(512))"
         );
+
+        db.execSQL("" +
+                "create table "+ UnlockDAO.table+"("+
+                UnlockDAO.bill_id+" integer)"
+        );
     }
 
     @Override
@@ -88,6 +93,7 @@ public class JasgabDB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS '" + CustomerDAO.contracts_table + "'");
         db.execSQL("DROP TABLE IF EXISTS '" + StatusDAO.table + "'");
         db.execSQL("DROP TABLE IF EXISTS '" + MaintenanceDAO.table + "'");
+        db.execSQL("DROP TABLE IF EXISTS '" + UnlockDAO.table + "'");
         onCreate(db);
     }
 }

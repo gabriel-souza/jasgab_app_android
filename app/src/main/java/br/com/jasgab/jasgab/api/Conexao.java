@@ -4,7 +4,11 @@ import br.com.jasgab.jasgab.model.Auth;
 
 import br.com.jasgab.jasgab.model.RequestAuth;
 import br.com.jasgab.jasgab.model.RequestCustomer;
+import br.com.jasgab.jasgab.model.RequestStatus;
+import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model.ResponseStatus;
+import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -28,6 +32,14 @@ public interface Conexao {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/customer_data")
     Call<ResponseCustomer> customer_data(@Body RequestCustomer requestCustomer, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/status")
+    Call<ResponseStatus> status(@Body RequestStatus requestStatus, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/customer/unlock")
+    Call<ResponseCustomerUnlock> unlock(@Body RequestCustomerUnlock requestCustomerUnlock, @Header("Authorization") String auth);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("/maintenance")

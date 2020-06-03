@@ -6,7 +6,11 @@ import br.com.jasgab.jasgab.model.Auth;
 
 import br.com.jasgab.jasgab.model.RequestAuth;
 import br.com.jasgab.jasgab.model.RequestCustomer;
+import br.com.jasgab.jasgab.model.RequestStatus;
+import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model.ResponseStatus;
+import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
 import retrofit2.Call;
 
@@ -29,12 +33,22 @@ public class JasgabApi {
 
     public Call<ResponseCustomer> customer(RequestCustomer requestCustomer, String auth) {
         Conexao service = ServiceGeneratorJasgab.createService();
-        return service.customer_data(requestCustomer, "Bearer "+auth);
+        return service.customer(requestCustomer, "Bearer "+auth);
     }
 
     public Call<ResponseCustomer> customer_data(RequestCustomer requestCustomer, String auth) {
         Conexao service = ServiceGeneratorJasgab.createService();
         return service.customer_data(requestCustomer, "Bearer "+auth);
+    }
+
+    public Call<ResponseStatus> status(RequestStatus requestStatus, String auth) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.status(requestStatus, "Bearer "+auth);
+    }
+
+    public Call<ResponseCustomerUnlock> unlock(RequestCustomerUnlock requestCustomerUnlock, String auth) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.unlock(requestCustomerUnlock, "Bearer "+auth);
     }
 
     public Call<ResponseMaintenance> maintenance(String auth) {
