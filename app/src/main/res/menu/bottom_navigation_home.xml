@@ -7,8 +7,8 @@
         android:icon="@drawable/ic_nav_contracts"
         android:title="Serviços" />
     <item android:id="@+id/nav_bills"
-        android:icon="@drawable/ic_nav_bills"
-        android:title="Pagamento" />
+        android:icon="@drawable/ic_bill"
+        android:title="Faturas" />
     <item android:id="@+id/nav_faq"
         android:icon="@drawable/ic_nav_faq"
         android:title="Duvidas" />

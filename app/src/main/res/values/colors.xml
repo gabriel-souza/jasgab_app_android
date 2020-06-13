@@ -57,7 +57,7 @@
     <color name="button_overview_text">#FFFFFF</color>
 
     <color name="button_pay_default">#FFFFFF</color>
-    <color name="button_pay_pressed">#999999</color>
+    <color name="button_pay_pressed">#C3CFD8</color>
     <color name="button_pay_text">#000000</color>
 
     <color name="button_barcode_default">#FFFFFF</color>
