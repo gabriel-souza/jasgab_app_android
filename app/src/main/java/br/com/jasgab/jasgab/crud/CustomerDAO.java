@@ -56,7 +56,7 @@ public class CustomerDAO {
     static final String adherence_since = "adherence_since";
     static final String plan_ = "plan_";
 
-    private CustomerDAO(Context context){
+    public CustomerDAO(Context context){
         JasgabDB jasgabDB = new JasgabDB(context);
         db = jasgabDB.getWritableDatabase();
     }
@@ -277,7 +277,7 @@ public class CustomerDAO {
         db.update(connections_table, values, null, null);
     }
 
-    private void delete(){
+    public void delete(){
         db.delete(bills_table, null,null);
         db.delete(connections_table, null,null);
         db.delete(contracts_table, null,null);

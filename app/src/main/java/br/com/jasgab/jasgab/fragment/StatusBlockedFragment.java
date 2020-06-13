@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.LottieCompositionFactory;
 import com.airbnb.lottie.LottieDrawable;
 import com.airbnb.lottie.LottieResult;
+import com.github.library.bubbleview.BubbleTextView;
 
 import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
@@ -37,6 +39,7 @@ import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.CustomerData;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,13 +50,24 @@ public class StatusBlockedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_status_blocked, container, false);
 
+
         blockedAnimation(view);
-        setLayout(view);
+        setLayout(view, container);
 
         return view;
     }
 
-    private void setLayout(View view){
+    ConstraintLayout status_blocked_warning;
+    TextView status_blocked_unlocked_message;
+    TextView blocked_message;
+    BubbleTextView status_blocked_balloon;
+    Button pay;
+    private void setLayout(View view, ViewGroup container){
+        status_blocked_warning = view.findViewById(R.id.status_blocked_warning);
+        status_blocked_unlocked_message = view.findViewById(R.id.status_blocked_unlocked_message);
+        blocked_message = view.findViewById(R.id.blocked_message);
+        status_blocked_balloon = view.findViewById(R.id.status_blocked_balloon);
+
         TextView actionbar_text = view.findViewById(R.id.actionbar_text);
         actionbar_text.setText("Conexão bloqueada");
         ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
@@ -68,7 +82,8 @@ public class StatusBlockedFragment extends Fragment {
             }
         });
 
-        Button pay = view.findViewById(R.id.blocked_button_pay);
+        //Button Pay
+        pay = view.findViewById(R.id.blocked_button_pay);
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +107,7 @@ public class StatusBlockedFragment extends Fragment {
     private void blockedAnimation(final View view){
         blocked = view.findViewById(R.id.blocked);
         lottieComposition = new LottieComposition[7];
+
 
 
         //Load into memory to be more fluently transitions
@@ -227,7 +243,6 @@ public class StatusBlockedFragment extends Fragment {
                             blocked.playAnimation();
                             blocked.removeAllAnimatorListeners();
                             blocked.addAnimatorListener(successFinal);
-                            Toast.makeText(requireContext(), String.format("Desbloqueio válido até %s", responseCustomerUnlock.getExpireDate()), Toast.LENGTH_SHORT).show();
 
                             Bill bill = JasgabUtils.actualBill(CustomerDAO.start(requireContext()).selectBills());
                             int bill_id = 0;
@@ -235,6 +250,14 @@ public class StatusBlockedFragment extends Fragment {
                                 bill_id = bill.getId();
                             }
                             UnlockDAO.start(requireContext()).insert(bill_id);
+
+                            //Transform layout
+                            status_blocked_warning.setVisibility(View.VISIBLE);
+                            status_blocked_unlocked_message.setVisibility(View.VISIBLE);
+                            blocked_message.setVisibility(View.INVISIBLE);
+                            status_blocked_balloon.setVisibility(View.INVISIBLE);
+                            pay.setText("Pague Agora");
+
                         } else {
                             blocked.removeAllAnimatorListeners();
                             blocked.addAnimatorListener(error);

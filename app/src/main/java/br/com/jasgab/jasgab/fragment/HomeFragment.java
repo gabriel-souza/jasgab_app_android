@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
                 fragment = new StatusBlockedFragment();
                 break;
             case StatusLayoutType.Maintenance :
-                fragment = new StatusMaintenanceFragment();
+                fragment = new StatusOfflineFragment();
                 break;
             default:
                 fragment = new OverviewFragment();

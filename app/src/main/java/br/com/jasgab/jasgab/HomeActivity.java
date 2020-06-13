@@ -1,6 +1,5 @@
 package br.com.jasgab.jasgab;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
@@ -18,7 +17,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import br.com.jasgab.jasgab.api.CustomTypefaceSpan;
-import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 import br.com.jasgab.jasgab.fragment.BillsFragment;
 import br.com.jasgab.jasgab.fragment.ContractsFragment;
@@ -33,19 +31,14 @@ public class HomeActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if(CustomerDAO.start(this).selectCustomer() == null){
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finishAffinity();
-            return;
-        }
+        run();
+    }
 
+    private void run(){
         bottomNavigation();
 
-        if (savedInstanceState == null) {
-            StatusDAO.start(getApplicationContext()).delete();
-            getSupportFragmentManager().beginTransaction().replace(R.id.home_container, new HomeFragment()).commit();
-        }
+        StatusDAO.start(getApplicationContext()).delete();
+        getSupportFragmentManager().beginTransaction().replace(R.id.home_container, new HomeFragment()).commit();
     }
 
     private void bottomNavigation(){
@@ -85,7 +78,6 @@ public class HomeActivity extends FragmentActivity {
         for (int i=0;i<m.size();i++) {
             MenuItem mi = m.getItem(i);
 
-            //for aapplying a font to subMenu ...
             SubMenu subMenu = mi.getSubMenu();
             if (subMenu!=null && subMenu.size() >0 ) {
                 for (int j=0; j <subMenu.size();j++) {
@@ -94,16 +86,17 @@ public class HomeActivity extends FragmentActivity {
                 }
             }
 
-            //the method we have create in activity
             applyFontToMenuItem(mi);
         }
     }
 
     private void applyFontToMenuItem(MenuItem mi) {
-        Typeface font = Typeface.createFromAsset(getAssets(), "roboto_regular.ttf");
-        SpannableString mNewTitle = new SpannableString(mi.getTitle());
-        mNewTitle.setSpan(new CustomTypefaceSpan("" , font), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        mNewTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, mNewTitle.length(), 0);// Use this if you want to center the items
-        mi.setTitle(mNewTitle);
+        if(mi != null) {
+            Typeface font = Typeface.createFromAsset(getAssets(), "roboto_regular.ttf");
+            SpannableString mNewTitle = new SpannableString(mi.getTitle());
+            mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            mNewTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, mNewTitle.length(), 0);// Use this if you want to center the items
+            mi.setTitle(mNewTitle);
+        }
     }
 }

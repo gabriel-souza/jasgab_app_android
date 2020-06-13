@@ -2,7 +2,6 @@ package br.com.jasgab.jasgab;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,97 +16,97 @@ import android.widget.TextView;
 import java.util.Objects;
 
 import br.com.jasgab.jasgab.api.JasgabApi;
-import br.com.jasgab.jasgab.pattern.MaskType;
 import br.com.jasgab.jasgab.api.MaskUtil;
 import br.com.jasgab.jasgab.api.VerifyCpf;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.dialog.LoginDialog;
-
 import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model.RequestCustomer;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.pattern.MaskType;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText ed_cpf;
-    private TextView tv_errorLogin;
-    private CustomerDAO customerDAO;
-    private String cpf;
-    private Context context;
-    private ProgressBar loginProgressBar;
-    private RelativeLayout loginButton;
+    private CustomerDAO mCustomerDAO;
+    private EditText mEditTextCPF;
+    private InputMethodManager mImm;
+    private ProgressBar mLoginProgressBar;
+    private RelativeLayout mLogin;
+    private String mCPF;
+    private TextView mTextViewErrorLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Objects.requireNonNull(getSupportActionBar()).hide();
-        context = this;
 
-        customerDAO = CustomerDAO.start(context);
+        mCustomerDAO = CustomerDAO.start(this);
+        mEditTextCPF = findViewById(R.id.login_cpf);
+        mTextViewErrorLogin = findViewById(R.id.login_errorLogin);
+        mLoginProgressBar = findViewById(R.id.login_progressBar);
+        mLogin = findViewById(R.id.login_login);
+        mImm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        ed_cpf = findViewById(R.id.ed_cpf);
-        tv_errorLogin = findViewById(R.id.tv_errorLogin);
-        loginProgressBar = findViewById(R.id.login_button_progressBar);
-        loginButton = findViewById(R.id.login_button);
+        run();
+    }
 
-        ed_cpf.addTextChangedListener(MaskUtil.insert(ed_cpf, MaskType.CPF));
-
-        ResponseCustomer responseCustomer = customerDAO.select();
+    private void run(){
+        ResponseCustomer responseCustomer = mCustomerDAO.select();
         if(responseCustomer != null) {
-            customerFound();
+            end();
         }
 
-        ed_cpf.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm != null) {
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        mEditTextCPF.addTextChangedListener(MaskUtil.insert(mEditTextCPF, MaskType.CPF));
+        mEditTextCPF.requestFocus();
+        if(mImm != null) {
+            mImm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         }
 
-        ed_cpf.setOnKeyListener(new View.OnKeyListener()
+        mEditTextCPF.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event)
             {
                 if (keyCode == KeyEvent.KEYCODE_ENTER)
                 {
-                    acessar(view);
+                    login(view);
                     return true;
                 }
                 return false;
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                acessar(v);
+            public void onClick(View view) {
+                login(view);
             }
         });
-
-
     }
 
-    public void acessar(final View view) {
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    public void login(View view) {
+        if(mImm != null) {
+            mImm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
 
-        loginProgressBar.setVisibility(View.VISIBLE);
-        cpf = ed_cpf.getText().toString();
-        if(!VerifyCpf.isCPF(cpf)){
-            tv_errorLogin.setText(getString(R.string.tv_cpfdonotexist));
-            ed_cpf.setBackground(getDrawable(R.drawable.edittext_white_error));
-            loginProgressBar.setVisibility(View.INVISIBLE);
+        mLoginProgressBar.setVisibility(View.VISIBLE);
+
+        mCPF = mEditTextCPF.getText().toString();
+        if(!VerifyCpf.isCPF(mCPF)){
+            mTextViewErrorLogin.setVisibility(View.INVISIBLE);
+            mLoginProgressBar.setVisibility(View.INVISIBLE);
+            mEditTextCPF.setBackground(getDrawable(R.drawable.edittext_white_error));
             return;
         }else{
-            tv_errorLogin.setText(getString(R.string.tv_vazia));
-            ed_cpf.setBackground(getDrawable(R.drawable.edittext_white));
+            mTextViewErrorLogin.setVisibility(View.VISIBLE);
+            mEditTextCPF.setBackground(getDrawable(R.drawable.edittext_white));
         }
 
         Auth auth = AuthDAO.start(this).select();
@@ -117,44 +116,47 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        final RequestCustomer requestCustomer = new RequestCustomer(cpf);
-
-        Call<ResponseCustomer> call = new JasgabApi().customer(requestCustomer, auth.getToken());
+        Call<ResponseCustomer> call = new JasgabApi().customer(new RequestCustomer(mCPF), auth.getToken());
         call.enqueue(new Callback<ResponseCustomer>() {
             @Override
             public void onResponse(Call<ResponseCustomer> call, Response<ResponseCustomer> response) {
                 ResponseCustomer responseCustomer = response.body();
-                loginProgressBar.setVisibility(View.INVISIBLE);
+                mLoginProgressBar.setVisibility(View.INVISIBLE);
                 if(responseCustomer != null){
                     if(responseCustomer.getStatus()){
-                        Customer customer = responseCustomer.getCustomer();
-                        customer.setCpf(cpf);
-                        CustomerDAO.start(context).insertCustomer(customer);
-                        customerFound();
+                        success(responseCustomer.getCustomer());
                     }else{
-                        customerNotFound();
+                        fail();
                     }
                 }
                 else{
-                    customerNotFound();
+                    fail();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseCustomer> call, Throwable t) {
-                customerNotFound();
+                fail();
             }
         });
     }
 
-    private void customerFound() {
+    private void success(Customer customer) {
+        if(customer != null) {
+            customer.setCpf(mCPF);
+            mCustomerDAO.insertCustomer(customer);
+        }
+        end();
+    }
+
+    private void fail(){
+        LoginDialog dialog = new LoginDialog();
+        dialog.show(getSupportFragmentManager(), "customerNotFound");
+    }
+
+    private void end(){
         Intent intent = new Intent(this, LoadingActivity.class);
         startActivity(intent);
         finishAffinity();
-    }
-
-    private void customerNotFound(){
-        LoginDialog dialog = new LoginDialog();
-        dialog.show(getSupportFragmentManager(), "customerNotFound");
     }
 }

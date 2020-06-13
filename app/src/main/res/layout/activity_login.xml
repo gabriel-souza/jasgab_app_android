@@ -11,14 +11,14 @@
         android:id="@+id/tv_acessecpf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ed_cpf"
+        android:layout_above="@+id/login_cpf"
         android:layout_marginBottom="30dp"
         android:fontFamily="@font/apple_sd_gothic_neo_regular"
         android:text="@string/tv_login"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/ed_cpf"
+        app:layout_constraintBottom_toTopOf="@+id/login_cpf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,10 +26,10 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/ed_cpf"
+        android:id="@+id/login_cpf"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/login_button"
+        android:layout_above="@+id/login_login"
         android:autofillHints=""
         android:background="@drawable/box_white"
         android:hint="@string/ex_cliente_cpf"
@@ -42,19 +42,20 @@
         app:layout_constraintVertical_bias="0.350" />
 
     <TextView
-        android:id="@+id/tv_errorLogin"
+        android:id="@+id/login_errorLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login_button"
+        android:layout_above="@+id/login_login"
+        android:visibility="invisible"
         android:paddingVertical="5dp"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/tv_vazia"
+        android:text="@string/tv_cpfdonotexist"
         android:textColor="@color/red"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_cpf" />
+        app:layout_constraintTop_toBottomOf="@+id/login_cpf" />
 
     <include
         android:layout_width="match_parent"
@@ -64,22 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_errorLogin"
+        app:layout_constraintTop_toBottomOf="@+id/login_errorLogin"
         app:layout_constraintVertical_bias="0.0" />
-
-    <!--<Button
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ripple_btn_azul"
-        android:onClick="acessar"
-        android:text="@string/btn_continuarlogin"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_errorLogin"
-        app:layout_constraintVertical_bias="0.0" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

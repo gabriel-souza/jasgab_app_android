@@ -2,10 +2,8 @@ package br.com.jasgab.jasgab.fragment;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +25,12 @@ import com.airbnb.lottie.LottieResult;
 
 import java.util.List;
 
+import br.com.jasgab.jasgab.LoginActivity;
 import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.api.JasgabUtils;
+import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.ResponseStatus;
@@ -41,7 +41,6 @@ import br.com.jasgab.jasgab.crud.MaintenanceDAO;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Bill;
-import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Contract;
 import br.com.jasgab.jasgab.model.Maintenance;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
@@ -52,18 +51,85 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OverviewFragment extends Fragment {
-    ResponseCustomer responseCustomer;
+    private ResponseCustomer mResponseCustomer;
+    private Customer mCustomer;
+    private LottieAnimationView mAvdStatus;
+    private LottieComposition[] mLottieCompositions;
+    private TextView mTextViewOverviewMessage;
+    private Integer mStatusType = -1;
 
-    @SuppressLint("DefaultLocale")
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_overview, container, false);
 
-        responseCustomer = CustomerDAO.start(requireContext()).select();
-
+        mTextViewOverviewMessage = view.findViewById(R.id.overview_message);
+        run(view);
         statusAnimation(view);
-        customerData(view);
+
+        return view;
+    }
+
+    private void run(View view){
+        Auth mAuth = AuthDAO.start(requireContext()).select();
+        mResponseCustomer = CustomerDAO.start(requireContext()).select();
+        if(mAuth == null || mResponseCustomer == null){
+            Intent intent = new Intent(requireContext(), LoginActivity.class);
+            requireActivity().startActivity(intent);
+            requireActivity().finishAffinity();
+        }
+
+        mCustomer = mResponseCustomer.getCustomer();
+        List<Connection> connections = mResponseCustomer.getCustomerData().getConnections();
+        List<Contract> contracts = mResponseCustomer.getCustomerData().getContracts();
+        List<Bill> bills = mResponseCustomer.getCustomerData().getBills();
+
+        if(mCustomer == null || connections == null || connections.isEmpty() || contracts == null || contracts.isEmpty() || bills == null || bills.isEmpty()){
+            Intent intent = new Intent(requireContext(), MainActivity.class);
+            requireActivity().startActivity(intent);
+            requireActivity().finishAffinity();
+            return;
+        }
+
+        if(contracts.size() > 1){
+            runSecundary();
+            return;
+        }
+
+        Contract contract = contracts.get(0);
+        if(contract != null){
+            TextView textView_Plan = view.findViewById(R.id.overview_plan);
+            textView_Plan.setText(contract.getPlan());
+        }
+
+        Bill bill = JasgabUtils.actualBill(mResponseCustomer.getCustomerData().getBills());
+        if(bill != null){
+            TextView textView_price = view.findViewById(R.id.overview_price);
+            TextView textView_billExpiration = view.findViewById(R.id.overview_billExpiration);
+            ProgressBar progressBar_expireBar = view.findViewById(R.id.overview_expireBar);
+
+            int daysToExpire = JasgabUtils.daysToExpire(bill.getExpirationDate());
+            int daysToExpirePercentage = JasgabUtils.percentageExpireDate(daysToExpire);
+            textView_price.setText(String.format("R$ %s mensal", bill.getAmount().toString()));
+            textView_billExpiration.setText(String.format("Vencimento em %d dias", daysToExpire));
+            progressBar_expireBar.setProgress(daysToExpirePercentage);
+
+            if(daysToExpire == 0){
+                textView_billExpiration.setText("Vence hoje");
+                progressBar_expireBar.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.pb_yellow_bill_expiration));
+            }
+
+            if(daysToExpirePercentage >= 101){
+                progressBar_expireBar.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.pb_red_bill_expiration));
+                textView_billExpiration.setText("Vencimento em atraso");
+            }
+        }
+
+        mTextViewOverviewMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startFragment();
+            }
+        });
 
         Button overview_bill_button = view.findViewById(R.id.overview_bill_button);
         overview_bill_button.setOnClickListener(new View.OnClickListener() {
@@ -76,88 +142,77 @@ public class OverviewFragment extends Fragment {
                         .commit();
             }
         });
-
-        return view;
     }
 
-    private void customerData(View view){
-        //GET CUSTOMER DATA
-        //Customer customer = responseCustomer.getCustomer();
-        List<Contract> contracts = responseCustomer.getCustomerData().getContracts();
-        if(contracts.size() > 1){
-            //TODO CUSTOMER WITH MORE THAN 1 CONTRACT
-        }
-        Contract contract = contracts.get(0);
-        //Connection connection = responseCustomer.getCustomerData().getConnections().get(0);
-
-        Bill bill = JasgabUtils.actualBill(responseCustomer.getCustomerData().getBills());
-        int daysToExpire = bill != null ? (int) JasgabUtils.daysToExpire(bill.getExpirationDate()) : -1;
-        int daysToExpirePercentage = JasgabUtils.percentageExpireDate(daysToExpire);
-
-        //DISPLAY DATA
-        TextView tv_plan = view.findViewById(R.id.tv_home_plan);
-        TextView tv_price = view.findViewById(R.id.tv_home_price);
-        TextView tv_bill_expiration = view.findViewById(R.id.tv_home_bill_expiration);
-        ProgressBar pb_barcode = view.findViewById(R.id.pb_home_barcode);
-
-        tv_plan.setText(contract.getPlan());
-        tv_price.setText(String.format("R$ %s mensal", bill.getAmount().toString()));
-        tv_bill_expiration.setText(String.format("Vencimento em %d dias", daysToExpire));
-        pb_barcode.setProgress(daysToExpirePercentage);
-
-        if(daysToExpirePercentage >= 101){
-            pb_barcode.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.pb_red_bill_expiration));
-            tv_bill_expiration.setText("Vencimento em atraso");
-        }
+    private void runSecundary(){
+        //TODO CUSTOMER WITH MORE THAN 1 CONTRACT
     }
 
     private void statusAnimation(View view){
-        final LottieAnimationView status = view.findViewById(R.id.status);
-        final LottieComposition[] lottieComposition = new LottieComposition[3];
+        if(view != null) {
+            mAvdStatus = view.findViewById(R.id.status);
+            mLottieCompositions = new LottieComposition[7];
 
-        //Carregar e colocar na memoria para iniciar.
-        LottieResult<LottieComposition> lottieStatusEsperando = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_waiting.json");
-        LottieResult<LottieComposition> lottieStatusClick = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_click.json");
-        LottieResult<LottieComposition> lottieStatusCarregando = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_loading.json");
+            LottieResult<LottieComposition> status_0 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_0.json");
+            LottieResult<LottieComposition> status_1 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_1.json");
+            LottieResult<LottieComposition> status_2 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_2.json");
+            LottieResult<LottieComposition> status_3 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_3.json");
+            LottieResult<LottieComposition> status_4 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_4.json");
+            LottieResult<LottieComposition> status_5 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_5.json");
+            LottieResult<LottieComposition> status_6 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_6.json");
 
-        lottieComposition[0] = lottieStatusEsperando.getValue();
-        lottieComposition[1] = lottieStatusClick.getValue();
-        lottieComposition[2] = lottieStatusCarregando.getValue();
+            mLottieCompositions[0] = status_0.getValue();
+            mLottieCompositions[1] = status_1.getValue();
+            mLottieCompositions[2] = status_2.getValue();
+            mLottieCompositions[3] = status_3.getValue();
+            mLottieCompositions[4] = status_4.getValue();
+            mLottieCompositions[5] = status_5.getValue();
+            mLottieCompositions[6] = status_6.getValue();
 
-        if(lottieComposition[0] != null) {
-            status.setComposition(lottieComposition[0]);
-            status.setRepeatCount(LottieDrawable.INFINITE);
-            status.playAnimation();
-        }
-
-        status.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                status.setComposition(lottieComposition[1]);
-                status.setRepeatCount(0);
-                status.playAnimation();
-                status.addAnimatorListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        status.setComposition(lottieComposition[2]);
-                        status.setRepeatCount(LottieDrawable.INFINITE);
-                        status.playAnimation();
-
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                verifyStatus();
-                            }
-                        }, 2000);
-                    }
-                });
+            if (mLottieCompositions[0] != null) {
+                mAvdStatus.setComposition(mLottieCompositions[0]);
+                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
+                mAvdStatus.playAnimation();
             }
-        });
+
+            mAvdStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startFragment();
+                }
+            });
+
+            verifyStatus();
+        }
+    }
+
+    private void startFragment(){
+        switch (mStatusType) {
+            case StatusType.Online:
+                StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
+                StatusOnlineFragment statusOnlineFragment = new StatusOnlineFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_container, statusOnlineFragment)
+                        .commit();
+                break;
+            case StatusType.Blocked:
+                StatusDAO.start(requireContext()).insert(StatusLayoutType.Blocked);
+                StatusBlockedFragment statusBlockedFragment = new StatusBlockedFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_container, statusBlockedFragment)
+                        .commit();
+                break;
+            case StatusType.Maintenance:
+                StatusDAO.start(requireContext()).insert(StatusLayoutType.Maintenance);
+                StatusOfflineFragment statusOfflineFragment = new StatusOfflineFragment();
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_container, statusOfflineFragment)
+                        .commit();
+                break;
+        }
     }
 
     private void verifyStatus() {
-        Customer customer = responseCustomer.getCustomer();
 
         Auth auth = AuthDAO.start(requireContext()).select();
         if(auth == null){
@@ -166,7 +221,7 @@ public class OverviewFragment extends Fragment {
             return;
         }
 
-        RequestStatus requestStatus = new RequestStatus(customer.getId());
+        RequestStatus requestStatus = new RequestStatus(mCustomer.getId());
         Call<ResponseStatus> call = new JasgabApi().status(requestStatus, auth.getToken());
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
@@ -176,19 +231,13 @@ public class OverviewFragment extends Fragment {
                     if(responseStatus.getStatus()){
                         switch (responseStatus.getInternetStatus()){
                             case StatusType.Online:
-                                startStatusOk();
+                                startStatusOnline();
                                 break;
                             case StatusType.Blocked:
-                                StatusBlockedFragment statusBlockedFragment = new StatusBlockedFragment();
-                                CustomerDAO.start(requireContext()).updateConnectionBlocked(true);
-                                StatusDAO.start(requireContext()).insert(StatusLayoutType.Blocked);
-                                requireActivity().getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.home_container, statusBlockedFragment)
-                                        .commit();
-                                return;
+                                startStatusBlocked();
+                                break;
                             case StatusType.Maintenance:
-                                checkNeighborhood(responseStatus.getMaintenance());
+                                startStatusOffline(responseStatus);
                                 break;
                         }
                         return;
@@ -204,6 +253,50 @@ public class OverviewFragment extends Fragment {
         });
     }
 
+    private void startStatusOnline(){
+        mTextViewOverviewMessage.setText(getString(R.string.overview_message_online));
+
+        mStatusType = StatusType.Online;
+        mAvdStatus.setComposition(mLottieCompositions[1]);
+        mAvdStatus.setRepeatCount(0);
+        mAvdStatus.playAnimation();
+        mAvdStatus.addAnimatorListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mAvdStatus.setComposition(mLottieCompositions[2]);
+                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
+                mAvdStatus.playAnimation();
+            }
+        });
+    }
+
+    private void startStatusBlocked(){
+        mTextViewOverviewMessage.setText(getString(R.string.overview_message_blocked));
+
+        mStatusType = StatusType.Blocked;
+        mAvdStatus.setComposition(mLottieCompositions[3]);
+        mAvdStatus.setRepeatCount(0);
+        mAvdStatus.playAnimation();
+        mAvdStatus.removeAllAnimatorListeners();
+        mAvdStatus.addAnimatorListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mAvdStatus.setComposition(mLottieCompositions[4]);
+                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
+                mAvdStatus.playAnimation();
+            }
+        });
+
+    }
+
+    private void startStatusOffline(ResponseStatus responseStatus){
+        mTextViewOverviewMessage.setText(getString(R.string.overview_message_offline));
+
+        checkNeighborhood(responseStatus.getMaintenance());
+    }
+
     private void checkNeighborhood(final Maintenance maintenance){
         Auth auth = AuthDAO.start(requireContext()).select();
         if(auth == null){
@@ -214,38 +307,39 @@ public class OverviewFragment extends Fragment {
 
         Call<ResponseMaintenance> call = new JasgabApi().check_neighborhood(auth.getToken());
         call.enqueue(new Callback<ResponseMaintenance>() {
-             @Override
-             public void onResponse(Call<ResponseMaintenance> call, Response<ResponseMaintenance> response) {
-                 ResponseMaintenance responseMaintenance = response.body();
-                 if(responseMaintenance != null) {
-                     if (responseMaintenance.getStatus()) {
-                         MaintenanceDAO.start(requireContext()).insert(maintenance);
-                         StatusMaintenanceFragment statusMaintenanceFragment = new StatusMaintenanceFragment();
+            @Override
+            public void onResponse(Call<ResponseMaintenance> call, Response<ResponseMaintenance> response) {
+                ResponseMaintenance responseMaintenance = response.body();
+                if(responseMaintenance != null) {
+                    if (responseMaintenance.getStatus()) {
+                        MaintenanceDAO.start(requireContext()).insert(maintenance);
 
-                         StatusDAO.start(requireContext()).insert(StatusLayoutType.Maintenance);
-                         requireActivity().getSupportFragmentManager()
-                                 .beginTransaction()
-                                 .replace(R.id.home_container, statusMaintenanceFragment)
-                                 .commit();
-                         return;
-                     }
-                 }
-                 //TODO REQUEST ERROR
-             }
+                        mStatusType = StatusType.Maintenance;
+                        mAvdStatus.setComposition(mLottieCompositions[5]);
+                        mAvdStatus.setRepeatCount(0);
+                        mAvdStatus.playAnimation();
+                        mAvdStatus.addAnimatorListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                mAvdStatus.setComposition(mLottieCompositions[6]);
+                                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
+                                mAvdStatus.playAnimation();
+                            }
+                        });
+                        return;
+                    }else{
+                        startStatusOnline();
+                    }
+                }
+                //TODO REQUEST ERROR
+            }
 
-             @Override
-             public void onFailure(Call<ResponseMaintenance> call, Throwable t) {
-                 //TODO REQUEST ERROR
-             }
-         });
+            @Override
+            public void onFailure(Call<ResponseMaintenance> call, Throwable t) {
+                //TODO REQUEST ERROR
+            }
+        });
     }
 
-    private void startStatusOk(){
-        StatusOkFragment statusOkFragment = new StatusOkFragment();
-        requireActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.home_container, statusOkFragment)
-                .addToBackStack(null)
-                .commit();
-    }
 }

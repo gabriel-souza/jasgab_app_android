@@ -26,6 +26,7 @@
     <color name="barcode_button_text">#3F88F7</color>
 
 
+    <color name="progress_last_day">#EDB95F</color>
     <color name="progress_late">#BB0202</color>
     <color name="progress_bar">#ECF5FD</color>
     <color name="progress_background">#999999</color>
@@ -65,10 +66,31 @@
     <color name="button_barcode_stroke">#428DCB</color>
     <color name="button_barcode_text">#428DCB</color>
 
+    <!-- TOOLTIP COLOR -->
+    <color name="tooltip_default_background">#428DCB</color>
+    <color name="tooltip_default_text">#FFF</color>
+
     <!-- EDIT TEXT STYLES -->
     <color name="edittext_white_default">#FFFFFF</color>
     <color name="edittext_white_stroke_default">#428DCB</color>
     <color name="edittext_white_stroke_error">#FF0000</color>
     <color name="edittext_white_text">#000000</color>
+
+    <!-- BALLON -->
+    <color name="warning_text">#040404</color>
+    <color name="warning_background">#5EFEBC14</color>
+
+
+    <!-- LAYOUT BLOCKED -->
+    <color name="status_blocked_text">#0A0E62</color>
+    <color name="status_blocked_bubble_background">#DFDFDF</color>
+    <color name="status_blocked_bubble_text">#0A0E62</color>
+
+    <!-- LAYOUT MAINTENANCE -->
+    <color name="status_maintenance_title">#0A0E62</color>
+    <color name="status_maintenance_forecast_return">#0A0E62</color>
+    <color name="status_maintenance_message_title">#000000</color>
+    <color name="status_maintenance_message">#757575</color>
+
 
 </resources>

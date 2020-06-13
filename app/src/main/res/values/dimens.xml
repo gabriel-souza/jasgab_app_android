@@ -22,6 +22,11 @@
     <dimen name="button_barcode_text">18sp</dimen>
     <dimen name="button_barcode_conner">6dp</dimen>
     <dimen name="button_barcode_stroke_width">2dp</dimen>
+    
+    <!-- TOOLTIPS DIMENS -->
+    <dimen name="tooltip_default_conner">10dp</dimen>
+    <dimen name="tooltip_default_arrow_height">20dp</dimen>
+    <dimen name="tooltip_default_arrow">50dp</dimen>
 
     <!-- EDIT TEXT DIMENS -->
     <dimen name="edittext_white_text">18sp</dimen>

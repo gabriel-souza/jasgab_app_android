@@ -120,7 +120,7 @@ public class LoadingActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseCustomer> call, Throwable t) {
-                //TODO ERRO AO CONECTAR COM O SERVIDOR
+                customerDataNotFound();
             }
         });
     }
@@ -131,6 +131,8 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     private void customerDataNotFound(){
-        //TODO ERRO AO BUSCAR DADOS DO CLIENTE
+        CustomerDAO.start(this).delete();
+        startActivity(new Intent(this, MainActivity.class));
+        finishAffinity();
     }
 }

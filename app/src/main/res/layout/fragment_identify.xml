@@ -31,14 +31,14 @@
         android:text="@string/tv_jacliente"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_clientesim"
+        app:layout_constraintBottom_toTopOf="@+id/identify_yes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_identifiquese"
         app:layout_constraintVertical_bias="0.900" />
 
     <Button
-        android:id="@+id/btn_clientesim"
+        android:id="@+id/identify_yes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_jacliente"
@@ -59,7 +59,7 @@
         android:id="@+id/btn_clientenao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_clientesim"
+        android:layout_below="@+id/identify_yes"
         android:layout_centerHorizontal="true"
         android:height="50dp"
         android:background="@drawable/button_white"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_clientesim"
+        app:layout_constraintTop_toBottomOf="@+id/identify_yes"
         app:layout_constraintVertical_bias="0.200" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

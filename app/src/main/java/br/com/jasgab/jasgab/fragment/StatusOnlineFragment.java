@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import br.com.jasgab.jasgab.R;
 
-public class StatusOkFragment extends Fragment {
+public class StatusOnlineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

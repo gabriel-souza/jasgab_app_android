@@ -16,7 +16,7 @@ import br.com.jasgab.jasgab.crud.MaintenanceDAO;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 import br.com.jasgab.jasgab.model.Maintenance;
 
-public class StatusMaintenanceFragment extends Fragment {
+public class StatusOfflineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_status_maintenance, container, false);

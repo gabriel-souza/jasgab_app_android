@@ -15,7 +15,7 @@ import br.com.jasgab.jasgab.model.Bill;
 public class JasgabUtils {
 
     public static Bill actualBill(List<Bill> bills) {
-        if(bills.size() == 0){
+        if(bills == null || bills.isEmpty()){
             return null;
         }
 
