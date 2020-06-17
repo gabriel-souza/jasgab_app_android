@@ -6,9 +6,11 @@ import br.com.jasgab.jasgab.model.Auth;
 
 import br.com.jasgab.jasgab.model.RequestAuth;
 import br.com.jasgab.jasgab.model.RequestCustomer;
+import br.com.jasgab.jasgab.model.RequestMacVendor;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model.ResponseMacVendor;
 import br.com.jasgab.jasgab.model.ResponseStatus;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
@@ -59,6 +61,11 @@ public class JasgabApi {
     public Call<ResponseMaintenance> check_neighborhood(String auth) {
         Conexao service = ServiceGeneratorJasgab.createService();
         return service.check_neighborhood("Bearer "+auth);
+    }
+
+    public Call<ResponseMacVendor> mac_vendor(RequestMacVendor requestMacVendor) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.mac_vendor(requestMacVendor);
     }
 
     //---------------- CALL API FCM TO PUSH NOTIFICATION

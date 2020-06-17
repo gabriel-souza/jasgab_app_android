@@ -1,47 +1,42 @@
 package br.com.jasgab.jasgab.model;
 
-public class Device {
+public class Device{
+    private String ipAddress;
+    private String deviceName;
+    private String macAddress;
 
-    public String address;
-    public String hostName;
-    public String macAddress;
-    public String type;
-
-
-    public Device(String address, String hostName, String macAddress, String type){
-        this.address = address;
-        this.hostName = hostName;
+    public Device(String ipAddress, String macAddress, String deviceName) {
+        this.ipAddress = ipAddress;
         this.macAddress = macAddress;
-        this.type = type;
-    }
-    
-    public void getType(String type){
-        this.type = type;
-    }
-    public void getHostName(String hostName){
-        this.hostName = hostName;
-    }
-    public void getMacAddress(String macAddress){
-        this.macAddress = macAddress;
-    }
-    public void getAddress(String address){
-        this.address = address;
+        this.deviceName = deviceName;
     }
 
-    public void setType(String type){
-        this.type = type;
+    public Device() {
+        this.ipAddress = String.valueOf("");
+        this.macAddress = String.valueOf("");
+        this.deviceName = String.valueOf("");
     }
-    public void setHostName(String hostName){
-        this.hostName = hostName;
+    public String getIpAddress() {
+        return ipAddress;
     }
-    public void setMacAddress(String macAddress){
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
         this.macAddress = macAddress;
     }
-    public void setAddress(String address){
-        this.address = address;
-    }
-    
-    
-    
-    
 }

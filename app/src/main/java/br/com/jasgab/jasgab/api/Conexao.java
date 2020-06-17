@@ -4,9 +4,11 @@ import br.com.jasgab.jasgab.model.Auth;
 
 import br.com.jasgab.jasgab.model.RequestAuth;
 import br.com.jasgab.jasgab.model.RequestCustomer;
+import br.com.jasgab.jasgab.model.RequestMacVendor;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model.ResponseMacVendor;
 import br.com.jasgab.jasgab.model.ResponseStatus;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
@@ -48,6 +50,10 @@ public interface Conexao {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("/check_neighborhood")
     Call<ResponseMaintenance> check_neighborhood(@Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("/tools/mac_vendor")
+    Call<ResponseMacVendor> mac_vendor(@Body RequestMacVendor requestMacVendor);
 
     //---------------- CALL API FCM TO PUSH NOTIFICATION
     @GET("/insert_fcm")
