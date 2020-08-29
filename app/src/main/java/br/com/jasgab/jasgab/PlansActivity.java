@@ -102,24 +102,17 @@ public class PlansActivity extends AppCompatActivity {
 
             //Benefits
             TextView plan_benefits_title_one = findViewById(R.id.recommended_plan_benefits_title_one);
-            TextView plan_benefits_description_one = findViewById(R.id.recommended_plan_benefits_description_one);
-            plan_benefits_title_one.setText(plan.getBenefits().get(0).get(0));
-            plan_benefits_description_one.setText(plan.getBenefits().get(0).get(1));
+            plan_benefits_title_one.setText(plan.getBenefits().get(0));
 
             TextView plan_benefits_title_two = findViewById(R.id.recommended_plan_benefits_title_two);
-            TextView plan_benefits_description_two = findViewById(R.id.recommended_plan_benefits_description_two);
-            plan_benefits_title_two.setText(plan.getBenefits().get(1).get(0));
-            plan_benefits_description_two.setText(plan.getBenefits().get(1).get(1));
+            plan_benefits_title_two.setText(plan.getBenefits().get(1));
 
             TextView plan_benefits_title_three = findViewById(R.id.recommended_plan_benefits_title_three);
-            TextView plan_benefits_description_three = findViewById(R.id.recommended_plan_benefits_description_three);
-            plan_benefits_title_three.setText(plan.getBenefits().get(2).get(0));
-            plan_benefits_description_three.setText(plan.getBenefits().get(2).get(1));
+            plan_benefits_title_three.setText(plan.getBenefits().get(2));
 
             TextView plan_benefits_title_four = findViewById(R.id.recommended_plan_benefits_title_four);
-            TextView plan_benefits_description_four = findViewById(R.id.recommended_plan_benefits_description_four);
-            plan_benefits_title_four.setText(plan.getBenefits().get(3).get(0));
-            plan_benefits_description_four.setText(plan.getBenefits().get(3).get(1));
+            plan_benefits_title_four.setText(plan.getBenefits().get(3));
+
         }else{
             plans_benefits.setVisibility(View.INVISIBLE);
             plans_benefits_container.setVisibility(View.INVISIBLE);

@@ -66,29 +66,21 @@ public class RecommendedPlanActivity extends AppCompatActivity {
 
         //PLAN BENEFITS
         TextView recommended_plan_benefits_title_one = findViewById(R.id.recommended_plan_benefits_title_one);
-        TextView recommended_plan_benefits_description_one = findViewById(R.id.recommended_plan_benefits_description_one);
         TextView recommended_plan_benefits_title_two = findViewById(R.id.recommended_plan_benefits_title_two);
-        TextView recommended_plan_benefits_description_two = findViewById(R.id.recommended_plan_benefits_description_two);
         TextView recommended_plan_benefits_title_three = findViewById(R.id.recommended_plan_benefits_title_three);
-        TextView recommended_plan_benefits_description_three = findViewById(R.id.recommended_plan_benefits_description_three);
         TextView recommended_plan_benefits_title_four = findViewById(R.id.recommended_plan_benefits_title_four);
-        TextView recommended_plan_benefits_description_four = findViewById(R.id.recommended_plan_benefits_description_four);
 
         //SET LAYOUT
         recommended_plan_img.setBackground(plan.getImage());
         recommended_plan_title.setText(plan.getName());
         recommended_plan_detail.setText(plan.getDetail());
 
-        recommended_plan_benefits_title_one.setText(plan.getBenefits().get(0).get(0));
-        recommended_plan_benefits_description_one.setText(plan.getBenefits().get(0).get(1));
+        recommended_plan_benefits_title_one.setText(plan.getBenefits().get(0));
 
-        recommended_plan_benefits_title_two.setText(plan.getBenefits().get(1).get(0));
-        recommended_plan_benefits_description_two.setText(plan.getBenefits().get(1).get(1));
+        recommended_plan_benefits_title_two.setText(plan.getBenefits().get(1));
 
-        recommended_plan_benefits_title_three.setText(plan.getBenefits().get(2).get(0));
-        recommended_plan_benefits_description_three.setText(plan.getBenefits().get(2).get(1));
+        recommended_plan_benefits_title_three.setText(plan.getBenefits().get(2));
 
-        recommended_plan_benefits_title_four.setText(plan.getBenefits().get(3).get(0));
-        recommended_plan_benefits_description_four.setText(plan.getBenefits().get(3).get(1));
+        recommended_plan_benefits_title_four.setText(plan.getBenefits().get(3));
     }
 }

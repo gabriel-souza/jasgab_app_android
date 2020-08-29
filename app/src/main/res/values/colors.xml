@@ -61,9 +61,10 @@
     <color name="blue_jasgab_light">#6AAFDE</color>
     <color name="blue_jasgab_medium">#2C98F0</color>
     <color name="blue_jasgab_dark">#428DCB</color>
-    <color name="blue_button">#0D47A1</color>
+    <color name="blue_button">#0277BD</color>
     <color name="blue_button_dark">#0D47A1</color>
     <color name="blue_grayish">#165E89</color>
+    <color name="blue_purple">#0A0E62</color>
 
     <!-- GRAY -->
     <color name="gray_dark">#616161</color>
