@@ -28,8 +28,9 @@ import java.util.List;
 import br.com.jasgab.jasgab.LoginActivity;
 import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
+import br.com.jasgab.jasgab.StatusOnlineActivity;
 import br.com.jasgab.jasgab.api.JasgabApi;
-import br.com.jasgab.jasgab.api.JasgabUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model.RequestStatus;
@@ -70,6 +71,8 @@ public class OverviewFragment extends Fragment {
     }
 
     private void run(View view){
+        JasgabUtils.checkInternetDialog(requireContext(), requireActivity());
+
         Auth mAuth = AuthDAO.start(requireContext()).select();
         mResponseCustomer = CustomerDAO.start(requireContext()).select();
         if(mAuth == null || mResponseCustomer == null){
@@ -107,7 +110,7 @@ public class OverviewFragment extends Fragment {
             TextView textView_billExpiration = view.findViewById(R.id.overview_billExpiration);
             ProgressBar progressBar_expireBar = view.findViewById(R.id.overview_expireBar);
 
-            int daysToExpire = JasgabUtils.daysToExpire(bill.getExpirationDate());
+            int daysToExpire = JasgabUtils.daysToExpire(bill.getDueDate());
             int daysToExpirePercentage = JasgabUtils.percentageExpireDate(daysToExpire);
             textView_price.setText(String.format("R$ %s mensal", bill.getAmount().toString()));
             textView_billExpiration.setText(String.format("Vencimento em %d dias", daysToExpire));
@@ -150,7 +153,7 @@ public class OverviewFragment extends Fragment {
 
     private void statusAnimation(View view){
         if(view != null) {
-            mAvdStatus = view.findViewById(R.id.status);
+            mAvdStatus = view.findViewById(R.id.overview_status);
             mLottieCompositions = new LottieComposition[7];
 
             LottieResult<LottieComposition> status_0 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_0.json");
@@ -190,10 +193,7 @@ public class OverviewFragment extends Fragment {
         switch (mStatusType) {
             case StatusType.Online:
                 StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
-                StatusOnlineFragment statusOnlineFragment = new StatusOnlineFragment();
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_container, statusOnlineFragment)
-                        .commit();
+                startActivity(new Intent(requireContext(), StatusOnlineActivity.class));
                 break;
             case StatusType.Blocked:
                 StatusDAO.start(requireContext()).insert(StatusLayoutType.Blocked);

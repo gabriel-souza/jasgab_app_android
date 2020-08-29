@@ -9,11 +9,14 @@ import br.com.jasgab.jasgab.model.RequestCustomer;
 import br.com.jasgab.jasgab.model.RequestMacVendor;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
+import br.com.jasgab.jasgab.model.ResponseAddress;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model.ResponseIsp;
 import br.com.jasgab.jasgab.model.ResponseMacVendor;
 import br.com.jasgab.jasgab.model.ResponseStatus;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
+import br.com.jasgab.jasgab.model.CustomerNew;
 import retrofit2.Call;
 
 public class JasgabApi {
@@ -31,6 +34,16 @@ public class JasgabApi {
         RequestAuth requestAuth = new RequestAuth("gabriel","g@br131");
         Conexao service = ServiceGeneratorJasgab.createService();
         return service.auth(requestAuth);
+    }
+
+    public Call<ResponseCustomer> customerNew(CustomerNew customerNew, String auth) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.customerNew(customerNew, "Bearer "+auth);
+    }
+
+    public Call<ResponseAddress> getAddress(CustomerNew customerNew, String auth) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.getAddress(customerNew, "Bearer "+auth);
     }
 
     public Call<ResponseCustomer> customer(RequestCustomer requestCustomer, String auth) {
@@ -66,6 +79,11 @@ public class JasgabApi {
     public Call<ResponseMacVendor> mac_vendor(RequestMacVendor requestMacVendor) {
         Conexao service = ServiceGeneratorJasgab.createService();
         return service.mac_vendor(requestMacVendor);
+    }
+
+    public Call<ResponseIsp> isp(String auth) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.isp("Bearer "+auth);
     }
 
     //---------------- CALL API FCM TO PUSH NOTIFICATION

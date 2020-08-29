@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#F4FAFF">
+
+    <include
+        android:id="@+id/include_plans"
+        layout="@layout/layout_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.islamkhsh.CardSliderViewPager
+        android:id="@+id/plans_cardslider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:auto_slide_time="3"
+        app:cardSlider_otherPagesWidth="24dp"
+        app:cardSlider_pageMargin="12dp"
+        app:cardSlider_smallAlphaFactor="0.5"
+        app:cardSlider_smallScaleFactor="0.9"
+        app:cardSlider_indicator="@id/plans_cardslider_indicator"
+        app:layout_constraintBottom_toTopOf="@+id/recommended_plan_benefits"
+        app:layout_constraintTop_toBottomOf="@+id/include_plans"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <com.github.islamkhsh.CardSliderIndicator
+        android:id="@+id/plans_cardslider_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:defaultIndicator="@drawable/plans_indicator_default_dot"
+        app:selectedIndicator="@drawable/plans_indicator_selected_dot"
+        app:indicatorsToShow="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plans_cardslider" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/recommended_plan"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/overview_profile.xml"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/plans_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/plans_cardslider_indicator"
+        app:layout_constraintVertical_bias="0.5"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/avd_recomended_plan" />
+
+    <TextView
+        android:id="@+id/recommended_plan_benefits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/segoe_ui_bold"
+        android:text="Beneficios"
+        android:textColor="#0A0E62"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/plans_benefits_container"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <LinearLayout
+        android:id="@+id/plans_benefits_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/background_plan_benefits"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recommended_plan_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/recommended_plan_benefits_ic_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ic_plan_check"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_title_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Máximo simultâneo"
+                android:textColor="#0A0E62"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_one"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_description_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_regular"
+                android:text="Baixo consumo até 5 aparelhos connectados"
+                android:textColor="#0A0E62"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_one"
+                app:layout_constraintTop_toBottomOf="@+id/recommended_plan_benefits_title_one" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recommended_plan_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+            <ImageView
+                android:id="@+id/recommended_plan_benefits_ic_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ic_plan_check"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_title_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Máximo simultâneo"
+                android:textColor="#0A0E62"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_two"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_description_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_regular"
+                android:text="Baixo consumo até 5 aparelhos connectados"
+                android:textColor="#0A0E62"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_two"
+                app:layout_constraintTop_toBottomOf="@+id/recommended_plan_benefits_title_two" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recommended_plan_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+            <ImageView
+                android:id="@+id/recommended_plan_benefits_ic_three"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ic_plan_check"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_title_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Máximo simultâneo"
+                android:textColor="#0A0E62"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_three"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_description_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_regular"
+                android:text="Baixo consumo até 5 aparelhos connectados"
+                android:textColor="#0A0E62"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_three"
+                app:layout_constraintTop_toBottomOf="@+id/recommended_plan_benefits_title_three" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+            <ImageView
+                android:id="@+id/recommended_plan_benefits_ic_four"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ic_plan_check"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_title_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="Máximo simultâneo"
+                android:textColor="#0A0E62"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_four"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recommended_plan_benefits_description_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/segoe_ui_regular"
+                android:text="Baixo consumo até 5 aparelhos connectados"
+                android:textColor="#0A0E62"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_four"
+                app:layout_constraintTop_toBottomOf="@+id/recommended_plan_benefits_title_four" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/plans_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
+        android:layout_marginBottom="20dp"
+        android:text="ALTERAR PLANO"
+        style="@style/button_raised"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,12 @@
 package br.com.jasgab.jasgab.fragment;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
 import android.net.NetworkInfo;
-import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.api.Pinger;
-import br.com.jasgab.jasgab.model.Device;
+import br.com.jasgab.jasgab.model.DeviceWifi;
+import br.com.jasgab.jasgab.util.Pinger;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 import static android.content.Context.WIFI_SERVICE;
@@ -63,14 +57,14 @@ public class FAQFragment extends Fragment {
         }
     }
 
-    private class AsyncScan extends AsyncTask<Void, Void, List<Device>> {
+    private class AsyncScan extends AsyncTask<Void, Void, List<DeviceWifi>> {
 
         @Override
-        protected List<Device> doInBackground(Void... voids) {
+        protected List<DeviceWifi> doInBackground(Void... voids) {
             String ipString = getGatewayIpv4Address();
 
             if (ipString == null) {
-                return new ArrayList<Device>(1);
+                return new ArrayList<DeviceWifi>(1);
             }
             int lastdot = ipString.lastIndexOf(".");
             ipString = ipString.substring(0, lastdot);
@@ -79,12 +73,12 @@ public class FAQFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<Device> devices) {
-            super.onPostExecute(devices);
+        protected void onPostExecute(List<DeviceWifi> deviceWifis) {
+            super.onPostExecute(deviceWifis);
 
             String text = "";
-            for(Device device : devices){
-                text += "Hostname: " + device.getDeviceName() +  "MAC: " + device.getMacAddress() + " Address: " + device.getIpAddress() + " Type: " +  "\n";
+            for(DeviceWifi deviceWifi : deviceWifis){
+                text += "Hostname: " + deviceWifi.getName() +  "MAC: " + deviceWifi.getMac() + " Address: " + deviceWifi.getIp() + " Type: " +  "\n";
             }
 
             textView.setText(text);
@@ -118,49 +112,8 @@ public class FAQFragment extends Fragment {
         text += "\n Level " + WifiManager.calculateSignalLevel(wifiInfo.getRssi(), 100); // Qualidade do sinal
         text += "\n Signal " +wifiInfo.getRssi(); // Sinal dbm
 
-
-
-
-        scanWifi();
-
         textView.setText(text);
         return 0;
     }
 
-    private WifiManager wifiManager;
-    private int size = 0;
-    private List<ScanResult> results;
-    private ArrayList<String> arrayList = new ArrayList<>();
-
-    private void scanWifi() {
-        wifiManager = (WifiManager) requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        arrayList.clear();
-        requireContext().registerReceiver(wifiReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-        wifiManager.startScan();
-        //Toast.makeText(this, "Scanning WiFi ...", Toast.LENGTH_SHORT).show();
-    }
-
-    BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            results = wifiManager.getScanResults();
-            requireContext().unregisterReceiver(this);
-            int i = 0;
-            for (ScanResult scanResult : results) {
-                //arrayList.add(scanResult.SSID + " - " + scanResult.capabilities);
-
-                text += "\n SCAN I: " + i;
-                text += "\n SCAN SSID: "+ scanResult.SSID;
-                text += "\n SCAN CAP: "+ scanResult.capabilities;
-                text += "\n SCAN FREQ: "+ scanResult.frequency;
-                text += "\n SCAN BSSID: "+ scanResult.BSSID;
-                text += "\n SCAN Level : "+scanResult.level;
-
-                i++;
-            }
-
-            textView.setText(text);
-        }
-    };
 }

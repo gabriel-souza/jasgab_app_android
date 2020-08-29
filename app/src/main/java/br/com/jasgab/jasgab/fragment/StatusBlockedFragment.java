@@ -27,7 +27,7 @@ import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.pattern.AnimationUnlockType;
 import br.com.jasgab.jasgab.api.JasgabApi;
-import br.com.jasgab.jasgab.api.JasgabUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
@@ -68,7 +68,7 @@ public class StatusBlockedFragment extends Fragment {
         blocked_message = view.findViewById(R.id.blocked_message);
         status_blocked_balloon = view.findViewById(R.id.status_blocked_balloon);
 
-        TextView actionbar_text = view.findViewById(R.id.actionbar_text);
+        TextView actionbar_text = view.findViewById(R.id.actionbar_title);
         actionbar_text.setText("Conexão bloqueada");
         ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
         actionbar_back.setOnClickListener(new View.OnClickListener() {

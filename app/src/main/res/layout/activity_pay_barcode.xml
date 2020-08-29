@@ -6,49 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".fragment.PayBarcodeFragment">
 
-    <TextView
-        android:id="@+id/barcode_bank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/include_barcode"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-6dp"
-        android:background="@drawable/bg_barcode_box"
-        android:fontFamily="@font/arial_regular"
-        android:paddingHorizontal="50dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="10dp"
-        android:text="Banco Santander"
-        android:textColor="@color/black"
-        android:textSize="16dp" />
-
-    <include
-        android:id="@+id/include_barcode"
-        layout="@layout/actionbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/barcode_bank">
+        android:layout_above="@+id/barcode_barcode_info"
+        android:layout_below="@+id/include_barcode"
+        android:layout_marginTop="-5dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="481dp"
-            android:layout_above="@+id/barcode_barcode_info"
-            android:layout_below="@+id/barcode_bank"
+            android:layout_height="wrap_content"
             android:layout_marginStart="-6dp"
             android:layout_marginEnd="30dp">
+
+            <TextView
+                android:id="@+id/barcode_bank"
+                style="@style/text_pattern_raised"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_barcode_box"
+                android:paddingHorizontal="50dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="10dp"
+                android:text="Boleto Bancário"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_title" />
 
             <RelativeLayout
                 android:id="@+id/barcode_layout_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
+                android:layout_below="@+id/barcode_bank"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_barcode_box"
                 android:paddingVertical="10dp">
@@ -57,30 +46,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="26dp">
+                    android:layout_marginStart="25dp">
 
                     <TextView
                         android:id="@+id/barcode_payday"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_payday_info"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
                         android:text="20/05/2020"
-                        android:textColor="@color/barcode_pay_day"
-                        android:textSize="16sp" />
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_payday_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/arial_bold"
                         android:text="Vence em 3 dias"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_pay_day"
-                        android:textSize="12sp" />
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -91,26 +80,26 @@
 
                     <TextView
                         android:id="@+id/barcode_price"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_price_info"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
                         android:text="R$ 79.99"
-                        android:textColor="@color/barcode_price"
-                        android:textSize="16sp" />
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_price_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/arial_bold"
                         android:text="Valor total"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_price"
-                        android:textSize="12sp" />
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -129,29 +118,30 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/barcode_info_msg"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_info"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
                         android:text="Até o vencimento pague em qualquer banco ou correspondente não bancário"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/arial_regular"
                         android:text="Informações do boleto"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_person_info"
-                        android:textSize="11sp" />
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -166,11 +156,12 @@
                         android:id="@+id/barcode_status"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:background="@drawable/bt_barcode_pending"
-                        android:fontFamily="@font/arial_regular"
+                        android:background="@drawable/button_barcode_pending"
+                        android:fontFamily="@font/segoe_ui_regular"
                         android:text="PENDENTE"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/text_caption"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -190,29 +181,42 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/barcode_company"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_company_info"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
-                        android:text="JASGAB TELECOM"
+                        android:text="JAS GAB PROVEDOR"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/barcode_company_id"
+                        style="@style/text_pattern_raised"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/barcode_company"
+                        android:layout_marginTop="3dp"
+                        android:text="CNPJ: 13.520.779/0001-18"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/text_caption"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_company_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/arial_regular"
                         android:text="Beneficiário"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_person_info"
-                        android:textSize="11sp" />
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -221,29 +225,30 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/barcode_layout_two_one"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/barcode_bank_itau"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_bank_itau_info"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
-                        android:text="0000 / 000000-0"
+                        android:text="9340 | 58898-8"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_bank_itau_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/arial_regular"
-                        android:text="Conta bancária | Itaú"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_person_info"
-                        android:textSize="11sp" />
+                        android:text="Conta Itaú"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -252,29 +257,30 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/barcode_layout_two_two"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/barcode_bank_santander"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_bank_santander_info"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
-                        android:text="0000 / 0000000-0"
+                        android:text="4258 | 13000966-6"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_bank_santander_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/arial_regular"
-                        android:text="Conta bancária | Santander"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_person_info"
-                        android:textSize="11sp" />
+                        android:text="Conta Santander"
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -292,93 +298,63 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/barcode_person"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_person_info"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/arial_bold"
                         android:text="Carolina Dantas de Souza"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="@dimen/text_body_one"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/barcode_person_info"
+                        style="@style/text_pattern_raised"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/arial_regular"
                         android:text="Pagador"
-                        android:textAlignment="center"
-                        android:textColor="@color/barcode_person_info"
-                        android:textSize="11sp" />
+                        android:textColor="@color/gray_dark"
+                        android:textSize="@dimen/text_caption" />
                 </RelativeLayout>
             </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="91dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
         </RelativeLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/barcode_copy_paste"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/button_barcode"
-        android:drawableStart="@drawable/ic_copy_paste"
-        android:paddingHorizontal="5dp"
-        android:text=" COPIAR CÓDIGO"
-        android:textColor="@color/button_barcode_text"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"/>
-
-    <Button
-        android:id="@+id/barcode_save"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toStartOf="@+id/barcode_send"
-        android:layout_toEndOf="@+id/barcode_copy_paste"
-        android:background="@drawable/button_barcode"
-        android:drawableStart="@drawable/ic_download"
-        android:paddingHorizontal="10dp"
-        android:text=" SALVAR"
-        android:textColor="@color/button_barcode_text" />
-
-    <Button
-        android:id="@+id/barcode_send"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button_barcode"
-        android:drawableStart="@drawable/ic_send"
-        android:paddingHorizontal="10dp"
-        android:textAlignment="center"
-        android:text=" COMPROVANTE"
-        android:textColor="@color/button_barcode_text" />
-
     <TextView
         android:id="@+id/bill_barcode"
+        style="@style/text_pattern_raised"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/barcode_copy_paste"
+        android:layout_above="@+id/barcode_buttons"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/arial_regular"
-        android:textSize="12sp"
-        android:textColor="@color/barcode_person_info"
         android:text="0000000000.00000000000.00000000000000000-0000"
-        android:textIsSelectable="true"/>
+        android:textColor="@color/black"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/barcode_barcode_info"
@@ -388,7 +364,83 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
+        style="@style/text_pattern_raised"
         android:text="Código de barra para pagamento online"
-        android:textColor="@color/black"
-        android:textSize="13sp"/>
+        android:textColor="@color/gray_dark"
+        android:textSize="@dimen/text_caption"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/barcode_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/barcode_save"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toStartOf="@+id/barcode_send"
+            android:layout_toEndOf="@+id/barcode_copy_paste"
+            android:background="@drawable/button_barcode"
+            android:drawableStart="@drawable/ic_download"
+            android:fontFamily="@font/segoe_ui_regular"
+            android:paddingHorizontal="10dp"
+            android:text=" BAIXAR PDF"
+            android:textColor="@color/blue_jasgab_dark"
+            android:textSize="@dimen/text_caption"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <Button
+            android:id="@+id/barcode_copy_paste"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/button_barcode"
+            android:drawableStart="@drawable/ic_copy_paste"
+            android:fontFamily="@font/segoe_ui_regular"
+            android:paddingHorizontal="5dp"
+            android:text=" COPIAR CÓDIGO"
+            android:textColor="@color/blue_jasgab_dark"
+            android:textSize="@dimen/text_caption"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/barcode_save"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <Button
+            android:id="@+id/barcode_send"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_barcode"
+            android:drawableStart="@drawable/ic_send"
+            android:fontFamily="@font/segoe_ui_regular"
+            android:paddingHorizontal="10dp"
+            android:text=" COMPROVANTE"
+            android:textAlignment="center"
+            android:textColor="@color/blue_jasgab_dark"
+            android:textSize="@dimen/text_caption"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barcode_save" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/include_barcode"
+        layout="@layout/layout_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </RelativeLayout>

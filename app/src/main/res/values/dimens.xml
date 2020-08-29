@@ -4,16 +4,47 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- BUTTON DIMENS -->
-    <dimen name="button_blue_text">18sp</dimen>
-    <dimen name="button_blue_conner">6dp</dimen>
+    <dimen name="button_raised_text">18sp</dimen>
+    <dimen name="button_raised_text_min">12sp</dimen>
+    <dimen name="button_raised_conner">6dp</dimen>
+    <dimen name="button_raised_margin_horizontal">30dp</dimen>
+
+    <dimen name="button_flat_text">18sp</dimen>
+    <dimen name="button_flat_text_min">12sp</dimen>
+    <dimen name="button_flat_conner">6dp</dimen>
+    <dimen name="button_flat_stroke">2dp</dimen>
+
+    <dimen name="button_overview_text">14sp</dimen>
+    <dimen name="button_overview_corners">23dp</dimen>
+    <dimen name="button_overview_size">110dp</dimen>
+
+    <!-- EDITTEXT DIMENS -->
+    <dimen name="edittext_raised_conner">6dp</dimen>
+    <dimen name="edittext_raised_stroke">2dp</dimen>
+
+    <!-- TEXT DIMENS -->
+    <dimen name="text_display_two">48sp</dimen>
+    <dimen name="text_display_one">36sp</dimen>
+    <dimen name="text_title">21sp</dimen>
+    <dimen name="text_subheader">18sp</dimen>
+    <dimen name="text_body_one">16sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+
+
+    <!-- TODO REFACTOR -->
+
+    <!-- FRAGMENT FIRST ACCESS -->
+    <dimen name="first_access_text_start_size">18sp</dimen>
+    <dimen name="first_access_button_start_text"></dimen>
+
 
     <dimen name="button_white_text">18sp</dimen>
     <dimen name="button_white_conner">6dp</dimen>
-    <dimen name="button_white_stroke_width">2dp</dimen>
 
-    <dimen name="button_overview_text">14sp</dimen>
-    <dimen name="button_overview_conner">23dp</dimen>
-    <dimen name="button_overview_size">100dp</dimen>
+
+    <dimen name="button_services_text">12sp</dimen>
+    <dimen name="button_services_conner">23dp</dimen>
+    <dimen name="button_services_size">100dp</dimen>
 
     <dimen name="button_pay_text">14sp</dimen>
     <dimen name="button_pay_padding">10dp</dimen>
@@ -22,7 +53,7 @@
     <dimen name="button_barcode_text">18sp</dimen>
     <dimen name="button_barcode_conner">6dp</dimen>
     <dimen name="button_barcode_stroke_width">2dp</dimen>
-    
+
     <!-- TOOLTIPS DIMENS -->
     <dimen name="tooltip_default_conner">10dp</dimen>
     <dimen name="tooltip_default_arrow_height">20dp</dimen>
@@ -33,6 +64,17 @@
     <dimen name="edittext_white_conner">6dp</dimen>
     <dimen name="edittext_white_stroke_width">2dp</dimen>
 
+    <!-- LAYOUT SERVICES -->
+    <dimen name="services_shopping_background_radius">15dp</dimen>
+    <dimen name="services_shopping_title">12sp</dimen>
+    <dimen name="services_shopping_message">10sp</dimen>
+
+    <dimen name="services_invite_title">15sp</dimen>
+    <dimen name="services_invite_message">13sp</dimen>
+    <dimen name="services_invite_button_radius">3dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 
 
 </resources>

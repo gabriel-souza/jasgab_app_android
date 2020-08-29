@@ -7,11 +7,14 @@ import br.com.jasgab.jasgab.model.RequestCustomer;
 import br.com.jasgab.jasgab.model.RequestMacVendor;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
+import br.com.jasgab.jasgab.model.ResponseAddress;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model.ResponseIsp;
 import br.com.jasgab.jasgab.model.ResponseMacVendor;
 import br.com.jasgab.jasgab.model.ResponseStatus;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
+import br.com.jasgab.jasgab.model.CustomerNew;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -26,6 +29,14 @@ public interface Conexao {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/login")
     Call<Auth> auth(@Body RequestAuth requestAuth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/customer/new")
+    Call<ResponseCustomer> customerNew(@Body CustomerNew customerNew, @Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/customer/address")
+    Call<ResponseAddress> getAddress(@Body CustomerNew customerNew, @Header("Authorization") String auth);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/customer")
@@ -54,6 +65,10 @@ public interface Conexao {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("/tools/mac_vendor")
     Call<ResponseMacVendor> mac_vendor(@Body RequestMacVendor requestMacVendor);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("/network/isp")
+    Call<ResponseIsp> isp(@Header("Authorization") String auth);
 
     //---------------- CALL API FCM TO PUSH NOTIFICATION
     @GET("/insert_fcm")

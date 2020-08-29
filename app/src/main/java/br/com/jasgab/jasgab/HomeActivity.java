@@ -16,10 +16,10 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import br.com.jasgab.jasgab.api.CustomTypefaceSpan;
+import br.com.jasgab.jasgab.util.CustomTypefaceSpan;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 import br.com.jasgab.jasgab.fragment.BillsFragment;
-import br.com.jasgab.jasgab.fragment.ContractsFragment;
+import br.com.jasgab.jasgab.fragment.ServicesFragment;
 import br.com.jasgab.jasgab.fragment.FAQFragment;
 import br.com.jasgab.jasgab.fragment.HomeFragment;
 import br.com.jasgab.jasgab.fragment.MoreFragment;
@@ -53,7 +53,7 @@ public class HomeActivity extends FragmentActivity {
                         selectedFragment = new HomeFragment();
                         break;
                     case R.id.nav_contracts:
-                        selectedFragment = new ContractsFragment();
+                        selectedFragment = new ServicesFragment();
                         break;
                     case R.id.nav_bills:
                         selectedFragment = new BillsFragment();
@@ -92,10 +92,10 @@ public class HomeActivity extends FragmentActivity {
 
     private void applyFontToMenuItem(MenuItem mi) {
         if(mi != null) {
-            Typeface font = Typeface.createFromAsset(getAssets(), "roboto_regular.ttf");
+            Typeface font = Typeface.createFromAsset(getAssets(), "segoe_ui_regular.ttf");
             SpannableString mNewTitle = new SpannableString(mi.getTitle());
             mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            mNewTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, mNewTitle.length(), 0);// Use this if you want to center the items
+            mNewTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, mNewTitle.length(), 0);
             mi.setTitle(mNewTitle);
         }
     }

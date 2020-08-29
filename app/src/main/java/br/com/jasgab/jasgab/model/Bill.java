@@ -56,7 +56,7 @@ public class Bill {
         this.billName = billName;
     }
 
-    public String getExpirationDate() {
+    public String getDueDate() {
         return expirationDate;
     }
 

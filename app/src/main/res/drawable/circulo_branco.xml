@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <corners android:radius="5dp" />
-    <stroke android:color="@color/jasgab_blue_center" android:width="2dp" />
+    <stroke android:color="@color/blue_jasgab_medium" android:width="2dp" />
     <solid android:color="@color/white" />
     <size
         android:width="70dp"

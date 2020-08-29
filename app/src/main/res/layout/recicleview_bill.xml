@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp">
+
+    <TextView
+        android:id="@+id/biil_due_date"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:text="00/00/0000"
+        android:textSize="@dimen/text_body_one"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/status_online_device_ic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bill_info"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Próxima fatura"
+        android:textSize="@dimen/text_body_one"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/biil_due_date" />
+
+    <TextView
+        android:id="@+id/bill_price"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="R$ 00.00 mensal"
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bill_show"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Ver fatura"
+        android:textSize="@dimen/text_body_one"
+        android:textStyle="bold"
+        android:textColor="@color/blue_jasgab_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bill_price" />
+</androidx.constraintlayout.widget.ConstraintLayout>

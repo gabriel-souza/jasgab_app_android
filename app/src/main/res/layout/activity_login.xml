@@ -4,37 +4,26 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="20dp">
+    android:layout_margin="@dimen/button_raised_margin_horizontal">
 
-
-    <TextView
-        android:id="@+id/tv_acessecpf"
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login_cpf"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/apple_sd_gothic_neo_regular"
-        android:text="@string/tv_login"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_cpf"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:srcCompat="@drawable/ic_logo_jasgab" />
 
     <EditText
         android:id="@+id/login_cpf"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/login_login"
-        android:autofillHints=""
-        android:background="@drawable/box_white"
-        android:hint="@string/ex_cliente_cpf"
+        android:layout_above="@+id/login_button"
+        android:hint="Indique o seu CPF ou CNPJ"
         android:inputType="number"
         android:textAlignment="center"
+        style="@style/edittext_raised"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,29 +32,126 @@
 
     <TextView
         android:id="@+id/login_errorLogin"
-        android:layout_width="match_parent"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login_login"
-        android:visibility="invisible"
-        android:paddingVertical="5dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/tv_cpfdonotexist"
+        android:layout_above="@+id/login_button"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="CPF ou CNPJ inválido."
         android:textColor="@color/red"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/login_cpf"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/login_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:buttonTint="@color/blue_jasgab_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_cpf" />
 
-    <include
+    <TextView
+        android:id="@+id/msg_login_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/msg_login_terms"
+        style="@style/text_pattern_raised"
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintBottom_toBottomOf="@+id/login_terms"
+        app:layout_constraintStart_toEndOf="@+id/login_terms"
+        app:layout_constraintTop_toTopOf="@+id/login_terms" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        layout="@layout/button_login"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_errorLogin"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/login_terms"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:id="@+id/login_login"
+            style="@style/button_raised"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/login_progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/login_button_text"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/button_overview_text"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/login_button_text"
+                style="@style/button_raised"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="CONTINUAR" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/login_divider_rigth"
+        android:layout_width="130dp"
+        android:layout_height="1dp"
+        android:background="#52000000"
+        app:layout_constraintBottom_toBottomOf="@+id/login_divider_ou"
+        app:layout_constraintEnd_toStartOf="@+id/login_divider_ou"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/login_divider_ou" />
+
+    <TextView
+        android:id="@+id/login_divider_ou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/text_pattern_raised"
+        android:text="ou"
+        android:textColor="#52000000"
+        android:textSize="@dimen/text_subheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+    <View
+        android:id="@+id/login_divider_left"
+        android:layout_width="130dp"
+        android:layout_height="1dp"
+        android:background="#52000000"
+        app:layout_constraintBottom_toBottomOf="@+id/login_divider_ou"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/login_divider_ou"
+        app:layout_constraintTop_toTopOf="@+id/login_divider_ou" />
+
+    <TextView
+        android:id="@+id/msg_login_sign_up"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/msg_login_sign_up"
+        android:textSize="@dimen/text_subheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_divider_ou" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/background_plan_card"
+    android:padding="12dp">
+
+    <ImageView
+        android:id="@+id/plans_slide_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <TextView
+        android:id="@+id/plans_slide_plan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="PLANO ESSENCIAL"
+        android:textAlignment="center"
+        android:textColor="#0A0E62"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/plans_slide_plan_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text=" 35 MEGAS"
+        android:textAlignment="center"
+        android:textColor="#0A0E62"
+        android:textSize="14sp" />
+</LinearLayout>

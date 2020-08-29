@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/edittext_raised_conner" />
+    <stroke android:color="@color/blue_jasgab_dark"
+        android:width="@dimen/edittext_raised_stroke" />
+    <solid android:color="@color/edittext_raised_normal" />
+</shape>

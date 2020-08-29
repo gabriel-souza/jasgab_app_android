@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoConnectionActivity"
+    android:layout_margin="@dimen/button_raised_margin_horizontal">
+
+    <ImageView
+        android:id="@+id/no_connection_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@drawable/ic_no_connection" />
+
+    <TextView
+        android:id="@+id/no_connection_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Oops! Sem conexão"
+        android:textSize="@dimen/text_title"
+        style="@style/text_pattern_raised"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no_connection_ic" />
+
+    <TextView
+        android:id="@+id/no_connection_sub_title"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Seu celular não está conectado a internet. Por favor, verifique a conexão do seu celular e tente novamente."
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no_connection_title" />
+
+    <Button
+        android:id="@+id/no_connection_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="CONTINUAR"
+        style="@style/button_raised"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/no_connection_sub_title" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

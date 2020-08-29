@@ -28,7 +28,7 @@ public class StatusOfflineFragment extends Fragment {
 
     private void setLayout(View view){
         //Set ActionBar
-        TextView actionbar_text = view.findViewById(R.id.actionbar_text);
+        TextView actionbar_text = view.findViewById(R.id.actionbar_title);
         actionbar_text.setText("Manutenção");
         ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
         actionbar_back.setOnClickListener(new View.OnClickListener() {

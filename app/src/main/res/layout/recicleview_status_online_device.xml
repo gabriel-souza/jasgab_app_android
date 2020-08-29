@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".fragment.StatusOnlineInternetFragment"
+    android:layout_marginHorizontal="40dp">
+
+    <ImageView
+        android:id="@+id/status_online_device_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_status_devices_device"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/status_online_device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Device"
+        style="@style/text_pattern_raised"
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/status_online_device_ic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/status_online_device_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="255.255.255.255"
+        style="@style/text_pattern_raised"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/status_online_device_ic"
+        app:layout_constraintTop_toBottomOf="@+id/status_online_device_name" />
+
+    <TextView
+        android:id="@+id/status_online_device_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brand"
+        style="@style/text_pattern_raised"
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/status_online_device_mac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="FF:FF:FF:FF:FF:FF"
+        style="@style/text_pattern_raised"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_online_device_brand" />
+</androidx.constraintlayout.widget.ConstraintLayout>

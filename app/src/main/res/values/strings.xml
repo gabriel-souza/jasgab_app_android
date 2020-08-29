@@ -8,6 +8,10 @@
     <!-- BOTÃO -->
     <string name="botao_acessar">Acessar</string>
 
+    <!-- FRAGMENT FIRST ACCESS -->
+    <string name="first_access_text_start">Acompanhe e gerencie o seu plano\ne serviços com facilidade.</string>
+    <string name="first_access_button_start">COMEÇAR AGORA</string>
+
 
     <!-- EXEMPLO CLIENTE FORM -->
     <string name="ex_cliente_name">Nome Completo</string>
@@ -17,8 +21,6 @@
     <string name="tv_identifique_se">Identifique-se</string>
     <string name="tv_jacliente">Você já é cliente da JASGAB?</string>
     <string name="btn_continuarlogin">CONTINUAR</string>
-    <string name="tv_comecar">Acompanhe e gerencie o seu plano\ne serviços com facilidade.</string>
-    <string name="btn_comecar">COMEÇAR AGORA</string>
     <string name="btn_nao">NÃO</string>
     <string name="btn_sim">SIM</string>
     <string name="tv_login">Acesse com seu número de CPF</string>
@@ -29,13 +31,24 @@
     <string name="tv_cpf_nao_cadastrado">CONTA NÃO ENCONTRADA</string>
     <string name="tv_cpf_que_esta_no_contrato">Por favor, verifique e utilize o número de CPF do titular da conta.</string>
     <string name="btn_ok">OK</string>
-    <string name="img_nuvem">Nuvem</string>
-    <string name="ola">Olá,</string>
 
-    <string-array name="tv_msg_carregar">
-        <item>Estamos carregando seus dados</item>
-        <item>Está quase tudo pronto…</item>
+    <string-array name="loading_title_login">
+        <item>Olá,</item>
     </string-array>
+    <string-array name="loading_sub_title_login">
+        <item>Estamos carregando seus dados…</item>
+        <item>Está quase tudo pronto.</item>
+    </string-array>
+    <string-array name="loading_title_sign_up">
+        <item>Parabéns</item>
+        <item>Em até 24h</item>
+    </string-array>
+    <string-array name="loading_sub_title_sign_up">
+        <item>Recebemos suas informações com sucesso.</item>
+        <item>Iremos entrar em contato com você para finalizar a sua contratação.</item>
+    </string-array>
+
+
     <string name="title_activity_inicio">InicioActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -49,5 +62,13 @@
     <string name="overview_message_online">Continua sem acesso à internet? CLIQUE AQUI</string>
     <string name="overview_message_blocked">Pagamento em atraso. CLIQUE AQUI\nPara efetuar o pagamento e o auto-desbloqueio</string>
     <string name="overview_message_offline">Estamos em manutenção. CLIQUE AQUI\nPara saber mais sobre e a previsão de retorno</string>
+    <string name="title_activity_status_online">StatusOnlineActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+
+    <string name="msg_login_sign_up">Ainda não é cliente? &lt;b>Cadastre-se&lt;/b></string>
+    <string name="msg_login_terms">Concordo com o &lt;b>Termos&lt;/b> e &lt;b>Políticas&lt;/b></string>
+    <string name="msg_sign_up_terms">Ao clicar em &lt;b>\"Criar Cadastro\"&lt;/b>, você concorda com nossos &lt;b>Termos&lt;/b> e leu nossa &lt;b>Política de Dados&lt;/b>. Você pode receber notificações da jasgab e pode desativar a qualquer momento.</string>
 
 </resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UnderConstructionActivity"
+    android:layout_margin="@dimen/button_raised_margin_horizontal">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/under_construction_avd"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/avd_under_construction" />
+
+    <TextView
+        android:id="@+id/under_construction_title"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Oops! Página em construção"
+        android:textSize="@dimen/text_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/under_construction_avd" />
+
+    <TextView
+        android:id="@+id/under_construction_sub_title"
+        style="@style/text_pattern_raised"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Estamos trabalhando para disponibilizar este serviço em breve, obrigado pela compreensão."
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/under_construction_title" />
+
+    <Button
+        android:id="@+id/under_construction_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="VOLTAR"
+        style="@style/button_raised"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/under_construction_sub_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

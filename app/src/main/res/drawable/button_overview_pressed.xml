@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <size android:width="@dimen/button_overview_size"
         android:height="@dimen/button_overview_size" />
-    <solid android:color="@color/button_overview_pressed" />
-    <corners android:radius="23dp" />
+    <solid android:color="@color/blue_jasgab_dark" />
+    <corners android:radius="@dimen/button_overview_corners" />
 </shape>

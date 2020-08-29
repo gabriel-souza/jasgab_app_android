@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_black"
                 android:text="Prezado cliente!"
-                android:textColor="@color/status_maintenance_message_title"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <TextView

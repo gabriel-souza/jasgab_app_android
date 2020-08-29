@@ -37,7 +37,7 @@ public class LoginDialog extends DialogFragment {
         dialog.setOnShowListener( new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface arg0) {
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(R.color.jasgab_blue_center);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(R.color.blue_jasgab_medium);
             }
         });
 

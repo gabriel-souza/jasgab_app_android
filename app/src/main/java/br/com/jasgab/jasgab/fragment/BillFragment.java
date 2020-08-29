@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import br.com.jasgab.jasgab.PayBarcodeActivity;
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.api.JasgabUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.model.Bill;
 
@@ -25,7 +25,7 @@ public class BillFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bill, container, false);
 
         //GET LAYOUT OBJECTS
-        TextView actionbar_text = view.findViewById(R.id.actionbar_text);
+        TextView actionbar_text = view.findViewById(R.id.actionbar_title);
         actionbar_text.setText("Pagamento");
         ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
         actionbar_back.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +56,7 @@ public class BillFragment extends Fragment {
         //SET DATA ON LAYOUT
         bill_plan.setText(bill.getBillName().replace("Ref.: ", ""));
         bill_price.setText(String.format("R$ %s", bill.getAmount()));
-        bill_month.setText(bill.getExpirationDate());
+        bill_month.setText(bill.getDueDate());
 
         bill_barcode.setOnClickListener(new View.OnClickListener() {
             @Override

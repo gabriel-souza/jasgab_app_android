@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/include_bill"
-        layout="@layout/actionbar"
+        layout="@layout/layout_actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,10 +111,10 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/button_blue"
+        android:background="@drawable/button_raised"
         android:paddingHorizontal="20dp"
         android:text="ENVIAR COMPROVANTE"
-        android:textColor="@color/button_blue_text"
+        android:textColor="@color/button_raised_text"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bill_gpay" />

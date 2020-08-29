@@ -113,7 +113,7 @@ public class CustomerDAO {
             customer.setAddress(cursor.getString(1));
             customer.setCpf(cursor.getString(2));
             customer.setEmail(cursor.getString(3));
-            customer.setFone(cursor.getString(4));
+            customer.setPhone(cursor.getString(4));
             customer.setName(cursor.getString(5));
             customer.setNeighborhood(cursor.getString(6));
             customer.setStatus(cursor.getInt(7) == 1);
@@ -215,7 +215,7 @@ public class CustomerDAO {
             values.put(amount, bill.getAmount());
             values.put(barcode, bill.getBarcode());
             values.put(bill_name, bill.getBillName());
-            values.put(expiration_date, bill.getExpirationDate());
+            values.put(expiration_date, bill.getDueDate());
             values.put(path_pdf, bill.getPathPdf());
 
             db.insert(bills_table, null, values);
@@ -262,7 +262,7 @@ public class CustomerDAO {
         values.put(address, customer.getAddress());
         values.put(cpf, customer.getCpf());
         values.put(email, customer.getEmail());
-        values.put(fone, customer.getFone());
+        values.put(fone, customer.getPhone());
         values.put(name, customer.getName());
         values.put(neighborhood, customer.getNeighborhood());
         values.put(status, customer.getStatus());

@@ -1,21 +1,12 @@
 package br.com.jasgab.jasgab.crud;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.jasgab.jasgab.api.JasgabUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.model.Bill;
-import br.com.jasgab.jasgab.model.Connection;
-import br.com.jasgab.jasgab.model.Contract;
-import br.com.jasgab.jasgab.model.Customer;
-import br.com.jasgab.jasgab.model.CustomerData;
-import br.com.jasgab.jasgab.model.ResponseCustomer;
 
 public class UnlockDAO {
     private SQLiteDatabase db;

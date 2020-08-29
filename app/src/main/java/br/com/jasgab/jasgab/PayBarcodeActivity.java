@@ -14,9 +14,8 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-import br.com.jasgab.jasgab.api.JasgabUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
-import br.com.jasgab.jasgab.fragment.OverviewFragment;
 import br.com.jasgab.jasgab.model.Bill;
 import br.com.jasgab.jasgab.model.Customer;
 
@@ -29,7 +28,7 @@ public class PayBarcodeActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         //Set ActionBar
-        TextView actionbar_text = findViewById(R.id.actionbar_text);
+        TextView actionbar_text = findViewById(R.id.actionbar_title);
         actionbar_text.setText("Boleto");
         ImageView actionbar_back = findViewById(R.id.actionbar_back);
         actionbar_back.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +44,7 @@ public class PayBarcodeActivity extends AppCompatActivity {
         TextView barcode_payday = findViewById(R.id.barcode_payday);
         TextView barcode_price = findViewById(R.id.barcode_price);
         TextView barcode_person = findViewById(R.id.barcode_person);
-        final TextView barcode_barcode = findViewById(R.id.bill_barcode);
+        TextView barcode_barcode = findViewById(R.id.bill_barcode);
 
         Button barcode_bill_status = findViewById(R.id.barcode_status);
         Button barcode_copy_paste = findViewById(R.id.barcode_copy_paste);
@@ -65,8 +64,8 @@ public class PayBarcodeActivity extends AppCompatActivity {
         //SET LAYOUT DATA
         //TODO SELECT BANK
         //barcode_bank.setText(selectBank());
-        barcode_payday.setText(bill.getExpirationDate());
-        int daysToExpire = JasgabUtils.daysToExpire(bill.getExpirationDate());
+        barcode_payday.setText(bill.getDueDate());
+        int daysToExpire = JasgabUtils.daysToExpire(bill.getDueDate());
         if(daysToExpire > 0) {
             barcode_payday_info.setText(String.format("Vence em %d dias", daysToExpire));
         }else if(daysToExpire < 0){
@@ -76,13 +75,13 @@ public class PayBarcodeActivity extends AppCompatActivity {
         }
         barcode_price.setText(String.valueOf(bill.getAmount()));
         barcode_person.setText(customer.getName());
-        //barcode_barcode.setText(bill.getBarcode());
+        barcode_barcode.setText(bill.getBarcode());
 
         barcode_copy_paste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText("barcode", barcode_barcode.getText());
+                ClipData clipData = ClipData.newPlainText("barcode", bill.getBarcode());
                 clipboard.setPrimaryClip(clipData);
                 Toast.makeText(getApplicationContext(), "Código de barra copiado!", Toast.LENGTH_SHORT).show();
             }

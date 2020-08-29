@@ -17,9 +17,6 @@ public class Customer {
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("fone")
-    @Expose
-    private String fone;
     @SerializedName("name")
     @Expose
     private String name;
@@ -29,6 +26,9 @@ public class Customer {
     @SerializedName("status")
     @Expose
     private Boolean status;
+    @SerializedName("phone")
+    @Expose
+    private String phone;
     @SerializedName("zip_code")
     @Expose
     private String zipCode;
@@ -65,14 +65,6 @@ public class Customer {
         this.email = email;
     }
 
-    public String getFone() {
-        return fone;
-    }
-
-    public void setFone(String fone) {
-        this.fone = fone;
-    }
-
     public String getName() {
         return name;
     }
@@ -87,6 +79,14 @@ public class Customer {
 
     public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Boolean getStatus() {

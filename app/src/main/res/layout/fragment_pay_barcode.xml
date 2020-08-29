@@ -30,10 +30,10 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="481dp"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/barcode_barcode_info"
             android:layout_below="@+id/barcode_bank"
-            android:layout_marginStart="-6dp"
+            android:layout_marginStart="-5dp"
             android:layout_marginEnd="30dp">
 
             <RelativeLayout
@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="26dp">
+                    android:layout_marginStart="30dp">
 
                     <TextView
                         android:id="@+id/barcode_payday"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
@@ -158,7 +158,7 @@
                         android:id="@+id/barcode_status"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:background="@drawable/bt_barcode_pending"
+                        android:background="@drawable/button_barcode_pending"
                         android:fontFamily="@font/arial_regular"
                         android:text="PENDENTE"
                         android:textColor="@color/white"
@@ -182,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp">
 
                     <TextView
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/barcode_layout_two_one"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
@@ -244,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/barcode_layout_two_two"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp">
 
                     <TextView
@@ -284,7 +284,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp">
 
                     <TextView
@@ -317,7 +317,7 @@
         android:id="@+id/barcode_copy_paste"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:background="@drawable/box_white"
+        android:background="@drawable/edittext_raised"
         android:drawableStart="@drawable/ic_copy_paste"
         android:paddingHorizontal="5dp"
         android:text=" COPIAR CÓDIGO"
@@ -337,7 +337,7 @@
         android:layout_marginBottom="10dp"
         android:layout_toStartOf="@+id/barcode_send"
         android:layout_toEndOf="@+id/barcode_copy_paste"
-        android:background="@drawable/box_white"
+        android:background="@drawable/edittext_raised"
         android:drawableStart="@drawable/ic_download"
         android:paddingHorizontal="10dp"
         android:text=" SALVAR"
@@ -351,7 +351,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/box_white"
+        android:background="@drawable/edittext_raised"
         android:drawableStart="@drawable/ic_send"
         android:paddingHorizontal="10dp"
         android:text="  COMPROVANTE"

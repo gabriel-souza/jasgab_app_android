@@ -15,7 +15,6 @@ import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
-import br.com.jasgab.jasgab.model.Auth;
 
 public class MoreFragment extends Fragment {
     @Nullable
@@ -35,6 +34,7 @@ public class MoreFragment extends Fragment {
                 getActivity().finishAffinity();
             }
         });
+
 
         return view;
     }

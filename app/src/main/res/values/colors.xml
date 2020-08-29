@@ -4,15 +4,7 @@
     <color name="colorPrimaryDark">#2B7CAC</color>
     <color name="colorAccent">#6AAFDE</color>
 
-    <!-- JASGAB DEFAULT COLORS-->
-    <color name="jasgab_blue_left">#2B7CAC</color>
-    <color name="jasgab_blue_center">#428DCB</color>
-    <color name="jasgab_blue_right">#6AAFDE</color>
-    <color name="white">#FFF</color>
-    <color name="black">#000</color>
-    <color name="gray">#757575</color>
-    <color name="red">#FF0000</color>
-    <color name="transparent">#00000000</color>
+
     <color name="purple">#0A0E62</color>
 
     <!-- LAYOUT BARCODE -->
@@ -35,50 +27,84 @@
     <color name="tab_background">#A3B2BC</color>
     <color name="tab_ripple">#999999</color>
 
-    <!-- TODO CAROL MEXER A BAIXO DESSA LINHA -->
-    <!-- COLOR DEFAULT -->
-    <color name="actionbar">#6AAFDE</color>
 
     <!-- BUTTONS STYLES-->
     <color name="button_bottom_nav_default">#275F8E</color>
     <color name="button_bottom_nav_pressed">#275F8E</color>
     <color name="button_bottom_nav_inactive">#275F8E</color>
 
-    <color name="button_blue_default">#428DCB</color>
-    <color name="button_blue_pressed">#085696</color>
-    <color name="button_blue_text">#FFFFFF</color>
+    <color name="button_raised_pressed">#085696</color>
+    <color name="button_raised_text">#FFFFFF</color>
 
-    <color name="button_white_default">#FFFFFF</color>
-    <color name="button_white_pressed">#C3CFD8</color>
-    <color name="button_white_stroke">#428DCB</color>
-    <color name="button_white_text">#428DCB</color>
+    <color name="button_flat_normal">#FFFFFF</color>
+    <color name="button_flat_pressed">#C3CFD8</color>
 
-    <color name="button_overview_default">#6AAFDE</color>
-    <color name="button_overview_pressed">#428DCB</color>
     <color name="button_overview_text">#FFFFFF</color>
 
-    <color name="button_pay_default">#FFFFFF</color>
+    <!-- EDITTEXT STYLES -->
+    <color name="edittext_raised_normal">#FFFFFF</color>
+    <color name="edittext_raised_text">#000000</color>
+
+    <!-- TEXT STYLES -->
+    <color name="text_pattern_flat">#FFFFFF</color>
+    <color name="text_pattern_raised_second">#666666</color>
+    <color name="text_pattern_raised_blue">#165E89</color>
+
+
+
+    <color name="text_status_online_overview">#165E89</color>
+
+
+    <!-- DEFAULT COLORS -->
+    <!-- BLUE -->
+    <color name="blue_neon">#20FFFF</color>
+    <color name="blue_jasgab_light">#6AAFDE</color>
+    <color name="blue_jasgab_medium">#2C98F0</color>
+    <color name="blue_jasgab_dark">#428DCB</color>
+    <color name="blue_button">#0D47A1</color>
+    <color name="blue_button_dark">#0D47A1</color>
+    <color name="blue_grayish">#165E89</color>
+
+    <!-- GRAY -->
+    <color name="gray_dark">#616161</color>
+    <color name="gray_light">#E0E0E0</color>
+
+    <!-- GREEN -->
+    <color name="green">#14A811</color>
+
+    <!-- RED -->
+    <color name="red">#F44336</color>
+
+    <!-- YELLOW -->
+    <color name="yellow">#FEBC14</color>
+    <color name="yellow_transparent">#66FEBC14</color>
+
+    <!-- ORANGE -->
+    <color name="orange">#EF6C00</color>
+
+    <!-- BLACK -->
+    <color name="black">#000000</color>
+    <color name="black_transparent">#52000000</color>
+
+    <!-- WHITE -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- TRANSPARENT -->
+    <color name="transparent">#00000000</color>
+
+
+
+
+    <!-- TODO REFACTORING -->
+
+
+    <color name="button_services_text">#0A0E62</color>
+
     <color name="button_pay_pressed">#C3CFD8</color>
-    <color name="button_pay_text">#000000</color>
 
-    <color name="button_barcode_default">#FFFFFF</color>
     <color name="button_barcode_pressed">#C3CFD8</color>
-    <color name="button_barcode_stroke">#428DCB</color>
-    <color name="button_barcode_text">#428DCB</color>
 
-    <!-- TOOLTIP COLOR -->
-    <color name="tooltip_default_background">#428DCB</color>
-    <color name="tooltip_default_text">#FFF</color>
 
-    <!-- EDIT TEXT STYLES -->
-    <color name="edittext_white_default">#FFFFFF</color>
-    <color name="edittext_white_stroke_default">#428DCB</color>
-    <color name="edittext_white_stroke_error">#FF0000</color>
-    <color name="edittext_white_text">#000000</color>
-
-    <!-- BALLON -->
-    <color name="warning_text">#040404</color>
-    <color name="warning_background">#5EFEBC14</color>
 
 
     <!-- LAYOUT BLOCKED -->
@@ -89,8 +115,17 @@
     <!-- LAYOUT MAINTENANCE -->
     <color name="status_maintenance_title">#0A0E62</color>
     <color name="status_maintenance_forecast_return">#0A0E62</color>
-    <color name="status_maintenance_message_title">#000000</color>
     <color name="status_maintenance_message">#757575</color>
+
+    <!-- LAYOUT SERVICES -->
+    <color name="services_shopping_background">#7AA3B2BC</color>
+    <color name="services_shopping_title">#0A0E62</color>
+    <color name="services_shopping_message">#595959</color>
+
+    <color name="services_invite_background">#7AA3B2BC</color>
+    <color name="services_invite_title">#0A0E62</color>
+    <color name="services_invite_message">#595959</color>
+
 
 
 </resources>

@@ -1,22 +1,18 @@
 package br.com.jasgab.jasgab;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
+import android.os.Handler;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.tomer.fadingtextview.FadingTextView;
+
 import java.util.Objects;
 
 import br.com.jasgab.jasgab.api.JasgabApi;
@@ -30,20 +26,62 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.tomer.fadingtextview.FadingTextView.MINUTES;
+
 public class LoadingActivity extends AppCompatActivity {
     Context context;
-
+    public static final int LOGIN = 1, SIGNUP = 2;
+    int display = LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         context = this;
+        display = Objects.requireNonNull(getIntent().getExtras()).getInt("loading", LOGIN);
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        startTextAnimation();
         startCluodAnimation();
-        getCustomerData();
+
+        switch (display){
+            case LOGIN:
+                getCustomerData();
+                break;
+            case SIGNUP:
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        goToBegin();
+                    }
+                }, 20000);
+
+                break;
+        }
+
+    }
+
+    private void startTextAnimation(){
+        FadingTextView loading_title = findViewById(R.id.loading_title);
+        FadingTextView loading_sub_title = findViewById(R.id.loading_sub_title);
+        String[] loading_title_array = getResources().getStringArray(R.array.loading_title_login);
+        String[] loading_sub_title_array = getResources().getStringArray(R.array.loading_sub_title_login);
+
+        switch (display){
+            case LOGIN:
+                loading_title.setTimeout(60, MINUTES);
+                loading_title_array = getResources().getStringArray(R.array.loading_title_login);
+                loading_sub_title_array = getResources().getStringArray(R.array.loading_sub_title_login);
+                break;
+            case SIGNUP:
+                loading_title_array = getResources().getStringArray(R.array.loading_title_sign_up);
+                loading_sub_title_array = getResources().getStringArray(R.array.loading_sub_title_sign_up);
+                break;
+        }
+
+        loading_title.setTexts(loading_title_array);
+        loading_sub_title.setTexts(loading_sub_title_array);
     }
 
     private void startCluodAnimation(){
@@ -71,8 +109,6 @@ public class LoadingActivity extends AppCompatActivity {
         animatorD.setRepeatCount(ObjectAnimator.INFINITE);
         animatorD.setDuration(9000);
         animatorD.setInterpolator(new LinearInterpolator());
-
-
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(animatorA, animatorB, animatorC, animatorD);
@@ -110,17 +146,17 @@ public class LoadingActivity extends AppCompatActivity {
                         CustomerDAO.start(context).inserir(responseCustomer);
                         customerDataFound();
                     }else{
-                        customerDataNotFound();
+                        goToBegin();
                     }
                 }
                 else{
-                    customerDataNotFound();
+                    goToBegin();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseCustomer> call, Throwable t) {
-                customerDataNotFound();
+                goToBegin();
             }
         });
     }
@@ -130,7 +166,7 @@ public class LoadingActivity extends AppCompatActivity {
         finishAffinity();
     }
 
-    private void customerDataNotFound(){
+    private void goToBegin(){
         CustomerDAO.start(this).delete();
         startActivity(new Intent(this, MainActivity.class));
         finishAffinity();

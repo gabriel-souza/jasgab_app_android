@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatusOnlineActivity">
+
+    <RelativeLayout
+        android:id="@+id/status_online_action_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/blue_jasgab_light" >
+
+        <ImageView
+            android:id="@+id/activity_status_online_back_button"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            app:layout_anchorGravity="start|center"
+            app:srcCompat="@drawable/ic_arrow_left"
+            android:background="@color/blue_jasgab_light"/>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:layout_toEndOf="@+id/activity_status_online_back_button"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_jasgab_light" />
+        </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/status_online_action_bar_layout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</RelativeLayout>

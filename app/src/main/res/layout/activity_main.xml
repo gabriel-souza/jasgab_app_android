@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/img_jasgab_logo"
         android:layout_margin="50dp"
         app:srcCompat="@drawable/ic_logo_jasgab" />
+
 </RelativeLayout>
