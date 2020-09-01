@@ -7,7 +7,7 @@
     tools:context=".FormRecommendedPlanActivity">
 
     <include
-        android:id="@+id/include_plans"
+        android:id="@+id/form_recommendedplan_actionbar"
         layout="@layout/layout_actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/form_recommendedplan_logo"
         android:layout_width="160dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_plans"
+        app:layout_constraintTop_toBottomOf="@+id/form_recommendedplan_actionbar"
         app:srcCompat="@drawable/ic_logo_jasgab" />
 
 
@@ -34,10 +34,10 @@
         app:layout_constraintBottom_toTopOf="@+id/plans_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+        app:layout_constraintTop_toBottomOf="@+id/form_recommendedplan_logo">
 
         <RelativeLayout
-            android:id="@+id/first_step"
+            android:id="@+id/form_recommendedplan_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -99,7 +99,7 @@
             android:id="@+id/second_step"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/first_step"
+            android:layout_below="@+id/form_recommendedplan_one"
             android:layout_marginTop="20dp">
 
             <TextView

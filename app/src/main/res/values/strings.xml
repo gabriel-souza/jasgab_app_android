@@ -76,9 +76,18 @@
     <string name="login_submit_text">CONTINUAR</string>
 
     <!-- TODO PLANS STRINGS  -->
+    <string name="plans_benefits_text">Benefícios</string>
+    <string name="plans_submit_change">ALTERAR PLANO</string>
     <string name="plan_benefits_one_text_enssencial">Pague menos e navegue mais</string>
     <string name="plan_benefits_two_text_enssencial">Navegue nas redes sociais</string>
-    <string name="plans_benefits_text">Benefícios</string>
+    <string name="plans_benefits_three_text_essencial">50 megas de Download</string>
+    <string name="plans_benefits_four_text_essencial">25 megas de Upload</string>
+    <string name="plan_benefits_one_text_ideal">Indicado para toda famílias</string>
+    <string name="plan_benefits_two_text_ideal">Trabalhe e jogue Online</string>
+    <string name="plans_benefits_three_text_ideal">100 megas de Download</string>
+    <string name="plans_benefits_four_text_ideal">50 megas de Upload</string>
 
+    <string name="plan_card_title_essensial">PLANO ESSENCIAL</string>
+    <string name="plan_card_subtitle_essensial">50 MEGA R$79,99</string>
 
 </resources>

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/include_plans"
+        android:id="@+id/form_recommendedplan_actionbar"
         layout="@layout/layout_actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -26,7 +26,7 @@
         app:cardSlider_smallAlphaFactor="0.5"
         app:cardSlider_smallScaleFactor="0.9"
         app:layout_constraintBottom_toTopOf="@+id/plans_benefits"
-        app:layout_constraintTop_toBottomOf="@+id/include_plans"
+        app:layout_constraintTop_toBottomOf="@+id/form_recommendedplan_actionbar"
         app:layout_constraintVertical_bias="0.24000001" />
 
     <com.github.islamkhsh.CardSliderIndicator
@@ -118,7 +118,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recommendedplan_benefits_two"
+            android:id="@+id/plan_benefits_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 style="@style/text_pattern_raised"
-                android:text="Navegue nas redes sociais"
+                android:text="@string/plan_benefits_two_text_enssencial"
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
@@ -152,7 +152,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recommendedplan_benefits_three"
+            android:id="@+id/plan_benefits_three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 style="@style/text_pattern_raised"
-                android:text="50 megas de Download"
+                android:text="@string/plans_benefits_three_text_essencial"
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
@@ -186,7 +186,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recommendedplan_benefits_four"
+            android:id="@+id/plan_benefits_four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 style="@style/text_pattern_raised"
-                android:text="25 megas de Upload"
+                android:text="@string/plans_benefits_four_text_essencial"
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
@@ -229,7 +229,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
         android:layout_marginBottom="20dp"
-        android:text="ALTERAR PLANO"
+        android:text="@string/plans_submit_change"
         style="@style/button_raised"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
