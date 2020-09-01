@@ -32,6 +32,7 @@ import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.StatusOnlineActivity;
 import br.com.jasgab.jasgab.api.JasgabApi;
+import br.com.jasgab.jasgab.dialog.NoConnectionDialog;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Customer;
@@ -201,8 +202,13 @@ public class OverviewFragment extends Fragment {
     private void startFragment(){
         switch (mStatusType) {
             case StatusType.Online:
-                StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
-                startActivity(new Intent(requireContext(), StatusOnlineActivity.class));
+                if(JasgabUtils.checkWifi(requireContext(), requireActivity())) {
+                    StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
+                    startActivity(new Intent(requireContext(), StatusOnlineActivity.class));
+                }else{
+                    NoConnectionDialog dialog = new NoConnectionDialog();
+                    dialog.show(requireActivity().getSupportFragmentManager(), "");
+                }
                 break;
             case StatusType.Blocked:
                 StatusDAO.start(requireContext()).insert(StatusLayoutType.Blocked);

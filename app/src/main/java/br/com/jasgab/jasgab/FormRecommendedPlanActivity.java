@@ -42,9 +42,9 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
         JasgabUtils.setActionBar("Descubra o melhor plano", getWindow().getDecorView(), this);
 
         //LAYOUT
-        first_step_number = findViewById(R.id.first_step_number);
-        first_step_counter = findViewById(R.id.first_step_counter);
-        MultiSlider first_step_slider = findViewById(R.id.first_step_slider);
+        first_step_number = findViewById(R.id.formrecommendedplan_form_one_number);
+        first_step_counter = findViewById(R.id.formrecommendedplan_form_one_counter);
+        MultiSlider first_step_slider = findViewById(R.id.formrecommendedplan_form_one_slider);
         first_step_slider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
@@ -58,19 +58,19 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
             }
         });
 
-        second_step_number = findViewById(R.id.second_step_number);
-        CheckBox second_step_youtube = findViewById(R.id.second_step_youtube);
-        CheckBox second_step_netflix = findViewById(R.id.second_step_netflix);
-        second_step_iptv = findViewById(R.id.second_step_iptv);
-        second_step_filmeonline = findViewById(R.id.second_step_filmeonline);
+        second_step_number = findViewById(R.id.formrecommendedplan_form_two_number);
+        CheckBox second_step_youtube = findViewById(R.id.formrecommendedplan_form_two_youtube);
+        CheckBox second_step_netflix = findViewById(R.id.formrecommendedplan_form_two_netflix);
+        second_step_iptv = findViewById(R.id.formrecommendedplan_form_two_iptv);
+        second_step_filmeonline = findViewById(R.id.formrecommendedplan_form_two_filmesonline);
         onClickChangeSecondStepNumber(second_step_youtube);
         onClickChangeSecondStepNumber(second_step_netflix);
         onClickChangeSecondStepNumber(second_step_iptv);
         onClickChangeSecondStepNumber(second_step_filmeonline);
 
-        third_step_number = findViewById(R.id.third_step_number);
-        third_step_counter = findViewById(R.id.third_step_counter);
-        MultiSlider third_step_slider = findViewById(R.id.third_step_slider);
+        third_step_number = findViewById(R.id.formrecommendedplan_form_number);
+        third_step_counter = findViewById(R.id.formrecommendedplan_form_counter);
+        MultiSlider third_step_slider = findViewById(R.id.formrecommendedplan_form_slider);
         third_step_slider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
@@ -84,9 +84,9 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
             }
         });
 
-        fourth_step_number = findViewById(R.id.fourth_step_number);
-        fourth_step_counter = findViewById(R.id.fourth_step_counter);
-        MultiSlider fourth_step_slider = findViewById(R.id.fourth_step_slider);
+        fourth_step_number = findViewById(R.id.formrecommendedplan_form_four_number);
+        fourth_step_counter = findViewById(R.id.formrecommendedplan_form_four_counter);
+        MultiSlider fourth_step_slider = findViewById(R.id.formrecommendedplan_form_four_slider);
         fourth_step_slider.setOnThumbValueChangeListener(new MultiSlider.OnThumbValueChangeListener() {
             @Override
             public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {

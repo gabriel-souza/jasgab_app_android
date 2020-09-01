@@ -19,6 +19,7 @@ import java.util.List;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.model.DeviceWifi;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.util.Pinger;
 import br.com.jasgab.jasgab.util.InternetUtils;
 
@@ -37,10 +38,6 @@ public class StatusOnlineOverviewFragment extends Fragment {
             return view;
         }
 
-        if(!InternetUtils.wifiIsOn(context)){
-            //TODO WIFI IS DISCONECTED
-        }
-
         status_online_wifi = view.findViewById(R.id.status_online_wifi);
         status_online_devices = view.findViewById(R.id.status_online_devices);
         status_online_overview_devices_ic = view.findViewById(R.id.status_online_overview_devices_ic);
@@ -51,7 +48,6 @@ public class StatusOnlineOverviewFragment extends Fragment {
 
         return view;
     }
-
 
     @SuppressLint("StaticFieldLeak")
     private class Discovery extends AsyncTask<Void, Void, List<DeviceWifi>> {

@@ -7,7 +7,7 @@
     tools:context=".FormRecommendedPlanActivity">
 
     <include
-        android:id="@+id/form_recommendedplan_actionbar"
+        android:id="@+id/formrecommendedplan_actionbar"
         layout="@layout/layout_actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -15,349 +15,334 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/form_recommendedplan_logo"
-        android:layout_width="160dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_recommendedplan_actionbar"
-        app:srcCompat="@drawable/ic_logo_jasgab" />
-
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/plans_submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_recommendedplan_logo">
-
-        <RelativeLayout
-            android:id="@+id/form_recommendedplan_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/first_step_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_recommended_plan_dot"
-                android:gravity="center"
-                android:text="1"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/first_step_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/first_step_number"
-                android:fontFamily="@font/segoe_ui_regular"
-                android:text="Quantas pessoas/aparelhos irão utilizar a internet na residencia?"
-                android:textColor="#0A0E62"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/first_step_counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/first_step_title"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/first_step_number"
-                android:fontFamily="@font/segoe_ui_bold"
-                android:text="Pessoas: 0"
-                android:textColor="#0A0E62"
-                android:textSize="14sp" />
-
-            <io.apptik.widget.MultiSlider
-                android:id="@+id/first_step_slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/first_step_counter"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/first_step_number"
-                app:scaleMax="10"
-                app:scaleMin="1"
-                app:thumbNumber="1" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/second_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/form_recommendedplan_one"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/second_step_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_recommended_plan_dot"
-                android:gravity="center"
-                android:text="2"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/second_step_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/second_step_number"
-                android:fontFamily="@font/segoe_ui_regular"
-                android:text="Indique as opcões que voçê usa para assistir filmes e séries:"
-                android:textColor="#0A0E62"
-                android:textSize="16sp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/second_step_title"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp">
-
-                <CheckBox
-                    android:id="@+id/second_step_youtube"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoe_ui_regular"
-                    android:text="Youtube"
-                    android:textColor="#0A0E62"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/second_step_netflix"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <CheckBox
-                    android:id="@+id/second_step_netflix"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoe_ui_regular"
-                    android:text="Netflix"
-                    android:textColor="#0A0E62"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/second_step_iptv"
-                    app:layout_constraintStart_toEndOf="@+id/second_step_youtube"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/second_step_iptv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoe_ui_regular"
-                    android:text="IPTV"
-                    android:textColor="#0A0E62"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/second_step_filmeonline"
-                    app:layout_constraintStart_toEndOf="@+id/second_step_netflix"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/second_step_filmeonline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoe_ui_regular"
-                    android:text="Filmes Online"
-                    android:textColor="#0A0E62"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/second_step_iptv"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/third_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/second_step"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/third_step_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_recommended_plan_dot"
-                android:gravity="center"
-                android:text="3"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/third_step_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/third_step_number"
-                android:fontFamily="@font/segoe_ui_regular"
-                android:text="Quantos aparelhos você utilizará para assistir?"
-                android:textColor="#0A0E62"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:id="@+id/third_step_counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/third_step_title"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/third_step_number"
-                android:fontFamily="@font/segoe_ui_bold"
-                android:text="Pessoas: 0"
-                android:textColor="#0A0E62"
-                android:textSize="14sp" />
-
-            <io.apptik.widget.MultiSlider
-                android:id="@+id/third_step_slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/third_step_counter"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/third_step_number"
-                app:scaleMax="10"
-                app:scaleMin="1"
-                app:thumbNumber="1" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fourth_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/third_step"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/fourth_step_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_recommended_plan_dot"
-                android:gravity="center"
-                android:text="4"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/fourth_step_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/fourth_step_number"
-                android:fontFamily="@font/segoe_ui_regular"
-                android:text="Quantas pessoas irão utilizar VPN ou jogar online?"
-                android:textColor="#0A0E62"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/fourth_step_counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/fourth_step_title"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/fourth_step_number"
-                android:fontFamily="@font/segoe_ui_bold"
-                android:text="Pessoas: 0"
-                android:textColor="#0A0E62"
-                android:textSize="14sp" />
-
-            <io.apptik.widget.MultiSlider
-                android:id="@+id/fourth_step_slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/fourth_step_counter"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/fourth_step_number"
-                app:scaleMax="4"
-                app:scaleMin="0"
-                app:thumbNumber="1" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/recommendedplan_submit"
-        style="@style/button_raised"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
-        android:layout_marginBottom="20dp"
-        android:text="CONTINUAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formrecommendedplan_actionbar">
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/formrecommendedplan_logo"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/ic_logo_jasgab" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top" />
+            <RelativeLayout
+                android:id="@+id/formrecommendedplan_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/formrecommendedplan_logo">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:id="@+id/formrecommendedplan_form_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left" />
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_one_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_recommended_plan_dot"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_one_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_one_number"
+                        android:fontFamily="@font/segoe_ui_regular"
+                        android:text="Quantas pessoas/aparelhos irão utilizar a internet na residencia?"
+                        android:textColor="#0A0E62"
+                        android:textSize="16sp" />
 
 
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_one_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_one_text"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_one_number"
+                        android:fontFamily="@font/segoe_ui_bold"
+                        android:text="Pessoas: 0"
+                        android:textColor="#0A0E62"
+                        android:textSize="14sp" />
+
+                    <io.apptik.widget.MultiSlider
+                        android:id="@+id/formrecommendedplan_form_one_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_one_counter"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_one_number"
+                        app:scaleMax="10"
+                        app:scaleMin="1"
+                        app:thumbNumber="1" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/formrecommendedplan_form_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/formrecommendedplan_form_one"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_two_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_recommended_plan_dot"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_two_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_two_number"
+                        android:fontFamily="@font/segoe_ui_regular"
+                        android:text="Indique as opcões que voçê usa para assistir filmes e séries:"
+                        android:textColor="#0A0E62"
+                        android:textSize="16sp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_two_text"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="10dp">
+
+                        <CheckBox
+                            android:id="@+id/formrecommendedplan_form_two_youtube"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui_regular"
+                            android:text="Youtube"
+                            android:textColor="#0A0E62"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/formrecommendedplan_form_two_netflix"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <CheckBox
+                            android:id="@+id/formrecommendedplan_form_two_netflix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui_regular"
+                            android:text="Netflix"
+                            android:textColor="#0A0E62"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/formrecommendedplan_form_two_iptv"
+                            app:layout_constraintStart_toEndOf="@+id/formrecommendedplan_form_two_youtube"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/formrecommendedplan_form_two_iptv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui_regular"
+                            android:text="IPTV"
+                            android:textColor="#0A0E62"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/formrecommendedplan_form_two_filmesonline"
+                            app:layout_constraintStart_toEndOf="@+id/formrecommendedplan_form_two_netflix"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/formrecommendedplan_form_two_filmesonline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui_regular"
+                            android:text="Filmes Online"
+                            android:textColor="#0A0E62"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/formrecommendedplan_form_two_iptv"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/formrecommendedplan_form_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/formrecommendedplan_form_two"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_recommended_plan_dot"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_number"
+                        android:fontFamily="@font/segoe_ui_regular"
+                        android:text="Quantos aparelhos você utilizará para assistir?"
+                        android:textColor="#0A0E62"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_text"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_number"
+                        android:fontFamily="@font/segoe_ui_bold"
+                        android:text="Pessoas: 0"
+                        android:textColor="#0A0E62"
+                        android:textSize="14sp" />
+
+                    <io.apptik.widget.MultiSlider
+                        android:id="@+id/formrecommendedplan_form_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_counter"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_number"
+                        app:scaleMax="10"
+                        app:scaleMin="1"
+                        app:thumbNumber="1" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/formrecommendedplan_form_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/formrecommendedplan_form_three"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_four_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_recommended_plan_dot"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_four_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_four_number"
+                        android:fontFamily="@font/segoe_ui_regular"
+                        android:text="Quantas pessoas irão utilizar VPN ou jogar online?"
+                        android:textColor="#0A0E62"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/formrecommendedplan_form_four_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_four_text"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_four_number"
+                        android:fontFamily="@font/segoe_ui_bold"
+                        android:text="Pessoas: 0"
+                        android:textColor="#0A0E62"
+                        android:textSize="14sp" />
+
+                    <io.apptik.widget.MultiSlider
+                        android:id="@+id/formrecommendedplan_form_four_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/formrecommendedplan_form_four_counter"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/formrecommendedplan_form_four_number"
+                        app:scaleMax="4"
+                        app:scaleMin="0"
+                        app:thumbNumber="1" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/formrecommendedplan_submit"
+                style="@style/button_raised"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="CONTINUAR"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/formrecommendedplan_form" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

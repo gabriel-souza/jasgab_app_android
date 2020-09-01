@@ -27,14 +27,19 @@ public class NoConnectionDialog extends DialogFragment {
         LayoutInflater inflater = Objects.requireNonNull(requireActivity()).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_no_connection, null);
 
+        builder.setView(view).setNegativeButton("Ligar WIFI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                WifiManager wifi = (WifiManager) requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                if(wifi != null) {
+                    wifi.setWifiEnabled(true);
+                }
+            }
+        });
+
         builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        WifiManager wifi = (WifiManager) requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                        if(wifi != null) {
-                            wifi.setWifiEnabled(true);
-                        }
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
 
         final AlertDialog dialog =  builder.create();
@@ -42,6 +47,7 @@ public class NoConnectionDialog extends DialogFragment {
         dialog.setOnShowListener( new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(R.color.blue_jasgab_medium);
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(R.color.blue_jasgab_medium);
             }
         });

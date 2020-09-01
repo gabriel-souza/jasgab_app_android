@@ -103,6 +103,21 @@ public class JasgabUtils {
         return false;
     }
 
+    public static boolean checkWifi(Context context, FragmentActivity fragmentActivity) {
+        try {
+            ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if(connManager != null) {
+                NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                if(mWifi != null) {
+                    return mWifi.isConnected();
+                }
+            }
+            return false;
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
     public static void setActionBar(String title, final View view, final Activity activity){
         TextView actionbar_title = view.findViewById(R.id.actionbar_title);
         actionbar_title.setText(title);

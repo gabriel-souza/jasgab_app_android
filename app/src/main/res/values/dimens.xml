@@ -25,6 +25,7 @@
     <!-- TODO CAROL TEXT DIMENS -->
     <dimen name="text_display_two">48sp</dimen>
     <dimen name="text_display_one">36sp</dimen>
+    <dimen name="text_headline">24sp</dimen>
     <dimen name="text_title">21sp</dimen>
     <dimen name="text_sub_header">18sp</dimen>
     <dimen name="text_body_one">16sp</dimen>

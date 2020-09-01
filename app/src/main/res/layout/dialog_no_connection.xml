@@ -8,20 +8,19 @@
         android:id="@+id/dialog_plans_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/ic_no_connection" />
+        android:background="@drawable/ic_no_connection" />
 
     <TextView
         android:id="@+id/dialog_plans_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Oops! Sem conexão"
-        android:textSize="@dimen/text_title"
+        android:text="Rede Wi-Fi não encontrada"
+        android:textSize="@dimen/text_body_one"
         style="@style/text_pattern_raised"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Seu celular não está conectado a internet. Por favor, verifique a conexão do seu celular e tente novamente."
+        android:text="Ative o seu Wi-Fi para acessar essa funcionalidade."
         android:textSize="@dimen/text_body_one"
         android:textColor="@color/gray_dark"
         app:layout_constraintEnd_toEndOf="parent"
