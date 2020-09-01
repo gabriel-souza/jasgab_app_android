@@ -8,18 +8,19 @@
     <!-- BOTÃO -->
     <string name="botao_acessar">Acessar</string>
 
-    <!-- FRAGMENT FIRST ACCESS -->
-    <string name="first_access_text_start">Acompanhe e gerencie o seu plano\ne serviços com facilidade.</string>
-    <string name="first_access_button_start">COMEÇAR AGORA</string>
+    <!-- PADRÃO
+
+        [MAIN_LAYOUT][INNER_LAYOUT][LABEL]OR[ACTION]
+        <string name="login_erro_not_found">CPF INVÁLIDO</string>
 
 
-    <!-- EXEMPLO CLIENTE FORM -->
+    -->
+
+    <!-- TODO APAGAR NO FUTURO -->
     <string name="ex_cliente_name">Nome Completo</string>
     <string name="ex_cliente_cpf">000.000.000–00</string>
 
     <string name="img_jasgab_logo">JASGAB LOGO</string>
-    <string name="tv_identifique_se">Identifique-se</string>
-    <string name="tv_jacliente">Você já é cliente da JASGAB?</string>
     <string name="btn_continuarlogin">CONTINUAR</string>
     <string name="btn_nao">NÃO</string>
     <string name="btn_sim">SIM</string>
@@ -58,7 +59,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="inicio_utima_atualizacao">Última Atualizacao \n 11:11</string>
 
-    <!--  -->
+    <!-- Comentário
+
+    -->
     <string name="overview_message_online">Continua sem acesso à internet? CLIQUE AQUI</string>
     <string name="overview_message_blocked">Pagamento em atraso. CLIQUE AQUI\nPara efetuar o pagamento e o auto-desbloqueio</string>
     <string name="overview_message_offline">Estamos em manutenção. CLIQUE AQUI\nPara saber mais sobre e a previsão de retorno</string>
@@ -70,5 +73,12 @@
     <string name="msg_login_sign_up">Ainda não é cliente? &lt;b>Cadastre-se&lt;/b></string>
     <string name="msg_login_terms">Concordo com o &lt;b>Termos&lt;/b> e &lt;b>Políticas&lt;/b></string>
     <string name="msg_sign_up_terms">Ao clicar em &lt;b>\"Criar Cadastro\"&lt;/b>, você concorda com nossos &lt;b>Termos&lt;/b> e leu nossa &lt;b>Política de Dados&lt;/b>. Você pode receber notificações da jasgab e pode desativar a qualquer momento.</string>
+    <string name="login_submit_text">CONTINUAR</string>
+
+    <!-- TODO PLANS STRINGS  -->
+    <string name="plan_benefits_one_text_enssencial">Pague menos e navegue mais</string>
+    <string name="plan_benefits_two_text_enssencial">Navegue nas redes sociais</string>
+    <string name="plans_benefits_text">Benefícios</string>
+
 
 </resources>

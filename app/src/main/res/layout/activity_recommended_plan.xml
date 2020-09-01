@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <include
-        android:id="@+id/include_recommended_plan"
+        android:id="@+id/recommendedplan_actionbar"
         layout="@layout/layout_actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -17,16 +17,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/recommended_plan_details"
+        android:id="@+id/recommendedplan_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:background="@drawable/background_plan_benefits"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/plans_benefits_container"
+        app:layout_constraintBottom_toTopOf="@+id/recommendedplan_benefits"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_recommended_plan"
+        app:layout_constraintTop_toBottomOf="@+id/recommendedplan_actionbar"
         app:layout_constraintVertical_bias="0.24000001">
 
         <LinearLayout
@@ -41,12 +41,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/recommended_plan_img"
+                android:id="@+id/recommendedplan_card_img"
                 android:layout_width="70dp"
                 android:layout_height="70dp" />
 
             <TextView
-                android:id="@+id/recommended_plan_title"
+                android:id="@+id/recommendedplan_card_title"
                 style="@style/text_pattern_raised"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:textSize="@dimen/text_body_one" />
 
             <TextView
-                android:id="@+id/recommended_plan_detail"
+                android:id="@+id/recommendedplan_card_subtitle"
                 style="@style/text_pattern_raised"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
 
 
         <ImageView
-            android:id="@+id/recommended_plan_tag"
+            android:id="@+id/recommendedplan_card_tag"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/ic_plan_recommended"
@@ -80,7 +80,7 @@
 
 
     <TextView
-        android:id="@+id/recommended_plan_benefits"
+        android:id="@+id/recommendedplan_benefits_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -90,42 +90,42 @@
         android:textColor="@color/blue_purple"
         android:textSize="@dimen/text_body_one"
         android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/plans_benefits_container"
+        app:layout_constraintBottom_toTopOf="@+id/recommendedplan_benefits"
         tools:layout_editor_absoluteX="40dp" />
 
     <LinearLayout
-        android:id="@+id/plans_benefits_container"
+        android:id="@+id/recommendedplan_benefits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:paddingVertical="10dp"
         android:background="@drawable/background_plan_benefits"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/recommended_plan_button"
+        app:layout_constraintBottom_toBottomOf="@+id/recommendedplan_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recommended_plan_one"
+            android:id="@+id/recommendedplan_benefits_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/recommended_plan_benefits_ic_one"
+                android:id="@+id/recommendedplan_benefits_one_img"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/ic_plan_check"
+                android:background="@drawable/plans_benefits_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/recommended_plan_benefits_title_one"
+                android:id="@+id/recommendedplan_benefits_one_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -134,16 +134,16 @@
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/recommended_plan_benefits_ic_one"
-                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_one"
-                app:layout_constraintTop_toTopOf="@+id/recommended_plan_benefits_ic_one" />
+                app:layout_constraintBottom_toBottomOf="@+id/recommendedplan_benefits_one_img"
+                app:layout_constraintStart_toEndOf="@+id/recommendedplan_benefits_one_img"
+                app:layout_constraintTop_toTopOf="@+id/recommendedplan_benefits_one_img" />
 
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recommended_plan_two"
+            android:id="@+id/recommendedplan_benefits_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -151,17 +151,17 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
             <ImageView
-                android:id="@+id/recommended_plan_benefits_ic_two"
+                android:id="@+id/recommendedplan_benefits_two_img"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/ic_plan_check"
+                android:background="@drawable/plans_benefits_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/recommended_plan_benefits_title_two"
+                android:id="@+id/recommendedplan_benefits_two_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -170,16 +170,16 @@
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/recommended_plan_benefits_ic_two"
-                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_two"
-                app:layout_constraintTop_toTopOf="@+id/recommended_plan_benefits_ic_two" />
+                app:layout_constraintBottom_toBottomOf="@+id/recommendedplan_benefits_two_img"
+                app:layout_constraintStart_toEndOf="@+id/recommendedplan_benefits_two_img"
+                app:layout_constraintTop_toTopOf="@+id/recommendedplan_benefits_two_img" />
 
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recommended_plan_three"
+            android:id="@+id/recommendedplan_benefits_three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -187,17 +187,17 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
             <ImageView
-                android:id="@+id/recommended_plan_benefits_ic_three"
+                android:id="@+id/recommendedplan_benefits_three_img"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/ic_plan_check"
+                android:background="@drawable/plans_benefits_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/recommended_plan_benefits_title_three"
+                android:id="@+id/recommendedplan_benefits_three_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -206,16 +206,16 @@
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/recommended_plan_benefits_ic_three"
-                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_three"
-                app:layout_constraintTop_toTopOf="@+id/recommended_plan_benefits_ic_three" />
+                app:layout_constraintBottom_toBottomOf="@+id/recommendedplan_benefits_three_img"
+                app:layout_constraintStart_toEndOf="@+id/recommendedplan_benefits_three_img"
+                app:layout_constraintTop_toTopOf="@+id/recommendedplan_benefits_three_img" />
 
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/four"
+            android:id="@+id/recommendedplan_benefits_four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
@@ -225,17 +225,17 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
             <ImageView
-                android:id="@+id/recommended_plan_benefits_ic_four"
+                android:id="@+id/recommendedplan_benefits_four_img"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/ic_plan_check"
+                android:background="@drawable/plans_benefits_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/recommended_plan_benefits_title_four"
+                android:id="@+id/recommendedplan_benefits_four_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -244,16 +244,14 @@
                 android:textColor="@color/blue_purple"
                 android:textSize="@dimen/text_body_one"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/recommended_plan_benefits_ic_four"
-                app:layout_constraintStart_toEndOf="@+id/recommended_plan_benefits_ic_four"
-                app:layout_constraintTop_toTopOf="@+id/recommended_plan_benefits_ic_four" />
-
-
+                app:layout_constraintBottom_toBottomOf="@+id/recommendedplan_benefits_four_img"
+                app:layout_constraintStart_toEndOf="@+id/recommendedplan_benefits_four_img"
+                app:layout_constraintTop_toTopOf="@+id/recommendedplan_benefits_four_img" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <Button
-        android:id="@+id/recommended_plan_button"
+        android:id="@+id/recommendedplan_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
@@ -263,15 +261,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/recommended_plan_exit"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_recommended_plan"
-        app:srcCompat="@drawable/ic_x" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

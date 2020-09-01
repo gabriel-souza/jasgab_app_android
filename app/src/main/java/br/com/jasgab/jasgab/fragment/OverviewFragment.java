@@ -25,6 +25,8 @@ import com.airbnb.lottie.LottieResult;
 
 import java.util.List;
 
+import br.com.jasgab.jasgab.BillActivity;
+import br.com.jasgab.jasgab.HelpActivity;
 import br.com.jasgab.jasgab.LoginActivity;
 import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
@@ -138,11 +140,18 @@ public class OverviewFragment extends Fragment {
         overview_bill_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BillFragment billFragment = new BillFragment();
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_container, billFragment)
-                        .addToBackStack(null)
-                        .commit();
+                Intent intent = new Intent(requireContext(), BillActivity.class);
+                intent.putExtra("bill_position", 0);
+                requireContext().startActivity(intent);
+            }
+        });
+
+        Button overview_button_help = view.findViewById(R.id.overview_button_help);
+        overview_button_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), HelpActivity.class);
+                requireContext().startActivity(intent);
             }
         });
     }

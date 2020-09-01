@@ -1,5 +1,6 @@
 package br.com.jasgab.jasgab.model;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
@@ -37,12 +38,13 @@ public class Plan {
         return benefits;
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public List<Plan> getPlans(Context context){
         List<Plan> plans = new ArrayList<>();
 
         List<String> benefits_50 = setBenefits(
-                "Pague menos e navegue mais",
-                "Navegue nas redes sociais",
+                context.getResources().getString(R.string.plan_benefits_one_text_enssencial),
+                context.getResources().getString(R.string.plan_benefits_two_text_enssencial),
                 "50 megas de Download",
                 "25 megas de Upload");
 

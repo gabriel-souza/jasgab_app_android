@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,7 +46,7 @@ public class PlansActivity extends AppCompatActivity {
 
         //LAYOUT
         createSlider();
-        Button plans_button_contract = findViewById(R.id.plans_button);
+        Button plans_button_contract = findViewById(R.id.plans_submit);
         plans_button_contract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +72,7 @@ public class PlansActivity extends AppCompatActivity {
         cardSliderViewPager.setSmallScaleFactor(0.9f);
         cardSliderViewPager.setSmallAlphaFactor(1F);
         cardSliderViewPager.setAutoSlideTime(CardSliderViewPager.STOP_AUTO_SLIDING);
-        CardSliderIndicator cardSliderIndicator = findViewById(R.id.plans_cardslider_indicator);
+        CardSliderIndicator cardSliderIndicator = findViewById(R.id.plans_indicator);
         cardSliderIndicator.setIndicatorsToShow(5);
 
         cardSliderViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -87,10 +85,10 @@ public class PlansActivity extends AppCompatActivity {
 
     private void changeBenefits(int position){
         plan_position = position;
-        TextView plans_benefits = findViewById(R.id.recommended_plan_benefits);
-        LinearLayout plans_benefits_container = findViewById(R.id.plans_benefits_container);
-        LottieAnimationView recommended_plan = findViewById(R.id.recommended_plan);
-        TextView plans_button = findViewById(R.id.plans_button);
+        TextView plans_benefits = findViewById(R.id.plans_benefits_text);
+        LinearLayout plans_benefits_container = findViewById(R.id.plans_benefits);
+        LottieAnimationView recommended_plan = findViewById(R.id.plan_avd);
+        TextView plans_button = findViewById(R.id.plans_submit);
 
         if(position < (mPlans.size() - 1 )) {
             plans_benefits.setVisibility(View.VISIBLE);
@@ -101,16 +99,16 @@ public class PlansActivity extends AppCompatActivity {
             Plan plan = mPlans.get(position);
 
             //Benefits
-            TextView plan_benefits_title_one = findViewById(R.id.recommended_plan_benefits_title_one);
+            TextView plan_benefits_title_one = findViewById(R.id.plans_benefits_one_text);
             plan_benefits_title_one.setText(plan.getBenefits().get(0));
 
-            TextView plan_benefits_title_two = findViewById(R.id.recommended_plan_benefits_title_two);
+            TextView plan_benefits_title_two = findViewById(R.id.plans_benefits_two_text);
             plan_benefits_title_two.setText(plan.getBenefits().get(1));
 
-            TextView plan_benefits_title_three = findViewById(R.id.recommended_plan_benefits_title_three);
+            TextView plan_benefits_title_three = findViewById(R.id.plans_benefits_three_text);
             plan_benefits_title_three.setText(plan.getBenefits().get(2));
 
-            TextView plan_benefits_title_four = findViewById(R.id.recommended_plan_benefits_title_four);
+            TextView plan_benefits_title_four = findViewById(R.id.plans_benefits_four_text);
             plan_benefits_title_four.setText(plan.getBenefits().get(3));
 
         }else{

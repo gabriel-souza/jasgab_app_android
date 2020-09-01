@@ -56,17 +56,17 @@ public class LoginActivity extends AppCompatActivity {
         customerDAO = CustomerDAO.start(this);
         manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        login_submit = findViewById(R.id.login_login);
+        login_submit = findViewById(R.id.login_submit);
 
         ed_cpf = findViewById(R.id.login_cpf);
 
-        pb_login = findViewById(R.id.login_progressBar);
+        pb_login = findViewById(R.id.login_submit_progressbar);
 
         cb_login_terms = findViewById(R.id.login_terms);
 
         msg_login_terms = findViewById(R.id.msg_login_terms);
         msg_login_sign_up = findViewById(R.id.msg_login_sign_up);
-        msg_login_cpf_wrong = findViewById(R.id.login_errorLogin);
+        msg_login_cpf_wrong = findViewById(R.id.login_error);
 
         msg_login_sign_up.setText(Html.fromHtml(this.getResources().getString(R.string.msg_login_sign_up)));
 

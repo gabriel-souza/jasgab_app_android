@@ -2,13 +2,17 @@ package br.com.jasgab.jasgab.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.FragmentActivity;
@@ -139,4 +143,15 @@ public class JasgabUtils {
         return bills;
     }
 
+    public static void sendToWhatsapp(Activity activity, String message) {
+        try{
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=5511982288808&text="+message));
+            activity.startActivity(intent);
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(activity,"Error/n"+ e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
 }

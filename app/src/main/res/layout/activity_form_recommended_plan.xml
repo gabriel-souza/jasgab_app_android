@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/plans_button"
+        app:layout_constraintBottom_toTopOf="@+id/plans_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5">
@@ -317,7 +317,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/recommended_plan_button"
+        android:id="@+id/recommendedplan_submit"
         style="@style/button_raised"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

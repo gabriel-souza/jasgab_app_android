@@ -2,7 +2,6 @@ package br.com.jasgab.jasgab;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +46,7 @@ public class RecommendedPlanActivity extends AppCompatActivity {
         JasgabUtils.setActionBar("Mudar de Plano", getWindow().getDecorView(), this);
 
         //BUTTON
-        Button recommended_plan_button = findViewById(R.id.recommended_plan_button);
+        Button recommended_plan_button = findViewById(R.id.recommendedplan_submit);
         recommended_plan_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,15 +59,15 @@ public class RecommendedPlanActivity extends AppCompatActivity {
         });
 
         //PLAN DETAILS
-        ImageView recommended_plan_img = findViewById(R.id.recommended_plan_img);
-        TextView recommended_plan_title = findViewById(R.id.recommended_plan_title);
-        TextView recommended_plan_detail = findViewById(R.id.recommended_plan_detail);
+        ImageView recommended_plan_img = findViewById(R.id.recommendedplan_card_img);
+        TextView recommended_plan_title = findViewById(R.id.recommendedplan_card_title);
+        TextView recommended_plan_detail = findViewById(R.id.recommendedplan_card_subtitle);
 
         //PLAN BENEFITS
-        TextView recommended_plan_benefits_title_one = findViewById(R.id.recommended_plan_benefits_title_one);
-        TextView recommended_plan_benefits_title_two = findViewById(R.id.recommended_plan_benefits_title_two);
-        TextView recommended_plan_benefits_title_three = findViewById(R.id.recommended_plan_benefits_title_three);
-        TextView recommended_plan_benefits_title_four = findViewById(R.id.recommended_plan_benefits_title_four);
+        TextView recommended_plan_benefits_title_one = findViewById(R.id.recommendedplan_benefits_one_text);
+        TextView recommended_plan_benefits_title_two = findViewById(R.id.recommendedplan_benefits_two_text);
+        TextView recommended_plan_benefits_title_three = findViewById(R.id.recommendedplan_benefits_three_text);
+        TextView recommended_plan_benefits_title_four = findViewById(R.id.recommendedplan_benefits_four_text);
 
         //SET LAYOUT
         recommended_plan_img.setBackground(plan.getImage());

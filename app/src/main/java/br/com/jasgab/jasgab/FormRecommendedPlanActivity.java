@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.com.jasgab.jasgab.pattern.PlanType;
@@ -101,7 +100,7 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
             }
         });
 
-        Button recommended_plan_button = findViewById(R.id.recommended_plan_button);
+        Button recommended_plan_button = findViewById(R.id.recommendedplan_submit);
         recommended_plan_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import br.com.jasgab.jasgab.BillActivity;
 import br.com.jasgab.jasgab.BillPdfActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.model.Bill;
 import br.com.jasgab.jasgab.model.DeviceWifi;
+import br.com.jasgab.jasgab.pattern.BillType;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 
 public class BillAdapter extends RecyclerView.Adapter<BillHolder> {
 
@@ -34,7 +37,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillHolder> {
     @Override
     public void onBindViewHolder(BillHolder holder, final int position) {
         holder.biil_due_date.setText(bills.get(position).getDueDate());
-        holder.bill_price.setText(String.format("%s mensal", bills.get(position).getAmount()));
+        holder.bill_price.setText(String.format("R$ %s %s", bills.get(position).getAmount().toString().replace(".",","), getBillType(position)));
 
         holder.bill_show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +47,22 @@ public class BillAdapter extends RecyclerView.Adapter<BillHolder> {
                 context.startActivity(intent);
             }
         });
+
+        holder.bill_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BillActivity.class);
+                intent.putExtra("bill_position", position);
+                context.startActivity(intent);
+            }
+        });
+
+        int daysToExpire = JasgabUtils.daysToExpire(bills.get(position).getDueDate());
+        if(daysToExpire < 0){
+            holder.bill_expired.setVisibility(View.VISIBLE);
+        }else{
+            holder.bill_expired.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -55,12 +74,24 @@ public class BillAdapter extends RecyclerView.Adapter<BillHolder> {
         notifyDataSetChanged();
     }
 
-    public void updateList(Bill bill) {
-        insertItem(bill);
-    }
-
-    private void insertItem(Bill bill) {
+    public void insert(Bill bill) {
         bills.add(bill);
         notifyDataSetChanged();
     }
+
+    public String getBillType(int position){
+        if(bills.size() == 1 || bills.size() == position+1){
+            return BillType.MENSAL;
+        }
+
+        if(bills.get(position).getAmount() <  bills.get(position+1).getAmount())
+            return BillType.PROPORCIONAL;
+
+        if(bills.get(position).getAmount() >  bills.get(position+1).getAmount())
+            return BillType.ADESAO;
+
+        return BillType.MENSAL;
+    }
+
+
 }

@@ -20,7 +20,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".BillPdfActivity"></activity>
+        <activity android:name=".BillActivity"></activity>
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".BillPdfActivity" />
         <activity android:name=".UnderConstructionActivity" />
         <activity android:name=".NoConnectionActivity" />
         <activity android:name=".SignUpActivity" />

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionbar_sign_up">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sign_up_layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actionbar_sign_up">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/help_name_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/background_ed_sign_up"
+                android:nextFocusDown="@id/sign_up_cpf"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/help_name_title"
+                    style="@style/text_pattern_raised"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Nome completo"
+                    android:textColor="@color/blue_jasgab_dark"
+                    android:textSize="@dimen/text_caption"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/help_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:ems="15"
+                    android:hint="João Silva Souza"
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/text_body_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/help_name_title"
+                    app:layout_constraintTop_toBottomOf="@+id/help_name_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/help_cpf_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_ed_sign_up"
+                android:nextFocusDown="@id/sign_up_cpf"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/help_name_layout">
+
+                <TextView
+                    android:id="@+id/help_cpf_title"
+                    style="@style/text_pattern_raised"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="CPF"
+                    android:textColor="@color/blue_jasgab_dark"
+                    android:textSize="@dimen/text_caption"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/help_cpf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:ems="15"
+                    android:hint="000.000.000-00"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_body_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/help_cpf_title"
+                    app:layout_constraintTop_toBottomOf="@+id/help_cpf_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/help_message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/background_ed_sign_up"
+                android:nextFocusDown="@id/sign_up_cpf"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/help_cpf_layout">
+
+                <TextView
+                    android:id="@+id/help_message_title"
+                    style="@style/text_pattern_raised"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Mensagem"
+                    android:textColor="@color/blue_jasgab_dark"
+                    android:textSize="@dimen/text_caption"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/help_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:background="#00000000"
+                    android:ems="15"
+                    android:focusable="true"
+                    android:gravity="top"
+                    android:focusedByDefault="true"
+                    android:defaultFocusHighlightEnabled="true"
+                    android:hint="Como podemos te ajudar"
+                    android:inputType="textMultiLine"
+                    android:nextFocusUp="@id/help_send"
+                    android:textSize="@dimen/text_body_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/help_message_title"
+                    app:layout_constraintTop_toBottomOf="@+id/help_message_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/help_message_description"
+                style="@style/text_pattern_raised"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="(max. 1024 caracteres)"
+                android:textColor="@color/gray_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/help_message_layout" />
+
+
+            <Button
+                android:id="@+id/help_send"
+                style="@style/button_raised"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="50dp"
+                android:text="ENVIAR MENSAGEM"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/help_message_layout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/actionbar_sign_up"
+        layout="@layout/layout_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

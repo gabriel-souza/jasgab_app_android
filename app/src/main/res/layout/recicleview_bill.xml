@@ -19,16 +19,35 @@
         app:layout_constraintStart_toEndOf="@+id/status_online_device_ic"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:id="@+id/bill_info"
+        android:id="@+id/bill_expired"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:paddingHorizontal="10dp"
+        android:gravity="center"
+        android:background="@drawable/bill_expired"
+        android:fontFamily="@font/segoe_ui_regular"
+        android:text="ATRASADO"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_caption"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/biil_due_date"
+        app:layout_constraintStart_toEndOf="@+id/biil_due_date"
+        app:layout_constraintTop_toTopOf="@+id/biil_due_date" />
+    <TextView
+        android:id="@+id/bill_show"
         style="@style/text_pattern_raised"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Próxima fatura"
+        android:text="Ver fatura"
         android:textSize="@dimen/text_body_one"
-        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:textColor="@color/blue_jasgab_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/biil_due_date" />
@@ -45,13 +64,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/bill_show"
+        android:id="@+id/bill_pay"
         style="@style/text_pattern_raised"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Ver fatura"
+        android:text="Pagar"
         android:textSize="@dimen/text_body_one"
         android:textStyle="bold"
         android:textColor="@color/blue_jasgab_dark"
