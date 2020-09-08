@@ -9,6 +9,7 @@ import br.com.jasgab.jasgab.model.RequestCustomer;
 import br.com.jasgab.jasgab.model.RequestMacVendor;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
+import br.com.jasgab.jasgab.model.ResponseDefault;
 import br.com.jasgab.jasgab.model.ResponseAddress;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
 import br.com.jasgab.jasgab.model.ResponseIsp;
@@ -17,6 +18,8 @@ import br.com.jasgab.jasgab.model.ResponseStatus;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
 import br.com.jasgab.jasgab.model.CustomerNew;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 public class JasgabApi {
@@ -84,6 +87,11 @@ public class JasgabApi {
     public Call<ResponseIsp> isp(String auth) {
         Conexao service = ServiceGeneratorJasgab.createService();
         return service.isp("Bearer "+auth);
+    }
+
+    public Call<ResponseDefault> receipt(RequestBody cpf, RequestBody due_date, MultipartBody.Part receipt, String auth) {
+        Conexao service = ServiceGeneratorJasgab.createService();
+        return service.receipt(cpf, due_date, receipt, "Bearer "+auth);
     }
 
     //---------------- CALL API FCM TO PUSH NOTIFICATION

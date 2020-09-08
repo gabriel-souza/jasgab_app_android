@@ -77,4 +77,5 @@ dependencies {
 
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
+    implementation 'com.karumi:dexter:5.0.0'
 }

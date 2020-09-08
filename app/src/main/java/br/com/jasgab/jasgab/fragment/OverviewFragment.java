@@ -74,7 +74,7 @@ public class OverviewFragment extends Fragment {
     }
 
     private void run(View view){
-        JasgabUtils.checkInternetDialog(requireContext(), requireActivity());
+        JasgabUtils.checkInternetActivity(requireContext(), requireActivity());
 
         Auth mAuth = AuthDAO.start(requireContext()).select();
         mResponseCustomer = CustomerDAO.start(requireContext()).select();
@@ -202,7 +202,7 @@ public class OverviewFragment extends Fragment {
     private void startFragment(){
         switch (mStatusType) {
             case StatusType.Online:
-                if(JasgabUtils.checkWifi(requireContext(), requireActivity())) {
+                if(JasgabUtils.checkWifi(requireContext())) {
                     StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
                     startActivity(new Intent(requireContext(), StatusOnlineActivity.class));
                 }else{
@@ -228,7 +228,6 @@ public class OverviewFragment extends Fragment {
     }
 
     private void verifyStatus() {
-
         Auth auth = AuthDAO.start(requireContext()).select();
         if(auth == null){
             startActivity(new Intent(requireContext(), MainActivity.class));
@@ -255,7 +254,6 @@ public class OverviewFragment extends Fragment {
                                 startStatusOffline(responseStatus);
                                 break;
                         }
-                        return;
                     }
                 }
                 //TODO REQUEST ERROR

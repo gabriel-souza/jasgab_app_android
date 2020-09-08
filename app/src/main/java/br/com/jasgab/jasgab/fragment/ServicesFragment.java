@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,7 @@ public class ServicesFragment extends Fragment {
         //ACTIONBAR
         JasgabUtils.setActionBar("Serviços", view);
 
-        ImageView services_plan = view.findViewById(R.id.services_plan);
+        Button services_plan = view.findViewById(R.id.services_plan);
         services_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,13 +42,34 @@ public class ServicesFragment extends Fragment {
             }
         });
 
+        Button services_invite = view.findViewById(R.id.services_invite);
+        services_invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "JASGAB TELECOM");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Estou compartilhando com você o APP da JASGAB");
+                startActivity(Intent.createChooser(sharingIntent, "Compartilhar"));
+            }
+        });
+
         //Under Construction
-        startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_contracts));
-        startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_technology));
-        startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_maintenance));
+        //startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_technology));
+        //startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_maintenance));
+        startUnderConstructionActivity((Button) view.findViewById(R.id.services_wifiplus));
+        //startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_help));
         startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_equipment));
-        startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_help));
-        startUnderConstructionActivity((ImageView) view.findViewById(R.id.services_shopping));
+    }
+
+    private void startUnderConstructionActivity(Button button){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), UnderConstructionActivity.class);
+                requireActivity().startActivity(intent);
+            }
+        });
     }
 
     private void startUnderConstructionActivity(ImageView imageView){

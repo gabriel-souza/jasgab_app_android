@@ -596,7 +596,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/sign_up_submit_text"
                     android:indeterminate="true"
-                    android:indeterminateTint="@color/button_overview_text"
+                    android:indeterminateTint="@color/white"
                     android:visibility="invisible" />
 
                 <TextView

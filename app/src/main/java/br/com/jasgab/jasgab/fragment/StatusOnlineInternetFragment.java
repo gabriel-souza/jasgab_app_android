@@ -17,11 +17,11 @@ import br.com.jasgab.jasgab.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.crud.AuthDAO;
-import br.com.jasgab.jasgab.dialog.LoginDialog;
 import br.com.jasgab.jasgab.dialog.StatusOnlineInternetDialog;
 import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.ResponseIsp;
 import br.com.jasgab.jasgab.util.InternetUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import me.impa.pinger.PingInfo;
 import me.impa.pinger.Pinger;
 import retrofit2.Call;
@@ -37,12 +37,13 @@ public class StatusOnlineInternetFragment extends Fragment {
             status_online_internet_ping_jasgab,
             status_online_internet_ping_google;
     ImageView status_online_internet_question_mark;
-    Context mContext;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_status_online_internet, container, false);
-        mContext = getContext();
+        context = getContext();
+        JasgabUtils.checkWifiActivity(context, requireActivity());
 
         run();
 
@@ -106,7 +107,7 @@ public class StatusOnlineInternetFragment extends Fragment {
     }
 
     private void startPing() {
-        String gatewayHost = InternetUtils.getWifiGateway(mContext);
+        String gatewayHost = InternetUtils.getWifiGateway(context);
 
         if(!gatewayHost.equals("0.0.0.0")) {
             Pinger gateway = new Pinger();
@@ -226,7 +227,7 @@ public class StatusOnlineInternetFragment extends Fragment {
                 pingInfo.Pinger.Stop(pingInfo.PingId);
             }
         });
-        jasgab.Ping("router.jasgab.com.br");
+        jasgab.Ping("jasgab.com.br");
 
         Pinger google = new Pinger();
         google.setOnPingListener(new Pinger.OnPingListener() {

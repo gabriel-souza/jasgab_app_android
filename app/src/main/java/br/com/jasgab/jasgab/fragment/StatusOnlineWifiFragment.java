@@ -1,7 +1,6 @@
 package br.com.jasgab.jasgab.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.pattern.WifiSignalType;
 import br.com.jasgab.jasgab.util.InternetUtils;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 
 public class StatusOnlineWifiFragment extends Fragment {
     View mView;
@@ -34,6 +34,7 @@ public class StatusOnlineWifiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_status_online_wifi, container, false);
+        JasgabUtils.checkWifiActivity(requireContext(), requireActivity());
 
         run();
 

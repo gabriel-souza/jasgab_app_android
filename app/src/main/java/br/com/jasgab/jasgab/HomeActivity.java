@@ -92,7 +92,7 @@ public class HomeActivity extends FragmentActivity {
 
     private void applyFontToMenuItem(MenuItem mi) {
         if(mi != null) {
-            Typeface font = Typeface.createFromAsset(getAssets(), "segoe_ui_regular.ttf");
+            Typeface font = Typeface.createFromAsset(getAssets(), "segoe_ui.ttf");
             SpannableString mNewTitle = new SpannableString(mi.getTitle());
             mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             mNewTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, mNewTitle.length(), 0);

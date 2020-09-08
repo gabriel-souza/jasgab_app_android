@@ -16,7 +16,7 @@
         android:text="WIFI"
         style="@style/text_pattern_raised"
         android:textSize="@dimen/text_title"
-        android:textColor="@color/text_status_online_overview"
+        android:textColor="@color/blue_grayish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:text="Carregando dispositivos conectados"
         style="@style/text_pattern_raised"
         android:textSize="@dimen/text_body_one"
-        android:textColor="@color/text_status_online_overview"
+        android:textColor="@color/blue_grayish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
                 android:layout_marginStart="10dp"
                 android:text="Internet"
                 android:textSize="@dimen/text_body_one"
-                android:textColor="@color/text_status_online_overview"
+                android:textColor="@color/blue_grayish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ic_status_online_overview_internet"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -102,7 +102,7 @@
                 android:layout_marginStart="10dp"
                 android:text="Localização do Wifi"
                 android:textSize="@dimen/text_body_one"
-                android:textColor="@color/text_status_online_overview"
+                android:textColor="@color/blue_grayish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ic_status_online_overview_wifi"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -136,7 +136,7 @@
                 android:layout_marginStart="10dp"
                 android:text="Aparelhos connectados"
                 android:textSize="@dimen/text_body_one"
-                android:textColor="@color/text_status_online_overview"
+                android:textColor="@color/blue_grayish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/status_online_overview_devices_ic"
                 app:layout_constraintTop_toTopOf="parent" />

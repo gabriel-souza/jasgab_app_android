@@ -7,6 +7,7 @@ import br.com.jasgab.jasgab.model.RequestCustomer;
 import br.com.jasgab.jasgab.model.RequestMacVendor;
 import br.com.jasgab.jasgab.model.RequestStatus;
 import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
+import br.com.jasgab.jasgab.model.ResponseDefault;
 import br.com.jasgab.jasgab.model.ResponseAddress;
 import br.com.jasgab.jasgab.model.ResponseCustomer;
 import br.com.jasgab.jasgab.model.ResponseIsp;
@@ -15,12 +16,16 @@ import br.com.jasgab.jasgab.model.ResponseStatus;
 import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
 import br.com.jasgab.jasgab.model.ResponseMaintenance;
 import br.com.jasgab.jasgab.model.CustomerNew;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface Conexao {
@@ -69,6 +74,10 @@ public interface Conexao {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("/network/isp")
     Call<ResponseIsp> isp(@Header("Authorization") String auth);
+
+    @Multipart
+    @POST("/customer/receipt")
+    Call<ResponseDefault> receipt(@Part("cpf") RequestBody cpf, @Part("due_date") RequestBody due_date, @Part MultipartBody.Part receipt, @Header("Authorization") String auth);
 
     //---------------- CALL API FCM TO PUSH NOTIFICATION
     @GET("/insert_fcm")

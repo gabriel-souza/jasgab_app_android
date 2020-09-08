@@ -2,10 +2,8 @@ package br.com.jasgab.jasgab.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -19,7 +17,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,8 +25,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import br.com.jasgab.jasgab.MainActivity;
+import br.com.jasgab.jasgab.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.dialog.NoConnectionDialog;
 import br.com.jasgab.jasgab.model.Bill;
 
 public class JasgabUtils {
@@ -81,11 +79,20 @@ public class JasgabUtils {
         }
     }
 
-    public static void checkInternetDialog(Context context, FragmentActivity fragmentActivity) {
+    public static void checkInternetActivity(Context context, Activity activity) {
         try {
             if(!checkInternet(context)){
-                NoConnectionDialog dialog = new NoConnectionDialog();
-                dialog.show(fragmentActivity.getSupportFragmentManager(), "");
+                activity.startActivity(new Intent(activity, NoConnectionActivity.class));
+                activity.finish();
+            }
+        } catch (Exception ignored) {}
+    }
+
+    public static void checkWifiActivity(Context context, Activity activity) {
+        try {
+            if(!checkWifi(context)){
+                activity.startActivity(new Intent(activity, MainActivity.class));
+                activity.finish();
             }
         } catch (Exception ignored) {}
     }
@@ -103,7 +110,7 @@ public class JasgabUtils {
         return false;
     }
 
-    public static boolean checkWifi(Context context, FragmentActivity fragmentActivity) {
+    public static boolean checkWifi(Context context) {
         try {
             ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             if(connManager != null) {

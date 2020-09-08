@@ -2,6 +2,7 @@ package br.com.jasgab.jasgab.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.jasgab.jasgab.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.model.DeviceWifi;
 import br.com.jasgab.jasgab.util.JasgabUtils;
@@ -32,17 +34,14 @@ public class StatusOnlineOverviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_status_online_overview, container, false);
-
-        Context context = getContext();
-        if(context == null){
-            return view;
-        }
+        Context context = requireContext();
+        JasgabUtils.checkWifiActivity(context, requireActivity());
 
         status_online_wifi = view.findViewById(R.id.status_online_wifi);
         status_online_devices = view.findViewById(R.id.status_online_devices);
         status_online_overview_devices_ic = view.findViewById(R.id.status_online_overview_devices_ic);
 
-        status_online_wifi.setText(String.format("Wifi: %s", InternetUtils.getWifiName(context)));
+        status_online_wifi.setText(String.format("Rede Wi-Fi: %s", InternetUtils.getWifiName(context).replace("\"", "")));
 
         new Discovery().execute();
 

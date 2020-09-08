@@ -5,10 +5,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,11 +25,11 @@ public class NoConnectionDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = Objects.requireNonNull(requireActivity()).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_no_connection, null);
 
-        builder.setView(view).setNegativeButton("Ligar WIFI", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
+        builder.setView(view).setNeutralButton("ATIVAR WIFI", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 WifiManager wifi = (WifiManager) requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -47,10 +49,15 @@ public class NoConnectionDialog extends DialogFragment {
         dialog.setOnShowListener( new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface arg0) {
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(R.color.blue_jasgab_medium);
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(R.color.blue_jasgab_medium);
+                Typeface typeface = Typeface.createFromAsset(requireContext().getAssets(), "segoe_ui.ttf");
+                Button neutral = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+                Button positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                neutral.setTypeface(typeface);
+                positive.setTypeface(typeface);
             }
         });
+
+        dialog.show();
 
         return dialog;
     }

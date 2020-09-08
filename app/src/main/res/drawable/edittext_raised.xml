@@ -3,5 +3,5 @@
     <corners android:radius="@dimen/edittext_raised_conner" />
     <stroke android:color="@color/blue_jasgab_dark"
         android:width="@dimen/edittext_raised_stroke" />
-    <solid android:color="@color/edittext_raised_normal" />
+    <solid android:color="@color/white" />
 </shape>

@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -109,7 +108,7 @@ public class PlansDialog extends DialogFragment {
         dialog_plans_button.setClickable(false);
         dialog_plans_button_progressBar.setVisibility(View.VISIBLE);
 
-        JasgabUtils.checkInternetDialog(requireContext(), requireActivity());
+        JasgabUtils.checkInternetActivity(requireContext(), requireActivity());
 
         Customer customer = CustomerDAO.start(requireContext()).selectCustomer();
         Auth auth = AuthDAO.start(requireContext()).select();

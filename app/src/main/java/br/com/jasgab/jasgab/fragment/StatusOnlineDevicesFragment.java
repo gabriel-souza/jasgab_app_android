@@ -1,6 +1,8 @@
 package br.com.jasgab.jasgab.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,9 +21,11 @@ import com.stealthcopter.networktools.subnet.Device;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.jasgab.jasgab.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.list.StatusDeviceAdapter;
 import br.com.jasgab.jasgab.model.DeviceWifi;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 
 public class StatusOnlineDevicesFragment extends Fragment {
     View view;
@@ -32,6 +36,8 @@ public class StatusOnlineDevicesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_status_online_devices, container, false);
+        Context context = requireContext();
+        JasgabUtils.checkWifiActivity(context, requireActivity());
 
         RecyclerView mRecyclerView = view.findViewById(R.id.status_online_device_devices);
         status_online_device_count = view.findViewById(R.id.status_online_device_count);
@@ -74,7 +80,4 @@ public class StatusOnlineDevicesFragment extends Fragment {
         return view;
     }
 
-    private void setupRecycler() {
-
-    }
 }

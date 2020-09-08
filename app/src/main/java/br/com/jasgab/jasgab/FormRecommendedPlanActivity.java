@@ -100,8 +100,8 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
             }
         });
 
-        Button recommended_plan_button = findViewById(R.id.recommendedplan_submit);
-        recommended_plan_button.setOnClickListener(new View.OnClickListener() {
+        Button formrecommendedplan_submit = findViewById(R.id.formrecommendedplan_submit);
+        formrecommendedplan_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getingBestPlan();

@@ -69,7 +69,6 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-
     <string name="msg_login_sign_up">Ainda não é cliente? &lt;b>Cadastre-se&lt;/b></string>
     <string name="msg_login_terms">Concordo com o &lt;b>Termos&lt;/b> e &lt;b>Políticas&lt;/b></string>
     <string name="msg_sign_up_terms">Ao clicar em &lt;b>\"Criar Cadastro\"&lt;/b>, você concorda com nossos &lt;b>Termos&lt;/b> e leu nossa &lt;b>Política de Dados&lt;/b>. Você pode receber notificações da jasgab e pode desativar a qualquer momento.</string>

@@ -4,27 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/dialog_plans_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_no_connection" />
-
     <TextView
         android:id="@+id/dialog_plans_title"
+        style="@style/text_pattern_raised"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Rede Wi-Fi não encontrada"
-        android:textSize="@dimen/text_body_one"
-        style="@style/text_pattern_raised"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_sub_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_plans_icon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dialog_plans_sub_title"
