@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/dialog_plans_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/dialog_plans_sub_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

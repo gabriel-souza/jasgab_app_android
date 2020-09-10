@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/biil_due_date"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -28,7 +28,7 @@
         android:paddingHorizontal="10dp"
         android:gravity="center"
         android:background="@drawable/bill_expired"
-        android:fontFamily="@font/segoe_ui_regular"
+        android:fontFamily="@font/segoe_ui"
         android:text="ATRASADO"
         android:textColor="@color/white"
         android:textSize="@dimen/text_caption"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="@+id/biil_due_date" />
     <TextView
         android:id="@+id/bill_show"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -54,7 +54,7 @@
 
     <TextView
         android:id="@+id/bill_price"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -65,7 +65,7 @@
 
     <TextView
         android:id="@+id/bill_pay"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

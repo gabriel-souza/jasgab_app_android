@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import br.com.jasgab.jasgab.PlansActivity;
+import br.com.jasgab.jasgab.activity.PlansActivity;
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.UnderConstructionActivity;
+import br.com.jasgab.jasgab.activity.UnderConstructionActivity;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 
 public class ServicesFragment extends Fragment {

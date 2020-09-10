@@ -25,19 +25,19 @@ import com.airbnb.lottie.LottieResult;
 
 import java.util.List;
 
-import br.com.jasgab.jasgab.BillActivity;
-import br.com.jasgab.jasgab.HelpActivity;
-import br.com.jasgab.jasgab.LoginActivity;
-import br.com.jasgab.jasgab.MainActivity;
+import br.com.jasgab.jasgab.activity.BillActivity;
+import br.com.jasgab.jasgab.activity.HelpActivity;
+import br.com.jasgab.jasgab.activity.LoginActivity;
+import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.R;
-import br.com.jasgab.jasgab.StatusOnlineActivity;
+import br.com.jasgab.jasgab.activity.StatusOnlineActivity;
 import br.com.jasgab.jasgab.api.JasgabApi;
-import br.com.jasgab.jasgab.dialog.NoConnectionDialog;
+import br.com.jasgab.jasgab.dialog.NoWifiDialog;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Customer;
-import br.com.jasgab.jasgab.model.RequestStatus;
-import br.com.jasgab.jasgab.model.ResponseStatus;
+import br.com.jasgab.jasgab.model_http.RequestStatus;
+import br.com.jasgab.jasgab.model_http.ResponseStatus;
 import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
@@ -47,8 +47,8 @@ import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Bill;
 import br.com.jasgab.jasgab.model.Contract;
 import br.com.jasgab.jasgab.model.Maintenance;
-import br.com.jasgab.jasgab.model.ResponseCustomer;
-import br.com.jasgab.jasgab.model.ResponseMaintenance;
+import br.com.jasgab.jasgab.model_http.ResponseCustomer;
+import br.com.jasgab.jasgab.model_http.ResponseMaintenance;
 import br.com.jasgab.jasgab.pattern.StatusType;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -206,7 +206,7 @@ public class OverviewFragment extends Fragment {
                     StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
                     startActivity(new Intent(requireContext(), StatusOnlineActivity.class));
                 }else{
-                    NoConnectionDialog dialog = new NoConnectionDialog();
+                    NoWifiDialog dialog = new NoWifiDialog();
                     dialog.show(requireActivity().getSupportFragmentManager(), "");
                 }
                 break;
@@ -261,7 +261,7 @@ public class OverviewFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                //TODO REQUEST ERROR
+                String erro = t.getMessage();
             }
         });
     }

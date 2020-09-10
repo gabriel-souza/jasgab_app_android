@@ -2,7 +2,6 @@ package br.com.jasgab.jasgab.list;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import br.com.jasgab.jasgab.BillActivity;
-import br.com.jasgab.jasgab.BillPdfActivity;
+import br.com.jasgab.jasgab.activity.BillActivity;
+import br.com.jasgab.jasgab.activity.BillPdfActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.model.Bill;
-import br.com.jasgab.jasgab.model.DeviceWifi;
 import br.com.jasgab.jasgab.pattern.BillType;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 

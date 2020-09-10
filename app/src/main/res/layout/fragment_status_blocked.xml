@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/include_status_blocked"
+        android:id="@+id/status_blocked_actionbar"
         layout="@layout/layout_actionbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -14,64 +14,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
         android:id="@+id/status_blocked_warning"
+        style="@style/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="50dp"
+        android:background="@drawable/alert_info_default"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:text="@string/status_blocked_warning"
+        android:textSize="@dimen/text_caption"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/blocked"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_status_blocked"
-        android:background="@drawable/balloon_warning">
+        app:layout_constraintTop_toBottomOf="@+id/status_blocked_actionbar"
+        app:layout_constraintVertical_bias="0.25" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AVISO:"
-                android:fontFamily="@font/roboto_black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:text="              Se o pagamento não for efetuado em até 4 dias, a sua internet será boloqueada e o botão de auto-desbloqueio será automaticamente desativado "
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/blocked_warning_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_exit" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/status_blocked_unlocked_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Internet desbloqueada"
-        android:textColor="@color/blue_purple"
-        android:textSize="16sp"
+        style="@style/text"
+        android:text="Internet desbloqueada\ncom sucesso!"
+        android:textColor="@color/blue_grayish"
+        android:textSize="@dimen/text_body_one"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,26 +48,27 @@
 
     <com.github.library.bubbleview.BubbleTextView
         android:id="@+id/status_blocked_balloon"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/roboto_regular"
+        android:layout_marginEnd="20dp"
         android:padding="20dp"
         android:text="Clique no cadeado para\ndesbloquear à sua internet"
         android:textAlignment="center"
-        android:textColor="@color/blue_purple"
-        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_body_one"
+        android:textStyle="bold"
         app:angle="9dp"
         app:arrowHeight="20dp"
         app:arrowLocation="bottom"
-        app:arrowPosition="20dp"
-        app:arrowWidth="20dp"
-        app:bubbleColor="@color/gray_light"
-        app:layout_constraintBottom_toTopOf="@+id/blocked_message"
+        app:arrowPosition="15dp"
+        app:arrowWidth="40dp"
+        app:bubbleColor="@color/blue_jasgab_light"
+        app:layout_constraintBottom_toTopOf="@+id/blocked"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_status_blocked"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/status_blocked_actionbar"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/blocked"
@@ -109,36 +79,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_status_blocked"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintTop_toBottomOf="@+id/status_blocked_actionbar" />
 
     <TextView
         android:id="@+id/blocked_message"
+        style="@style/text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
-        style="@style/text_pattern_raised"
-        android:text="Para evitar o bloqueio da sua internet o pagamento deve ser efetuado até o 3º (terceiro) dia após o vencimento"
-        app:layout_constraintBottom_toTopOf="@+id/blocked_button_pay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blocked" />
-
-    <Button
-        android:id="@+id/blocked_button_pay"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="5dp"
-        android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
-        style="@style/button_raised"
-        android:text="Pague agora\ne realize o desbloqueio"
-        android:textAllCaps="false"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/alert_info_default"
+        android:text="@string/blocked_message"
+        android:textSize="@dimen/text_caption"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blocked_message" />
+        app:layout_constraintTop_toBottomOf="@+id/blocked"
+        app:layout_constraintVertical_bias="0.3" />
 
-
+    <Button
+        android:id="@+id/blocked_button_pay"
+        style="@style/button_raised"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/button_raised_margin_horizontal"
+        android:text="Realizar o pagamento"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blocked" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

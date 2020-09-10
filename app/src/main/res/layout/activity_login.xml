@@ -32,7 +32,7 @@
 
     <TextView
         android:id="@+id/login_error"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/login_button"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/msg_login_terms"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:textSize="@dimen/text_body_one"
         app:layout_constraintBottom_toBottomOf="@+id/login_terms"
         app:layout_constraintStart_toEndOf="@+id/login_terms"
@@ -121,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:text="ou"
         android:textColor="#52000000"
         android:textSize="@dimen/text_sub_header"
@@ -141,7 +141,7 @@
 
     <TextView
         android:id="@+id/msg_login_sign_up"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

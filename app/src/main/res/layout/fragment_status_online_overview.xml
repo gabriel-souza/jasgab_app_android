@@ -14,7 +14,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="100dp"
         android:text="WIFI"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:textSize="@dimen/text_title"
         android:textColor="@color/blue_grayish"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:text="Carregando dispositivos conectados"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:textSize="@dimen/text_body_one"
         android:textColor="@color/blue_grayish"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
 
             <TextView
                 android:id="@+id/textView_status_online_overview_internet"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -96,7 +96,7 @@
 
             <TextView
                 android:id="@+id/textView_status_online_overview_wifi"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -130,7 +130,7 @@
 
             <TextView
                 android:id="@+id/textView_status_online_overview_devices"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

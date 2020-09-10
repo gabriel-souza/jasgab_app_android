@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true"
-        android:drawable="@drawable/button_barcode_pending_pressed" />
-    <item android:drawable="@drawable/button_barcode_pending_default" />
-</selector>
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/yellow" />
+    <corners android:radius="2dp" />
+</shape>

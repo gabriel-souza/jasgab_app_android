@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UnderConstructionActivity"
+    tools:context=".activity.UnderConstructionActivity"
     android:layout_margin="@dimen/button_raised_margin_horizontal">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/under_construction_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/under_construction_sub_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

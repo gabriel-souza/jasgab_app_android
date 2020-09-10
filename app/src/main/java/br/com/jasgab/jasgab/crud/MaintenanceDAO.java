@@ -48,7 +48,7 @@ public class MaintenanceDAO {
 
             if(cursor.moveToLast()) {
                 maintenance = new Maintenance();
-                maintenance.setForecastReturn(cursor.getInt(0));
+                maintenance.setForecastReturn(cursor.getString(0));
                 maintenance.setMessage(cursor.getString(1));
                 maintenance.setTitle(cursor.getString(2));
             }

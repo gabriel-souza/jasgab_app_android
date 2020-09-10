@@ -14,7 +14,7 @@ import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Contract;
 import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model.CustomerData;
-import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model_http.ResponseCustomer;
 
 public class CustomerDAO {
     private SQLiteDatabase db;

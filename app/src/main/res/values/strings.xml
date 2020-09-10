@@ -88,5 +88,7 @@
 
     <string name="plan_card_title_essensial">PLANO ESSENCIAL</string>
     <string name="plan_card_subtitle_essensial">50 MEGA R$79,99</string>
+    <string name="status_blocked_warning"><![CDATA[<b>AVISO:</b> Se o pagamento não for efetuado em até 4 dias, a sua internet será boloqueada e o botão de auto-desbloqueio será automaticamente desativado]]></string>
+    <string name="blocked_message"><![CDATA[<b>AVISO:</b> Para evitar o bloqueio da sua internet o pagamento deve ser efetuado até o 3º (terceiro) dia após o vencimento]]></string>
 
 </resources>

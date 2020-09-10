@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".activity.SignUpActivity">
 
     <include
         android:id="@+id/actionbar_sign_up"
@@ -45,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_name"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -96,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_cpf"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -139,7 +139,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_rg"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -178,7 +178,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_born"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -231,7 +231,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_phone"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -269,7 +269,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_email"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -321,7 +321,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_zipCode"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -362,7 +362,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_addressNumber"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -398,7 +398,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_address"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -409,7 +409,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_address_complements"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -432,7 +432,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_complement"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -472,7 +472,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_due_date"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -520,7 +520,7 @@
 
                 <TextView
                     android:id="@+id/sign_up_title_payment_method"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -567,7 +567,7 @@
 
                 <TextView
                     android:id="@+id/msg_sign_up_terms"
-                    style="@style/text_pattern_raised"
+                    style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/msg_sign_up_terms"

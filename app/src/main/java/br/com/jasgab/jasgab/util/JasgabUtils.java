@@ -25,10 +25,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import br.com.jasgab.jasgab.MainActivity;
-import br.com.jasgab.jasgab.NoConnectionActivity;
+import br.com.jasgab.jasgab.activity.MainActivity;
+import br.com.jasgab.jasgab.activity.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
+import br.com.jasgab.jasgab.crud.StatusDAO;
+import br.com.jasgab.jasgab.fragment.OverviewFragment;
 import br.com.jasgab.jasgab.model.Bill;
+import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 
 public class JasgabUtils {
 
@@ -143,6 +146,23 @@ public class JasgabUtils {
         actionbar_title.setText(title);
     }
 
+    public static void setActionBarOverview(String title, View view, final Context context, final FragmentActivity fragmentActivity){
+        TextView actionbar_title = view.findViewById(R.id.actionbar_title);
+        actionbar_title.setText(title);
+        ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
+        actionbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StatusDAO.start(context).insert(StatusLayoutType.Overview);
+                OverviewFragment overviewFragment = new OverviewFragment();
+                fragmentActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_container, overviewFragment)
+                        .commit();
+            }
+        });
+    }
+
+
     public static List<Bill> orderBills(List<Bill> bills) {
         Collections.sort(bills, new Comparator<Bill>() {
             @SuppressLint("SimpleDateFormat")
@@ -176,4 +196,5 @@ public class JasgabUtils {
             Toast.makeText(activity,"Error/n"+ e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+
 }

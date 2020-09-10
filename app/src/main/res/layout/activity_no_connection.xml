@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoConnectionActivity"
+    tools:context=".activity.NoConnectionActivity"
     android:layout_margin="@dimen/button_raised_margin_horizontal">
 
     <ImageView
@@ -25,14 +25,14 @@
         android:layout_marginTop="30dp"
         android:text="Oops! Sem conexão"
         android:textSize="@dimen/text_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/no_connection_ic" />
 
     <TextView
         android:id="@+id/no_connection_sub_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

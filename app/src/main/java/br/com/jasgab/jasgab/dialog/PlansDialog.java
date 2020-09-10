@@ -21,7 +21,7 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Objects;
 
-import br.com.jasgab.jasgab.MainActivity;
+import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.crud.AuthDAO;
@@ -29,7 +29,7 @@ import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model.CustomerNew;
-import br.com.jasgab.jasgab.model.ResponseCustomer;
+import br.com.jasgab.jasgab.model_http.ResponseCustomer;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 import retrofit2.Call;
 import retrofit2.Callback;

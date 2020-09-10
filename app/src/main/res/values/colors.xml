@@ -4,40 +4,6 @@
     <color name="colorPrimaryDark">#2B7CAC</color>
     <color name="colorAccent">#6AAFDE</color>
 
-    <!-- TODO START REFACTORING -->
-    <!-- LAYOUT BARCODE -->
-    <color name="barcode_box_stroke">#D3D3D3</color>
-    <color name="barcode_pay_day">#E4616C</color>
-    <color name="barcode_late_payment">#ED5F5F</color>
-    <color name="barcode_price">#70CA90</color>
-    <color name="barcode_pending">#EDB95F</color>
-    <color name="barcode_pending_pressed">#EDB87F</color>
-    <color name="barcode_person_info">#575050</color>
-    <color name="barcode_button_text">#3F88F7</color>
-
-    <color name="progress_last_day">#EDB95F</color>
-    <color name="progress_late">#BB0202</color>
-    <color name="progress_bar">#ECF5FD</color>
-    <color name="progress_background">#999999</color>
-
-    <color name="tab_selected">#ECF5FD</color>
-    <color name="tab_background">#A3B2BC</color>
-    <color name="tab_ripple">#999999</color>
-
-    <color name="button_bottom_nav_default">#275F8E</color>
-    <color name="button_bottom_nav_pressed">#275F8E</color>
-    <color name="button_bottom_nav_inactive">#275F8E</color>
-    <color name="button_raised_pressed">#085696</color>
-
-    <color name="button_flat_pressed">#C3CFD8</color>
-    <color name="button_pay_pressed">#C3CFD8</color>
-    <color name="button_barcode_pressed">#C3CFD8</color>
-
-
-    <color name="services_shopping_background">#7AA3B2BC</color>
-    <color name="services_invite_background">#7AA3B2BC</color>
-    <!-- TODO END REFACTORING -->
-
     <!-- DEFAULT COLORS -->
     <!-- BLUE -->
     <color name="blue_neon">#20FFFF</color>
@@ -52,6 +18,8 @@
     <!-- GRAY -->
     <color name="gray_dark">#616161</color>
     <color name="gray_light">#E0E0E0</color>
+    <color name="gray_black">#212121</color>
+
 
     <!-- GREEN -->
     <color name="green">#14A811</color>

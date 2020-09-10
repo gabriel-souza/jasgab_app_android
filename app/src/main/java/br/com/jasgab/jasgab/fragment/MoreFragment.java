@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import br.com.jasgab.jasgab.MainActivity;
+import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;

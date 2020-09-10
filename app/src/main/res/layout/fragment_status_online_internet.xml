@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="JASGAB TELECOM"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:textSize="@dimen/text_title"
             android:textColor="@color/blue_grayish"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NAT: Privado"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:textSize="@dimen/text_body_one"
                 android:textColor="@color/blue_grayish"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/maintenance_animation"
+        android:id="@+id/status_offline_animation"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_below="@+id/overview_profile.xml"
@@ -106,7 +106,7 @@
 
         <TextView
             android:id="@+id/status_online_internet_ping_gateway"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -151,7 +151,7 @@
 
         <TextView
             android:id="@+id/status_online_internet_ping_jasgab"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -196,7 +196,7 @@
 
         <TextView
             android:id="@+id/status_online_internet_ping_google"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

@@ -5,12 +5,16 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.text.Html;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,9 +25,9 @@ import com.airbnb.lottie.LottieComposition;
 import com.airbnb.lottie.LottieCompositionFactory;
 import com.airbnb.lottie.LottieDrawable;
 import com.airbnb.lottie.LottieResult;
-import com.github.library.bubbleview.BubbleTextView;
 
-import br.com.jasgab.jasgab.MainActivity;
+import br.com.jasgab.jasgab.activity.BillActivity;
+import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.pattern.AnimationUnlockType;
 import br.com.jasgab.jasgab.api.JasgabApi;
@@ -37,80 +41,99 @@ import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Bill;
 import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.CustomerData;
-import br.com.jasgab.jasgab.model.RequestCustomerUnlock;
-import br.com.jasgab.jasgab.model.ResponseCustomerUnlock;
+import br.com.jasgab.jasgab.model_http.RequestCustomerUnlock;
+import br.com.jasgab.jasgab.model_http.ResponseCustomerUnlock;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StatusBlockedFragment extends Fragment {
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_status_blocked, container, false);
+        view = inflater.inflate(R.layout.fragment_status_blocked, container, false);
 
-
-        blockedAnimation(view);
-        setLayout(view, container);
+        blockedAnimation();
+        setLayout();
 
         return view;
     }
 
-    ConstraintLayout status_blocked_warning;
-    TextView status_blocked_unlocked_message;
-    TextView blocked_message;
-    BubbleTextView status_blocked_balloon;
-    Button pay;
-    private void setLayout(View view, ViewGroup container){
+    private TextView status_blocked_unlocked_message, blocked_message, status_blocked_balloon, status_blocked_warning;
+    private Button blocked_button_pay;
+    private Animation animFadeIn, animFadeOut;
+    private void setLayout(){
         status_blocked_warning = view.findViewById(R.id.status_blocked_warning);
         status_blocked_unlocked_message = view.findViewById(R.id.status_blocked_unlocked_message);
         blocked_message = view.findViewById(R.id.blocked_message);
         status_blocked_balloon = view.findViewById(R.id.status_blocked_balloon);
+        blocked_button_pay = view.findViewById(R.id.blocked_button_pay);
 
-        TextView actionbar_text = view.findViewById(R.id.actionbar_title);
-        actionbar_text.setText("Conexão bloqueada");
-        ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
-        actionbar_back.setOnClickListener(new View.OnClickListener() {
+        status_blocked_warning.setText(Html.fromHtml(getResources().getString(R.string.status_blocked_warning)));
+        blocked_message.setText(Html.fromHtml(getResources().getString(R.string.blocked_message)));
+
+        JasgabUtils.setActionBarOverview("Status", view, requireContext(), requireActivity());
+
+        blocked_button_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 StatusDAO.start(requireContext()).insert(StatusLayoutType.Overview);
-                OverviewFragment overviewFragment = new OverviewFragment();
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_container, overviewFragment)
-                        .commit();
+                Intent intent = new Intent(requireContext(), BillActivity.class);
+                intent.putExtra("bill_position", 0);
+                requireActivity().startActivity(intent);
             }
         });
 
-        //Button Pay
-        pay = view.findViewById(R.id.blocked_button_pay);
-        pay.setOnClickListener(new View.OnClickListener() {
+        animFadeIn = AnimationUtils.loadAnimation(requireContext().getApplicationContext(), R.anim.fade_in);
+        animFadeIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onClick(View v) {
-                StatusDAO.start(requireContext()).insert(StatusLayoutType.Overview);
-                BillFragment billFragment = new BillFragment();
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_container, billFragment)
-                        .commit();
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                status_blocked_warning.setVisibility(View.VISIBLE);
+                status_blocked_unlocked_message.setVisibility(View.VISIBLE);
+                blocked_button_pay.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
             }
         });
+        /*
+        animFadeOut = AnimationUtils.loadAnimation(requireContext().getApplicationContext(), R.anim.fade_out);
+        animFadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                blocked_message.setVisibility(View.INVISIBLE);
+                status_blocked_balloon.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+         */
     }
 
     private LottieAnimationView blocked;
     private LottieComposition[] lottieComposition;
-    private AnimatorListenerAdapter waiting;
-    private AnimatorListenerAdapter waitingRequest;
-    private AnimatorListenerAdapter success;
-    private AnimatorListenerAdapter successFinal;
-    private AnimatorListenerAdapter error;
-    private void blockedAnimation(final View view){
+    private AnimatorListenerAdapter waiting, waitingRequest, success, successFinal, error;
+    private void blockedAnimation(){
         blocked = view.findViewById(R.id.blocked);
         lottieComposition = new LottieComposition[7];
 
-
-
-        //Load into memory to be more fluently transitions
         LottieResult<LottieComposition> lottieBlocked0 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_blocked_0.json");
         LottieResult<LottieComposition> lottieBlocked1 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_blocked_1.json");
         LottieResult<LottieComposition> lottieBlocked2 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_blocked_2.json");
@@ -154,7 +177,6 @@ public class StatusBlockedFragment extends Fragment {
                 blocked.setComposition(lottieComposition[AnimationUnlockType.Success]);
                 blocked.setRepeatCount(0);
                 blocked.playAnimation();
-                blocked.removeAllAnimatorListeners();
                 blocked.addAnimatorListener(successFinal);
             }
         };
@@ -194,11 +216,6 @@ public class StatusBlockedFragment extends Fragment {
             public void onClick(View v) {
                 Connection connection = CustomerDAO.start(requireContext()).select().getCustomerData().getConnections().get(0);
                 if(!connection.getBlocked()){
-                    blocked.setComposition(lottieComposition[AnimationUnlockType.Unlock]);
-                    blocked.setRepeatCount(0);
-                    blocked.playAnimation();
-                    blocked.removeAllAnimatorListeners();
-                    blocked.addAnimatorListener(success);
                     Toast.makeText(requireContext(), "Internet já está desbloqueada, por favor reinicie os equipamentos.", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -211,9 +228,15 @@ public class StatusBlockedFragment extends Fragment {
                 blocked.setComposition(lottieComposition[AnimationUnlockType.Unlock]);
                 blocked.setRepeatCount(0);
                 blocked.playAnimation();
-                blocked.removeAllAnimatorListeners();
                 blocked.addAnimatorListener(waitingRequest);
-                unlock();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        unlock();
+                    }
+                }, 1500);
             }
         });
     }
@@ -251,13 +274,19 @@ public class StatusBlockedFragment extends Fragment {
                             }
                             UnlockDAO.start(requireContext()).insert(bill_id);
 
-                            //Transform layout
-                            status_blocked_warning.setVisibility(View.VISIBLE);
-                            status_blocked_unlocked_message.setVisibility(View.VISIBLE);
+                            //status_blocked_warning.setVisibility(View.VISIBLE);
+                            //status_blocked_unlocked_message.setVisibility(View.VISIBLE);
+                            //blocked_button_pay.setVisibility(View.VISIBLE);
+
                             blocked_message.setVisibility(View.INVISIBLE);
                             status_blocked_balloon.setVisibility(View.INVISIBLE);
-                            pay.setText("Pague Agora");
 
+                            status_blocked_warning.setAnimation(animFadeIn);
+                            status_blocked_unlocked_message.setAnimation(animFadeIn);
+                            blocked_button_pay.setAnimation(animFadeIn);
+
+                            //blocked_message.setAnimation(animFadeOut);
+                            //status_blocked_balloon.setAnimation(animFadeOut);
                         } else {
                             blocked.removeAllAnimatorListeners();
                             blocked.addAnimatorListener(error);

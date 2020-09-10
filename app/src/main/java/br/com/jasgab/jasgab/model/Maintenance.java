@@ -10,7 +10,7 @@ public class Maintenance {
     private Integer id;
     @SerializedName("forecast_return")
     @Expose
-    private Integer forecast_return;
+    private String forecast_return;
     @SerializedName("maintenance")
     @Expose
     private Boolean maintenance;
@@ -32,11 +32,11 @@ public class Maintenance {
         this.id = id;
     }
 
-    public Integer getForecastReturn() {
+    public String getForecastReturn() {
         return forecast_return;
     }
 
-    public void setForecastReturn(Integer forecast_return){
+    public void setForecastReturn(String forecast_return){
         this.forecast_return = forecast_return;
     }
 

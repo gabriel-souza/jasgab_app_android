@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import br.com.jasgab.jasgab.MainActivity;
+import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.dialog.StatusOnlineInternetDialog;
 import br.com.jasgab.jasgab.model.Auth;
-import br.com.jasgab.jasgab.model.ResponseIsp;
+import br.com.jasgab.jasgab.model_http.ResponseIsp;
 import br.com.jasgab.jasgab.util.InternetUtils;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 import me.impa.pinger.PingInfo;

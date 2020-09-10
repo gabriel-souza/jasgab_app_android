@@ -2,9 +2,7 @@ package br.com.jasgab.jasgab.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,6 @@ import com.stealthcopter.networktools.subnet.Device;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jasgab.jasgab.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.list.StatusDeviceAdapter;
 import br.com.jasgab.jasgab.model.DeviceWifi;

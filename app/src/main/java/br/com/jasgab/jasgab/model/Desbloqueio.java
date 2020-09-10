@@ -8,7 +8,7 @@ public class Desbloqueio {
     @SerializedName("CodigoPessoa")
     @Expose
     private Integer codigoPessoa;
-    @SerializedName("Conexao")
+    @SerializedName("InterfaceJasgabApi")
     @Expose
     private String conexao;
     @SerializedName("LimiteExcecao")

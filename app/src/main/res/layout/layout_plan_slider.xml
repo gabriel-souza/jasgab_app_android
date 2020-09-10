@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:textAlignment="center"
         android:textColor="@color/blue_purple"
         android:textSize="@dimen/text_body_one" />
@@ -26,7 +26,7 @@
         android:id="@+id/plans_slide_plan_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:textAlignment="center"
         android:textColor="@color/blue_purple"
         android:textSize="@dimen/text_caption" />

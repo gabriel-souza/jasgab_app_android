@@ -18,13 +18,13 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_title"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui_bold"
             android:text="Legenda"
             android:textAlignment="textStart"
             android:textSize="25sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,10 +52,10 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_private"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui_bold"
+            android:textStyle="bold"
             android:text="NAT Privado:"
             android:textAlignment="textStart"
             android:textSize="15sp"
@@ -63,13 +63,13 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_private_desc"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/dialog_status_online_legend_private"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:text="Sua conexão possui uma limitação de NAT."
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"
@@ -87,10 +87,10 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_public"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui_bold"
+            android:textStyle="bold"
             android:text="NAT Público:"
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"
@@ -98,13 +98,13 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_public_desc"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/dialog_status_online_legend_public"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:text="Sua conexão está aberta para internet."
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"
@@ -122,10 +122,10 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_ms"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui_bold"
+            android:textStyle="bold"
             android:text="MS:"
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"
@@ -133,12 +133,12 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_ms_desc"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/dialog_status_online_legend_ms"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:text="Milésimo de segundo. Tempo de resposta."
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"
@@ -156,10 +156,10 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_ping"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/segoe_ui_bold"
+            android:textStyle="bold"
             android:text="PING:"
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"
@@ -167,12 +167,12 @@
 
         <TextView
             android:id="@+id/dialog_status_online_legend_ping_desc"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/dialog_status_online_legend_ping"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:text="Verifica a conectividade entre equipamentos."
             android:textAlignment="textStart"
             android:textColor="@color/gray_dark"

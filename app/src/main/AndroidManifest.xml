@@ -23,30 +23,30 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
         tools:targetApi="n">
-        <activity android:name=".BillActivity"></activity>
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".BillPdfActivity" />
-        <activity android:name=".UnderConstructionActivity" />
-        <activity android:name=".NoConnectionActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".activity.BillActivity"></activity>
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.BillPdfActivity" />
+        <activity android:name=".activity.UnderConstructionActivity" />
+        <activity android:name=".activity.NoConnectionActivity" />
+        <activity android:name=".activity.SignUpActivity" />
         <activity
-            android:name=".StatusOnlineActivity"
+            android:name=".activity.StatusOnlineActivity"
             android:label="@string/title_activity_status_online"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecommendedPlanActivity" />
-        <activity android:name=".PlansActivity" />
-        <activity android:name=".FormRecommendedPlanActivity" />
-        <activity android:name=".PayBarcodeActivity" />
-        <activity android:name=".LoadingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.RecommendedPlanActivity" />
+        <activity android:name=".activity.PlansActivity" />
+        <activity android:name=".activity.FormRecommendedPlanActivity" />
+        <activity android:name=".activity.PayBarcodeActivity" />
+        <activity android:name=".activity.LoadingActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.HomeActivity" />
 
         <service
             android:name=".service.MessagingService"

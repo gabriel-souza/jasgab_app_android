@@ -2,7 +2,6 @@ package br.com.jasgab.jasgab.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jasgab.jasgab.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.model.DeviceWifi;
 import br.com.jasgab.jasgab.util.JasgabUtils;

@@ -4,7 +4,7 @@
         <shape>
             <corners android:radius="0dp" />
             <solid
-                android:color="@color/progress_last_day" />
+                android:color="@color/yellow" />
         </shape>
     </item>
 </layer-list>

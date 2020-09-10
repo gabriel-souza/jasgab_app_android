@@ -4,7 +4,7 @@
         <shape>
             <corners android:radius="0dp" />
             <solid
-                android:color="@color/progress_late" />
+                android:color="@color/red" />
         </shape>
     </item>
 </layer-list>

@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/status_online_wifi_title"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/status_online_wifi_signal_title"
-            style="@style/text_pattern_raised"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:background="@drawable/balloon_warning"
+        android:background="@drawable/alert_info_default"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/status_online_wifi_expand_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,10 +86,10 @@
 
             <TextView
                 android:id="@+id/status_online_wifi_warning_title"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/segoe_ui_bold"
+                android:textStyle="bold"
                 android:text="AVISO:"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
 
             <TextView
                 android:id="@+id/status_online_wifi_warning_text"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="           Seu WIFI não está com sinal ideal por favor se aproxime-se do roteador. Para utilizar a internet com a melhor qualidade."
@@ -137,7 +137,7 @@
             android:layout_height="50dp">
 
             <TextView
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"

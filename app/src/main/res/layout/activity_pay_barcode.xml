@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.PayBarcodeFragment">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -21,7 +20,7 @@
 
             <TextView
                 android:id="@+id/barcode_bank"
-                style="@style/text_pattern_raised"
+                style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -50,7 +49,7 @@
 
                     <TextView
                         android:id="@+id/barcode_payday"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_payday_info"
@@ -63,7 +62,7 @@
 
                     <TextView
                         android:id="@+id/barcode_payday_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -80,7 +79,7 @@
 
                     <TextView
                         android:id="@+id/barcode_price"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_price_info"
@@ -93,7 +92,7 @@
 
                     <TextView
                         android:id="@+id/barcode_price_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -123,7 +122,7 @@
 
                     <TextView
                         android:id="@+id/barcode_info_msg"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_info"
@@ -136,7 +135,7 @@
 
                     <TextView
                         android:id="@+id/barcode_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Informações do boleto"
@@ -157,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_barcode_pending"
-                        android:fontFamily="@font/segoe_ui_regular"
+                        android:fontFamily="@font/segoe_ui"
                         android:text="PENDENTE"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_caption"
@@ -186,7 +185,7 @@
 
                     <TextView
                         android:id="@+id/barcode_company"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_company_info"
@@ -198,7 +197,7 @@
 
                     <TextView
                         android:id="@+id/barcode_company_id"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_company"
@@ -211,7 +210,7 @@
 
                     <TextView
                         android:id="@+id/barcode_company_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Beneficiário"
@@ -230,7 +229,7 @@
 
                     <TextView
                         android:id="@+id/barcode_bank_itau"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_bank_itau_info"
@@ -243,7 +242,7 @@
 
                     <TextView
                         android:id="@+id/barcode_bank_itau_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Conta Itaú"
@@ -262,7 +261,7 @@
 
                     <TextView
                         android:id="@+id/barcode_bank_santander"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_bank_santander_info"
@@ -275,7 +274,7 @@
 
                     <TextView
                         android:id="@+id/barcode_bank_santander_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Conta Santander"
@@ -303,7 +302,7 @@
 
                     <TextView
                         android:id="@+id/barcode_person"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/barcode_person_info"
@@ -315,7 +314,7 @@
 
                     <TextView
                         android:id="@+id/barcode_person_info"
-                        style="@style/text_pattern_raised"
+                        style="@style/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pagador"
@@ -343,7 +342,7 @@
 
     <TextView
         android:id="@+id/bill_barcode"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/barcode_buttons"
@@ -364,7 +363,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
-        style="@style/text_pattern_raised"
+        style="@style/text"
         android:text="Código de barra para pagamento online"
         android:textColor="@color/gray_dark"
         android:textSize="@dimen/text_caption"/>
@@ -386,7 +385,7 @@
             android:layout_toEndOf="@+id/barcode_copy_paste"
             android:background="@drawable/button_barcode"
             android:drawableStart="@drawable/ic_download"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:paddingHorizontal="10dp"
             android:text=" BAIXAR PDF"
             android:textColor="@color/blue_jasgab_dark"
@@ -403,7 +402,7 @@
             android:layout_height="30dp"
             android:background="@drawable/button_barcode"
             android:drawableStart="@drawable/ic_copy_paste"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:paddingHorizontal="5dp"
             android:text=" COPIAR CÓDIGO"
             android:textColor="@color/blue_jasgab_dark"
@@ -422,7 +421,7 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/button_barcode"
             android:drawableStart="@drawable/ic_send"
-            android:fontFamily="@font/segoe_ui_regular"
+            android:fontFamily="@font/segoe_ui"
             android:paddingHorizontal="10dp"
             android:text=" COMPROVANTE"
             android:textAlignment="center"
