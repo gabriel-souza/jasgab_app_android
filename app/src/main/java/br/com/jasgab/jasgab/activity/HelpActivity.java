@@ -1,15 +1,12 @@
 package br.com.jasgab.jasgab.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
@@ -25,15 +22,20 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        activity = this;
+
+
+        JasgabUtils.hideActionBar(getSupportActionBar());
+        JasgabUtils.setActionBar("Ajuda", getWindow().getDecorView(), activity);
+        JasgabUtils.checkAPP(activity);
 
         setLayout();
     }
 
     private void setLayout(){
         //--
-        activity = this;
-        JasgabUtils.hideActionBar(getSupportActionBar());
-        JasgabUtils.setActionBar("Ajuda", getWindow().getDecorView(), activity);
+
+
 
         //GET LAYOUT
         help_name = findViewById(R.id.help_name);

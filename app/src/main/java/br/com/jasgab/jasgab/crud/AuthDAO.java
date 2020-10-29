@@ -42,7 +42,7 @@ public class AuthDAO {
 
     public Auth select(){
         try{
-            Cursor cursor = db.query(table,
+            @SuppressLint("Recycle") Cursor cursor = db.query(table,
                     new String[]{expire, token},
                     null , null,null,null, null, null);
 

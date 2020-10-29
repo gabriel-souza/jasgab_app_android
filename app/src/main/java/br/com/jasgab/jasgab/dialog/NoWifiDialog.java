@@ -31,17 +31,16 @@ public class NoWifiDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_no_wifi, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialog);
-        builder.setView(view).setPositiveButton("ATIVAR", new DialogInterface.OnClickListener() {
+        builder.setView(view)
+                .setPositiveButton("ATIVAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 WifiManager wifi = (WifiManager) requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 if(wifi != null) {
                     wifi.setWifiEnabled(true);
                 }
-            }
-        });
-
-        builder.setView(view).setNeutralButton("CONFIGURAÇÃO", new DialogInterface.OnClickListener() {
+            }})
+                .setNeutralButton("CONFIGURAÇÃO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 startActivityForResult(new Intent(Settings.ACTION_WIFI_SETTINGS), 0);

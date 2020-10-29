@@ -2,7 +2,9 @@ package br.com.jasgab.jasgab.api;
 
 import br.com.jasgab.jasgab.model.Auth;
 
+import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model_http.RequestAuth;
+import br.com.jasgab.jasgab.model_http.RequestCheckNeighborhood;
 import br.com.jasgab.jasgab.model_http.RequestCustomer;
 import br.com.jasgab.jasgab.model_http.RequestMacVendor;
 import br.com.jasgab.jasgab.model_http.RequestStatus;
@@ -64,8 +66,8 @@ public interface InterfaceJasgabApi {
     Call<ResponseMaintenance> maintenance(@Header("Authorization") String auth);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("/check_neighborhood")
-    Call<ResponseMaintenance> check_neighborhood(@Header("Authorization") String auth);
+    @POST("/check_neighborhood")
+    Call<ResponseDefault> check_neighborhood(@Body RequestCheckNeighborhood customer, @Header("Authorization") String auth);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("/tools/mac_vendor")

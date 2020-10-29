@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/status_offline_animation">
 
         <TextView
-            android:id="@+id/status_offline_forecastreturn"
+            android:id="@+id/status_offline_forecast"
             style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status_offline_forecastreturn">
+            app:layout_constraintTop_toBottomOf="@+id/status_offline_forecast">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                     android:textSize="@dimen/text_caption" />
 
                 <TextView
-                    android:id="@+id/status_offline_message"
+                    android:id="@+id/status_offline_text"
                     style="@style/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

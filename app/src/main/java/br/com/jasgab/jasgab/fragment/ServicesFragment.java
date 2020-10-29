@@ -24,15 +24,15 @@ public class ServicesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_services, container, false);
 
+        JasgabUtils.setActionBarHome("Serviços", view, requireContext(), requireActivity());
+        JasgabUtils.checkAPP(requireActivity());
+
         setLayout();
 
         return view;
     }
 
     private void setLayout(){
-        //ACTIONBAR
-        JasgabUtils.setActionBar("Serviços", view);
-
         Button services_plan = view.findViewById(R.id.services_plan);
         services_plan.setOnClickListener(new View.OnClickListener() {
             @Override

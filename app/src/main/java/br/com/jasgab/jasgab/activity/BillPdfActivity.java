@@ -1,25 +1,17 @@
 package br.com.jasgab.jasgab.activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.github.barteksc.pdfviewer.PDFView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
-import java.util.Objects;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
@@ -33,6 +25,8 @@ public class BillPdfActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_pdf);
+
+        JasgabUtils.checkAPP(this);
 
         setLayout();
     }

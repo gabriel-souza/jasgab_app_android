@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,10 +15,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/bill_img_girl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_img_girl"
+        android:id="@+id/bill_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/ic_plan_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,33 +27,36 @@
 
     <TextView
         android:id="@+id/bill_plan"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="PLANO ULTRA 35MB"
-        style="@style/text"        android:textSize="22sp"
         android:textColor="@color/blue_purple"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bill_img_girl" />
+        app:layout_constraintTop_toBottomOf="@+id/bill_img" />
 
     <TextView
         android:id="@+id/bill_price"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="R$ 79,99 mensal"
-style="@style/text"        android:textSize="14sp"
         android:textColor="@color/blue_purple"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bill_plan" />
 
     <TextView
         android:id="@+id/bill_month"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-style="@style/text"        android:text="20/05"
+        android:text="20/05"
         android:textColor="@color/blue_purple"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/bill_barcode"
@@ -77,10 +79,11 @@ style="@style/text"        android:text="20/05"
         android:text="     Boleto"
         android:textAllCaps="false"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bill_gpay"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bill_price" />
 
     <Button
         android:id="@+id/bill_gpay"
@@ -95,14 +98,13 @@ style="@style/text"        android:text="20/05"
         android:text="     Google Pay"
         android:textAllCaps="false"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include_bill"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintTop_toBottomOf="@+id/bill_barcode" />
 
     <Button
-        android:id="@+id/bill_send_recipe"
+        android:id="@+id/bill_send_receipt"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"

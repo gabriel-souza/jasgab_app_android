@@ -20,7 +20,10 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_recommended_plan);
+
         JasgabUtils.hideActionBar(getSupportActionBar());
+        JasgabUtils.setActionBar("Descubra o melhor plano", getWindow().getDecorView(), this);
+        JasgabUtils.checkAPP(this);
 
         setLayout();
     }
@@ -39,9 +42,6 @@ public class FormRecommendedPlanActivity extends AppCompatActivity {
     private int devicesConnected, devicesWatching, devicesVideoGame;
 
     private void setLayout(){
-        //ACTIONBAR
-        JasgabUtils.setActionBar("Descubra o melhor plano", getWindow().getDecorView(), this);
-
         //LAYOUT
         first_step_number = findViewById(R.id.formrecommendedplan_form_one_number);
         first_step_counter = findViewById(R.id.formrecommendedplan_form_one_counter);

@@ -25,12 +25,10 @@ public class LoginDialog extends DialogFragment {
         LayoutInflater inflater = Objects.requireNonNull(requireActivity()).getLayoutInflater();
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.dialog_login, null);
 
-        builder.setView(view)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {}
                 });
-
 
         final AlertDialog dialog =  builder.create();
 

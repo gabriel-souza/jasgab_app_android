@@ -1,5 +1,6 @@
 package br.com.jasgab.jasgab.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,29 +18,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private AuthDAO authDAO;
-    private CustomerDAO customerDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         JasgabUtils.hideActionBar(getSupportActionBar());
 
-        run();
+        businessRules();
     }
 
-    private void run(){
+    private void businessRules(){
         if(!JasgabUtils.checkInternet(this)){
             startActivity(new Intent(this, NoConnectionActivity.class));
             finish();
             return;
         }
 
-        authDAO = new AuthDAO(this);
-        customerDAO = new CustomerDAO(this);
-        Auth auth = authDAO.select();
-        if(auth != null) {
+        if(AuthDAO.start(this).select() != null) {
             end();
             return;
         }
@@ -48,38 +45,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void auth(){
-        Call<Auth> call = new JasgabApi().auth();
-        call.enqueue(new Callback<Auth>() {
-            @Override
-            public void onResponse(Call<Auth> call, Response<Auth> response) {
-                Auth auth = response.body();
-                if(auth != null) {
-                    success(auth);
-                }else{
-                    fail();
+        try {
+            Call<Auth> call = JasgabApi.auth();
+            call.enqueue(new Callback<Auth>() {
+                @Override
+                public void onResponse(@NonNull Call<Auth> call, @NonNull Response<Auth> response) {
+                    Auth auth = response.body();
+                    if (auth != null) {
+                        authSuccess(auth);
+                        return;
+                    }
+                    authFail();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Auth> call, Throwable t) {
-                fail();
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<Auth> call, @NonNull Throwable t) {
+                    authFail();
+                }
+            });
+        }catch (Exception e){
+            authFail();
+        }
     }
 
-    private void success(Auth auth){
-        authDAO.insert(auth);
+    private void authSuccess(Auth auth){
+        AuthDAO.start(this).insert(auth);
         end();
     }
 
-    private void fail(){
-        authDAO.delete();
-        finish();
+    private void authFail(){
+        AuthDAO.start(this).delete();
+        CustomerDAO.start(this).delete();
         startActivity(getIntent());
+        finishAffinity();
     }
 
     private void end() {
-        if(customerDAO.selectCustomer() == null){
+        if(CustomerDAO.start(this).selectCustomer() == null){
             startActivity(new Intent(this, LoginActivity.class));
         }else{
             startActivity(new Intent(this, HomeActivity.class));

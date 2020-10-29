@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -30,9 +31,13 @@ import br.com.jasgab.jasgab.activity.HelpActivity;
 import br.com.jasgab.jasgab.activity.LoginActivity;
 import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.R;
+import br.com.jasgab.jasgab.activity.NoConnectionActivity;
+import br.com.jasgab.jasgab.activity.ProfileActivity;
 import br.com.jasgab.jasgab.activity.StatusOnlineActivity;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.dialog.NoWifiDialog;
+import br.com.jasgab.jasgab.model_http.RequestCheckNeighborhood;
+import br.com.jasgab.jasgab.model_http.ResponseDefault;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.model.Connection;
 import br.com.jasgab.jasgab.model.Customer;
@@ -55,49 +60,50 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OverviewFragment extends Fragment {
-    private ResponseCustomer mResponseCustomer;
-    private Customer mCustomer;
-    private LottieAnimationView mAvdStatus;
-    private LottieComposition[] mLottieCompositions;
-    private TextView mTextViewOverviewMessage;
-    private Integer mStatusType = -1;
 
+    private View view;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_overview, container, false);
+        view =  inflater.inflate(R.layout.fragment_overview, container, false);
 
-        mTextViewOverviewMessage = view.findViewById(R.id.overview_message);
-        run(view);
-        statusAnimation(view);
+        JasgabUtils.checkAPP(requireActivity());
+
+        setLayout();
+        loadStatusAvd();
+
+        businessRules();
+        verifyStatus();
 
         return view;
     }
 
-    private void run(View view){
+    private TextView overview_status_text;
+    private ImageView overview_profile;
+    private void setLayout(){
+        overview_status_text = view.findViewById(R.id.overview_status_text);
+        overview_profile = view.findViewById(R.id.overview_profile);
+    }
+
+    private void businessRules(){
         JasgabUtils.checkInternetActivity(requireContext(), requireActivity());
 
-        Auth mAuth = AuthDAO.start(requireContext()).select();
-        mResponseCustomer = CustomerDAO.start(requireContext()).select();
-        if(mAuth == null || mResponseCustomer == null){
+        ResponseCustomer responseCustomer = CustomerDAO.start(requireContext()).select();
+        if(responseCustomer == null){
             Intent intent = new Intent(requireContext(), LoginActivity.class);
-            requireActivity().startActivity(intent);
-            requireActivity().finishAffinity();
-        }
-
-        mCustomer = mResponseCustomer.getCustomer();
-        List<Connection> connections = mResponseCustomer.getCustomerData().getConnections();
-        List<Contract> contracts = mResponseCustomer.getCustomerData().getContracts();
-        List<Bill> bills = mResponseCustomer.getCustomerData().getBills();
-
-        if(mCustomer == null || connections == null || connections.isEmpty() || contracts == null || contracts.isEmpty() || bills == null || bills.isEmpty()){
-            Intent intent = new Intent(requireContext(), MainActivity.class);
             requireActivity().startActivity(intent);
             requireActivity().finishAffinity();
             return;
         }
 
-        if(contracts.size() > 1){
-            runSecundary();
+        Customer customer = responseCustomer.getCustomer();
+        List<Connection> connections = responseCustomer.getCustomerData().getConnections();
+        List<Contract> contracts = responseCustomer.getCustomerData().getContracts();
+        List<Bill> bills = responseCustomer.getCustomerData().getBills();
+
+        if(customer == null || connections == null || connections.isEmpty() || contracts == null || contracts.isEmpty() || bills == null || bills.isEmpty()){
+            CustomerDAO.start(requireContext()).delete();
+            requireActivity().startActivity(new Intent(requireContext(), MainActivity.class));
+            requireActivity().finishAffinity();
             return;
         }
 
@@ -107,33 +113,51 @@ public class OverviewFragment extends Fragment {
             textView_Plan.setText(contract.getPlan());
         }
 
-        Bill bill = JasgabUtils.actualBill(mResponseCustomer.getCustomerData().getBills());
+        Bill bill = JasgabUtils.orderBills(responseCustomer.getCustomerData().getBills()).get(0);
         if(bill != null){
-            TextView textView_price = view.findViewById(R.id.overview_price);
-            TextView textView_billExpiration = view.findViewById(R.id.overview_billExpiration);
-            ProgressBar progressBar_expireBar = view.findViewById(R.id.overview_expireBar);
+            TextView overview_price = view.findViewById(R.id.overview_price);
+            TextView overview_duedate = view.findViewById(R.id.overview_duedate);
+            ProgressBar overview_expireBar = view.findViewById(R.id.overview_expireBar);
 
             int daysToExpire = JasgabUtils.daysToExpire(bill.getDueDate());
             int daysToExpirePercentage = JasgabUtils.percentageExpireDate(daysToExpire);
-            textView_price.setText(String.format("R$ %s mensal", bill.getAmount().toString()));
-            textView_billExpiration.setText(String.format("Vencimento em %d dias", daysToExpire));
-            progressBar_expireBar.setProgress(daysToExpirePercentage);
+            overview_price.setText(String.format(getString(R.string.overview_price), bill.getAmount().toString().replace(".",",")));
+            overview_duedate.setText(String.format(getString(R.string.overview_duedate), daysToExpire));
+            overview_expireBar.setProgress(daysToExpirePercentage);
 
             if(daysToExpire == 0){
-                textView_billExpiration.setText("Vence hoje");
-                progressBar_expireBar.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.pb_yellow_bill_expiration));
+                overview_duedate.setText(R.string.overview_duedate_today);
+                overview_expireBar.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.overview_expirebar_yellow));
             }
 
             if(daysToExpirePercentage >= 101){
-                progressBar_expireBar.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.pb_red_bill_expiration));
-                textView_billExpiration.setText("Vencimento em atraso");
+                overview_expireBar.setProgressDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.overview_expirebar_red));
+                overview_duedate.setText(R.string.overview_duedate_expired);
             }
+
+            overview_duedate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(requireContext(), BillActivity.class);
+                    intent.putExtra("bill_position", 0);
+                    requireContext().startActivity(intent);
+                }
+            });
+
+            overview_expireBar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(requireContext(), BillActivity.class);
+                    intent.putExtra("bill_position", 0);
+                    requireContext().startActivity(intent);
+                }
+            });
         }
 
-        mTextViewOverviewMessage.setOnClickListener(new View.OnClickListener() {
+        overview_status_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startFragment();
+                startStatus();
             }
         });
 
@@ -155,52 +179,54 @@ public class OverviewFragment extends Fragment {
                 requireContext().startActivity(intent);
             }
         });
-    }
 
-    private void runSecundary(){
-        //TODO CUSTOMER WITH MORE THAN 1 CONTRACT
-    }
-
-    private void statusAnimation(View view){
-        if(view != null) {
-            mAvdStatus = view.findViewById(R.id.overview_status);
-            mLottieCompositions = new LottieComposition[7];
-
-            LottieResult<LottieComposition> status_0 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_0.json");
-            LottieResult<LottieComposition> status_1 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_1.json");
-            LottieResult<LottieComposition> status_2 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_2.json");
-            LottieResult<LottieComposition> status_3 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_3.json");
-            LottieResult<LottieComposition> status_4 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_4.json");
-            LottieResult<LottieComposition> status_5 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_5.json");
-            LottieResult<LottieComposition> status_6 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_6.json");
-
-            mLottieCompositions[0] = status_0.getValue();
-            mLottieCompositions[1] = status_1.getValue();
-            mLottieCompositions[2] = status_2.getValue();
-            mLottieCompositions[3] = status_3.getValue();
-            mLottieCompositions[4] = status_4.getValue();
-            mLottieCompositions[5] = status_5.getValue();
-            mLottieCompositions[6] = status_6.getValue();
-
-            if (mLottieCompositions[0] != null) {
-                mAvdStatus.setComposition(mLottieCompositions[0]);
-                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
-                mAvdStatus.playAnimation();
+        overview_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().startActivity(new Intent(requireContext(), ProfileActivity.class));
             }
-
-            mAvdStatus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startFragment();
-                }
-            });
-
-            verifyStatus();
-        }
+        });
     }
 
-    private void startFragment(){
-        switch (mStatusType) {
+    private LottieAnimationView overview_status;
+    private LottieComposition[] lottieCompositions;
+    private void loadStatusAvd(){
+        overview_status = view.findViewById(R.id.overview_status);
+        lottieCompositions = new LottieComposition[7];
+
+        LottieResult<LottieComposition> status_0 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_0.json");
+        LottieResult<LottieComposition> status_1 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_1.json");
+        LottieResult<LottieComposition> status_2 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_2.json");
+        LottieResult<LottieComposition> status_3 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_3.json");
+        LottieResult<LottieComposition> status_4 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_4.json");
+        LottieResult<LottieComposition> status_5 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_5.json");
+        LottieResult<LottieComposition> status_6 = LottieCompositionFactory.fromAssetSync(requireContext(), "avd_status_6.json");
+
+        lottieCompositions[0] = status_0.getValue();
+        lottieCompositions[1] = status_1.getValue();
+        lottieCompositions[2] = status_2.getValue();
+        lottieCompositions[3] = status_3.getValue();
+        lottieCompositions[4] = status_4.getValue();
+        lottieCompositions[5] = status_5.getValue();
+        lottieCompositions[6] = status_6.getValue();
+
+        if (lottieCompositions[0] != null) {
+            overview_status.setComposition(lottieCompositions[0]);
+            overview_status.setRepeatCount(LottieDrawable.INFINITE);
+            overview_status.playAnimation();
+        }
+
+        overview_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startStatus();
+            }
+        });
+    }
+
+    private Integer statusType = -1;
+    private void startStatus(){
+        switch (statusType) {
             case StatusType.Online:
                 if(JasgabUtils.checkWifi(requireContext())) {
                     StatusDAO.start(requireContext()).insert(StatusLayoutType.Online);
@@ -228,131 +254,121 @@ public class OverviewFragment extends Fragment {
     }
 
     private void verifyStatus() {
-        Auth auth = AuthDAO.start(requireContext()).select();
-        if(auth == null){
-            startActivity(new Intent(requireContext(), MainActivity.class));
-            requireActivity().finishAffinity();
-            return;
-        }
-
-        RequestStatus requestStatus = new RequestStatus(mCustomer.getId());
-        Call<ResponseStatus> call = new JasgabApi().status(requestStatus, auth.getToken());
+        RequestStatus requestStatus = new RequestStatus(CustomerDAO.start(requireContext()).selectCustomer().getId());
+        Call<ResponseStatus> call = JasgabApi.status(requestStatus, AuthDAO.start(requireContext()).select().getToken());
         call.enqueue(new Callback<ResponseStatus>() {
             @Override
-            public void onResponse(Call<ResponseStatus> call, Response<ResponseStatus> response) {
+            public void onResponse(@NonNull Call<ResponseStatus> call, @NonNull Response<ResponseStatus> response) {
                 ResponseStatus responseStatus = response.body();
-                if(responseStatus != null){
-                    if(responseStatus.getStatus()){
-                        switch (responseStatus.getInternetStatus()){
-                            case StatusType.Online:
-                                startStatusOnline();
-                                break;
-                            case StatusType.Blocked:
-                                startStatusBlocked();
-                                break;
-                            case StatusType.Maintenance:
-                                startStatusOffline(responseStatus);
-                                break;
-                        }
+                if(responseStatus != null && responseStatus.getStatus()){
+                    switch (responseStatus.getInternetStatus()){
+                        case StatusType.Online:
+                            startStatusOnline();
+                            break;
+                        case StatusType.Blocked:
+                            startStatusBlocked();
+                            break;
+                        case StatusType.Maintenance:
+                            startStatusOffline(responseStatus);
+                            break;
                     }
                 }
-                //TODO REQUEST ERROR
             }
 
             @Override
-            public void onFailure(Call<ResponseStatus> call, Throwable t) {
-                String erro = t.getMessage();
+            public void onFailure(@NonNull Call<ResponseStatus> call, @NonNull Throwable t) {
+                internetError();
             }
         });
     }
 
     private void startStatusOnline(){
-        mTextViewOverviewMessage.setText(getString(R.string.overview_message_online));
+        overview_status_text.setText(getString(R.string.overview_message_online));
 
-        mStatusType = StatusType.Online;
-        mAvdStatus.setComposition(mLottieCompositions[1]);
-        mAvdStatus.setRepeatCount(0);
-        mAvdStatus.playAnimation();
-        mAvdStatus.addAnimatorListener(new AnimatorListenerAdapter() {
+        statusType = StatusType.Online;
+        overview_status.setComposition(lottieCompositions[1]);
+        overview_status.setRepeatCount(0);
+        overview_status.playAnimation();
+        overview_status.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                mAvdStatus.setComposition(mLottieCompositions[2]);
-                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
-                mAvdStatus.playAnimation();
+                overview_status.setComposition(lottieCompositions[2]);
+                overview_status.setRepeatCount(LottieDrawable.INFINITE);
+                overview_status.playAnimation();
             }
         });
     }
 
     private void startStatusBlocked(){
-        mTextViewOverviewMessage.setText(getString(R.string.overview_message_blocked));
+        overview_status_text.setText(getString(R.string.overview_message_blocked));
 
-        mStatusType = StatusType.Blocked;
-        mAvdStatus.setComposition(mLottieCompositions[3]);
-        mAvdStatus.setRepeatCount(0);
-        mAvdStatus.playAnimation();
-        mAvdStatus.removeAllAnimatorListeners();
-        mAvdStatus.addAnimatorListener(new AnimatorListenerAdapter() {
+        statusType = StatusType.Blocked;
+        overview_status.setComposition(lottieCompositions[3]);
+        overview_status.setRepeatCount(0);
+        overview_status.playAnimation();
+        overview_status.removeAllAnimatorListeners();
+        overview_status.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                mAvdStatus.setComposition(mLottieCompositions[4]);
-                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
-                mAvdStatus.playAnimation();
+                overview_status.setComposition(lottieCompositions[4]);
+                overview_status.setRepeatCount(LottieDrawable.INFINITE);
+                overview_status.playAnimation();
             }
         });
 
     }
 
     private void startStatusOffline(ResponseStatus responseStatus){
-        mTextViewOverviewMessage.setText(getString(R.string.overview_message_offline));
+        overview_status_text.setText(getString(R.string.overview_message_offline));
 
         checkNeighborhood(responseStatus.getMaintenance());
     }
 
     private void checkNeighborhood(final Maintenance maintenance){
         Auth auth = AuthDAO.start(requireContext()).select();
-        if(auth == null){
+        Customer customer = CustomerDAO.start(requireContext()).selectCustomer();
+        if(auth == null || customer == null){
             startActivity(new Intent(requireContext(), MainActivity.class));
             requireActivity().finishAffinity();
             return;
         }
 
-        Call<ResponseMaintenance> call = new JasgabApi().check_neighborhood(auth.getToken());
-        call.enqueue(new Callback<ResponseMaintenance>() {
+        Call<ResponseDefault> call = new JasgabApi().check_neighborhood(new RequestCheckNeighborhood(customer.getNeighborhood()), auth.getToken());
+        call.enqueue(new Callback<ResponseDefault>() {
             @Override
-            public void onResponse(Call<ResponseMaintenance> call, Response<ResponseMaintenance> response) {
-                ResponseMaintenance responseMaintenance = response.body();
-                if(responseMaintenance != null) {
-                    if (responseMaintenance.getStatus()) {
-                        MaintenanceDAO.start(requireContext()).insert(maintenance);
-
-                        mStatusType = StatusType.Maintenance;
-                        mAvdStatus.setComposition(mLottieCompositions[5]);
-                        mAvdStatus.setRepeatCount(0);
-                        mAvdStatus.playAnimation();
-                        mAvdStatus.addAnimatorListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                super.onAnimationEnd(animation);
-                                mAvdStatus.setComposition(mLottieCompositions[6]);
-                                mAvdStatus.setRepeatCount(LottieDrawable.INFINITE);
-                                mAvdStatus.playAnimation();
-                            }
-                        });
-                        return;
-                    }else{
-                        startStatusOnline();
-                    }
+            public void onResponse(@NonNull Call<ResponseDefault> call, @NonNull Response<ResponseDefault> response) {
+                ResponseDefault responseDefault = response.body();
+                if(responseDefault != null && responseDefault.getStatus()) {
+                    MaintenanceDAO.start(requireContext()).insert(maintenance);
+                    statusType = StatusType.Maintenance;
+                    overview_status.setComposition(lottieCompositions[5]);
+                    overview_status.setRepeatCount(0);
+                    overview_status.playAnimation();
+                    overview_status.addAnimatorListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            overview_status.setComposition(lottieCompositions[6]);
+                            overview_status.setRepeatCount(LottieDrawable.INFINITE);
+                            overview_status.playAnimation();
+                        }
+                    });
+                }else{
+                    startStatusOnline();
                 }
-                //TODO REQUEST ERROR
             }
 
             @Override
-            public void onFailure(Call<ResponseMaintenance> call, Throwable t) {
-                //TODO REQUEST ERROR
+            public void onFailure(@NonNull Call<ResponseDefault> call, @NonNull Throwable t) {
+                internetError();
             }
         });
     }
 
+    private void internetError(){
+        startActivity(new Intent(requireContext(), NoConnectionActivity.class));
+        requireActivity().finishAffinity();
+    }
 }

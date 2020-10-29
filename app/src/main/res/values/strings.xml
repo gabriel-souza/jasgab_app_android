@@ -69,8 +69,8 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-    <string name="msg_login_sign_up">Ainda não é cliente? &lt;b>Cadastre-se&lt;/b></string>
-    <string name="msg_login_terms">Concordo com o &lt;b>Termos&lt;/b> e &lt;b>Políticas&lt;/b></string>
+    <string name="login_sign_up_text">&lt;u&gt;Ainda não é cliente? &lt;b>Cadastre-se&lt;/b>&lt;/u&gt;</string>
+    <string name="login_terms_text">&lt;u&gt;Concordo com o &lt;b>Termos&lt;/b> e &lt;b>Políticas&lt;/b>&lt;/u&gt;</string>
     <string name="msg_sign_up_terms">Ao clicar em &lt;b>\"Criar Cadastro\"&lt;/b>, você concorda com nossos &lt;b>Termos&lt;/b> e leu nossa &lt;b>Política de Dados&lt;/b>. Você pode receber notificações da jasgab e pode desativar a qualquer momento.</string>
     <string name="login_submit_text">CONTINUAR</string>
 
@@ -90,5 +90,25 @@
     <string name="plan_card_subtitle_essensial">50 MEGA R$79,99</string>
     <string name="status_blocked_warning"><![CDATA[<b>AVISO:</b> Se o pagamento não for efetuado em até 4 dias, a sua internet será boloqueada e o botão de auto-desbloqueio será automaticamente desativado]]></string>
     <string name="blocked_message"><![CDATA[<b>AVISO:</b> Para evitar o bloqueio da sua internet o pagamento deve ser efetuado até o 3º (terceiro) dia após o vencimento]]></string>
+    <string name="overview_duedate_today">Vence hoje</string>
+    <string name="overview_duedate_expired">Vencimento em atraso</string>
+    <string name="overview_price">R$ %s mensal</string>
+    <string name="overview_duedate">Vencimento em %d dias</string>
+    <string name="status_offline_forecast">Previsão de retorno as %s horas</string>
+    <string name="status_online_wifi">Rede Wi-Fi: %s</string>
+    <string name="status_online_devices_loading">Carregando…</string>
+    <string name="status_online_devices_found">%d Aparelhos Conectados.</string>
+    <string name="status_online_devices_text">Aparelhos Conectados.</string>
+    <string name="status_online_internet_isp_default">JASGAB TELECOM</string>
+    <string name="status_online_internet_nat_default">NAT: Privado</string>
+    <string name="status_online_ping_timeout">timeout</string>
+    <string name="status_online_ping_notfound">não encontrado</string>
+    <string name="status_online_wifi_warning_text_bad"><![CDATA[<b>AVISO:</b> Seu WIFI está com sinal ruim por favor se aproxime-se do roteador. Para utilizar a internet com a melhor qualidade.]]></string>
+    <string name="status_online_wifi_warning_text_good"><![CDATA[<b>AVISO:</b> Seu WIFI está com sinal ideal. Por favor realize o teste de velocidade.]]></string>
+    <string name="status_online_wifi_title">Sinal do Wifi</string>
+    <string name="plans_button_change">ALTERAR PLANO</string>
+    <string name="plans_button_best_plan">CONTINUAR</string>
+    <string name="sign_up_address_notfound">Endereço não encontrado.</string>
+
 
 </resources>

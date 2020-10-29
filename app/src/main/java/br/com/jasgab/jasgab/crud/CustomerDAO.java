@@ -29,11 +29,12 @@ public class CustomerDAO {
     static final String address = "address";
     static final String cpf = "cpf";
     static final String email = "email";
-    static final String fone = "fone";
+    static final String phone = "phone";
     static final String name = "name";
     static final String neighborhood = "neighborhood";
     static final String status = "status";
     static final String zipCode = "zipCode";
+    static final String data_request = "data_request";
 
     //Bill
     static final String amount = "amount";
@@ -98,10 +99,11 @@ public class CustomerDAO {
                         address,
                         cpf,
                         email,
-                        fone,
+                        phone,
                         name,
                         neighborhood,
                         status,
+                        data_request,
                         zipCode},
                 null,null,null,null,null, null);
 
@@ -117,7 +119,8 @@ public class CustomerDAO {
             customer.setName(cursor.getString(5));
             customer.setNeighborhood(cursor.getString(6));
             customer.setStatus(cursor.getInt(7) == 1);
-            customer.setZipCode(cursor.getString(8));
+            customer.setDateRequest(cursor.getString(8));
+            customer.setZipCode(cursor.getString(9));
         }
 
         return customer;
@@ -262,10 +265,11 @@ public class CustomerDAO {
         values.put(address, customer.getAddress());
         values.put(cpf, customer.getCpf());
         values.put(email, customer.getEmail());
-        values.put(fone, customer.getPhone());
+        values.put(phone, customer.getPhone());
         values.put(name, customer.getName());
         values.put(neighborhood, customer.getNeighborhood());
         values.put(status, customer.getStatus());
+        values.put(data_request, customer.getDateRequest());
         values.put(zipCode, customer.getZipCode());
 
         db.insert(customers_table, null, values);

@@ -28,7 +28,7 @@ public class StatusDeviceAdapter extends RecyclerView.Adapter<StatusDeviceHolder
 
     @Override
     public void onBindViewHolder(StatusDeviceHolder holder, int position) {
-        holder.status_online_device_name.setText("Generic");
+        holder.status_online_device_name.setText(devices.get(position).getName());
         holder.status_online_device_ip.setText(devices.get(position).getIp());
         holder.status_online_device_brand.setText(devices.get(position).getBrand());
         holder.status_online_device_mac.setText(devices.get(position).getMac());

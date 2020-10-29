@@ -1,5 +1,6 @@
 package br.com.jasgab.jasgab.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
@@ -15,17 +16,6 @@ import br.com.jasgab.jasgab.pattern.WifiSignalType;
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class InternetUtils {
-
-    public static boolean wifiIsOn(Context context){
-        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
-        if(connManager != null) {
-            NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if(mWifi != null) {
-                return mWifi.isConnected() && mWifi.isAvailable();
-            }
-        }
-        return false;
-    }
 
     public static String getWifiName(Context context){
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -64,6 +54,7 @@ public class InternetUtils {
         return "0.0.0.0";
     }
 
+    @SuppressLint("DefaultLocale")
     private static String toStringIp(int ip){
         if(ip == 0){
             return "0.0.0.0";

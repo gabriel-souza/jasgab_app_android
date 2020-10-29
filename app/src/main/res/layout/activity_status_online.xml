@@ -14,7 +14,7 @@
         android:background="@color/blue_jasgab_light" >
 
         <ImageView
-            android:id="@+id/activity_status_online_back_button"
+            android:id="@+id/status_online_back"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -29,11 +29,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:elevation="0dp"
-            android:layout_toEndOf="@+id/activity_status_online_back_button"
+            android:layout_toEndOf="@+id/status_online_back"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+                android:id="@+id/status_online_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/blue_jasgab_light" />
@@ -41,7 +41,7 @@
     </RelativeLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/status_online_tab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/status_online_action_bar_layout"

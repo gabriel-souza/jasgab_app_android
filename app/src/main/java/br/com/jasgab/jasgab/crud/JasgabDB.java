@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import br.com.jasgab.jasgab.model.Maintenance;
-
 public class JasgabDB extends SQLiteOpenHelper {
     private static final String name = "jasgab.db";
     private static final int version = 1;
@@ -27,10 +25,11 @@ public class JasgabDB extends SQLiteOpenHelper {
                 CustomerDAO.address+" varchar(1024)," +
                 CustomerDAO.cpf+" varchar(32)," +
                 CustomerDAO.email+" varchar(1024)," +
-                CustomerDAO.fone+" varchar(32)," +
+                CustomerDAO.phone +" varchar(32)," +
                 CustomerDAO.name+" varchar(1024)," +
                 CustomerDAO.neighborhood+" varchar(1024)," +
                 CustomerDAO.status+" integer," +
+                CustomerDAO.data_request+"  varchar(32)," +
                 CustomerDAO.zipCode+" varchar(32))"
         );
 

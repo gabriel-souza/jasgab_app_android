@@ -5,18 +5,17 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.text.Html;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,15 +55,17 @@ public class StatusBlockedFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_status_blocked, container, false);
 
         blockedAnimation();
-        setLayout();
+        loadLayout();
 
         return view;
     }
 
     private TextView status_blocked_unlocked_message, blocked_message, status_blocked_balloon, status_blocked_warning;
     private Button blocked_button_pay;
-    private Animation animFadeIn, animFadeOut;
-    private void setLayout(){
+    private Animation animFadeIn;
+    private void loadLayout(){
+        JasgabUtils.setActionBarHome("Status", view, requireContext(), requireActivity());
+
         status_blocked_warning = view.findViewById(R.id.status_blocked_warning);
         status_blocked_unlocked_message = view.findViewById(R.id.status_blocked_unlocked_message);
         blocked_message = view.findViewById(R.id.blocked_message);
@@ -73,8 +74,6 @@ public class StatusBlockedFragment extends Fragment {
 
         status_blocked_warning.setText(Html.fromHtml(getResources().getString(R.string.status_blocked_warning)));
         blocked_message.setText(Html.fromHtml(getResources().getString(R.string.blocked_message)));
-
-        JasgabUtils.setActionBarOverview("Status", view, requireContext(), requireActivity());
 
         blocked_button_pay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,31 +104,11 @@ public class StatusBlockedFragment extends Fragment {
 
             }
         });
-        /*
-        animFadeOut = AnimationUtils.loadAnimation(requireContext().getApplicationContext(), R.anim.fade_out);
-        animFadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                blocked_message.setVisibility(View.INVISIBLE);
-                status_blocked_balloon.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-         */
     }
 
     private LottieAnimationView blocked;
     private LottieComposition[] lottieComposition;
-    private AnimatorListenerAdapter waiting, waitingRequest, success, successFinal, error;
+    private AnimatorListenerAdapter waiting, waitingRequest, successFinal, error;
     private void blockedAnimation(){
         blocked = view.findViewById(R.id.blocked);
         lottieComposition = new LottieComposition[7];
@@ -167,17 +146,6 @@ public class StatusBlockedFragment extends Fragment {
                 blocked.setComposition(lottieComposition[AnimationUnlockType.RequestWaiting]);
                 blocked.setRepeatCount(LottieDrawable.INFINITE);
                 blocked.playAnimation();
-            }
-        };
-
-        success = new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                blocked.setComposition(lottieComposition[AnimationUnlockType.Success]);
-                blocked.setRepeatCount(0);
-                blocked.playAnimation();
-                blocked.addAnimatorListener(successFinal);
             }
         };
 
@@ -256,7 +224,7 @@ public class StatusBlockedFragment extends Fragment {
             Call<ResponseCustomerUnlock> call = new JasgabApi().unlock(requestCustomerUnlock, auth.getToken());
             call.enqueue(new Callback<ResponseCustomerUnlock>() {
                 @Override
-                public void onResponse(Call<ResponseCustomerUnlock> call, Response<ResponseCustomerUnlock> response) {
+                public void onResponse(@NonNull Call<ResponseCustomerUnlock> call, @NonNull Response<ResponseCustomerUnlock> response) {
                     ResponseCustomerUnlock responseCustomerUnlock = response.body();
                     if (responseCustomerUnlock != null) {
                         if (responseCustomerUnlock.getStatus()) {
@@ -274,10 +242,6 @@ public class StatusBlockedFragment extends Fragment {
                             }
                             UnlockDAO.start(requireContext()).insert(bill_id);
 
-                            //status_blocked_warning.setVisibility(View.VISIBLE);
-                            //status_blocked_unlocked_message.setVisibility(View.VISIBLE);
-                            //blocked_button_pay.setVisibility(View.VISIBLE);
-
                             blocked_message.setVisibility(View.INVISIBLE);
                             status_blocked_balloon.setVisibility(View.INVISIBLE);
 
@@ -285,8 +249,6 @@ public class StatusBlockedFragment extends Fragment {
                             status_blocked_unlocked_message.setAnimation(animFadeIn);
                             blocked_button_pay.setAnimation(animFadeIn);
 
-                            //blocked_message.setAnimation(animFadeOut);
-                            //status_blocked_balloon.setAnimation(animFadeOut);
                         } else {
                             blocked.removeAllAnimatorListeners();
                             blocked.addAnimatorListener(error);
@@ -300,7 +262,7 @@ public class StatusBlockedFragment extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseCustomerUnlock> call, Throwable t) {
+                public void onFailure(@NonNull Call<ResponseCustomerUnlock> call, @NonNull Throwable t) {
                     blocked.setComposition(lottieComposition[AnimationUnlockType.Error]);
                     blocked.setRepeatCount(0);
                     blocked.playAnimation();
@@ -311,5 +273,4 @@ public class StatusBlockedFragment extends Fragment {
             });
         }
     }
-
 }

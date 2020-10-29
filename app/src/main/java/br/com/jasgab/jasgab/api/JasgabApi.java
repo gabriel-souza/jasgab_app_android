@@ -2,7 +2,9 @@ package br.com.jasgab.jasgab.api;
 
 import br.com.jasgab.jasgab.model.Auth;
 
+import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model_http.RequestAuth;
+import br.com.jasgab.jasgab.model_http.RequestCheckNeighborhood;
 import br.com.jasgab.jasgab.model_http.RequestCustomer;
 import br.com.jasgab.jasgab.model_http.RequestMacVendor;
 import br.com.jasgab.jasgab.model_http.RequestStatus;
@@ -22,7 +24,7 @@ import retrofit2.Call;
 
 public class JasgabApi {
 
-    public Call<Auth> auth() {
+    public static Call<Auth> auth() {
         RequestAuth requestAuth = new RequestAuth("gabriel","g@br131");
         InterfaceJasgabApi service = ConnJasgabApi.createService();
         return service.auth(requestAuth);
@@ -48,7 +50,7 @@ public class JasgabApi {
         return service.customer_data(requestCustomer, "Bearer "+auth);
     }
 
-    public Call<ResponseStatus> status(RequestStatus requestStatus, String auth) {
+    public static Call<ResponseStatus> status(RequestStatus requestStatus, String auth) {
         InterfaceJasgabApi service = ConnJasgabApi.createService();
         return service.status(requestStatus, "Bearer "+auth);
     }
@@ -63,9 +65,9 @@ public class JasgabApi {
         return service.maintenance("Bearer "+auth);
     }
 
-    public Call<ResponseMaintenance> check_neighborhood(String auth) {
+    public Call<ResponseDefault> check_neighborhood(RequestCheckNeighborhood requestCheckNeighborhood, String auth) {
         InterfaceJasgabApi service = ConnJasgabApi.createService();
-        return service.check_neighborhood("Bearer "+auth);
+        return service.check_neighborhood(requestCheckNeighborhood, "Bearer "+auth);
     }
 
     public Call<ResponseMacVendor> mac_vendor(RequestMacVendor requestMacVendor) {
@@ -78,7 +80,7 @@ public class JasgabApi {
         return service.isp("Bearer "+auth);
     }
 
-    public Call<ResponseDefault> receipt(RequestBody cpf, RequestBody due_date, MultipartBody.Part receipt, String auth) {
+    public static Call<ResponseDefault> receipt(RequestBody cpf, RequestBody due_date, MultipartBody.Part receipt, String auth) {
         InterfaceJasgabApi service = ConnJasgabApi.createService();
         return service.receipt(cpf, due_date, receipt, "Bearer "+auth);
     }

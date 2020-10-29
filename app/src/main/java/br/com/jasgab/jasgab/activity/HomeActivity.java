@@ -26,6 +26,7 @@ import br.com.jasgab.jasgab.fragment.ServicesFragment;
 import br.com.jasgab.jasgab.fragment.FAQFragment;
 import br.com.jasgab.jasgab.fragment.HomeFragment;
 import br.com.jasgab.jasgab.fragment.MoreFragment;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 
 public class HomeActivity extends FragmentActivity {
 
@@ -34,7 +35,10 @@ public class HomeActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        run();
+        JasgabUtils.hideActionBar(getActionBar());
+        JasgabUtils.checkAPP(this);
+
+        businessRules();
     }
 
     @Override
@@ -44,7 +48,7 @@ public class HomeActivity extends FragmentActivity {
         finishAffinity();
     }
 
-    private void run(){
+    private void businessRules(){
         bottomNavigation();
 
         StatusDAO.start(getApplicationContext()).delete();
@@ -52,8 +56,8 @@ public class HomeActivity extends FragmentActivity {
     }
 
     private void bottomNavigation(){
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_home);
-        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        BottomNavigationView home_nav = findViewById(R.id.home_nav);
+        home_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
@@ -62,7 +66,7 @@ public class HomeActivity extends FragmentActivity {
                     case R.id.nav_home:
                         selectedFragment = new HomeFragment();
                         break;
-                    case R.id.nav_contracts:
+                    case R.id.nav_services:
                         selectedFragment = new ServicesFragment();
                         break;
                     case R.id.nav_bills:
@@ -79,12 +83,11 @@ public class HomeActivity extends FragmentActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.home_container, selectedFragment).commit();
                     return true;
                 }
-
                 return false;
             }
         });
 
-        Menu m = bottomNav.getMenu();
+        Menu m = home_nav.getMenu();
         for (int i=0;i<m.size();i++) {
             MenuItem mi = m.getItem(i);
 

@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.FragmentActivity;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,14 +26,21 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import br.com.jasgab.jasgab.activity.LoadingActivity;
+import br.com.jasgab.jasgab.activity.LoginActivity;
 import br.com.jasgab.jasgab.activity.MainActivity;
 import br.com.jasgab.jasgab.activity.NoConnectionActivity;
 import br.com.jasgab.jasgab.R;
+import br.com.jasgab.jasgab.crud.AuthDAO;
+import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.crud.StatusDAO;
 import br.com.jasgab.jasgab.fragment.OverviewFragment;
+import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Bill;
+import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.pattern.StatusLayoutType;
 
 public class JasgabUtils {
@@ -77,6 +87,12 @@ public class JasgabUtils {
     }
 
     public static void hideActionBar(ActionBar actionBar) {
+        if(actionBar != null){
+            actionBar.hide();
+        }
+    }
+
+    public static void hideActionBar(android.app.ActionBar actionBar) {
         if(actionBar != null){
             actionBar.hide();
         }
@@ -146,7 +162,7 @@ public class JasgabUtils {
         actionbar_title.setText(title);
     }
 
-    public static void setActionBarOverview(String title, View view, final Context context, final FragmentActivity fragmentActivity){
+    public static void setActionBarHome(String title, View view, final Context context, final FragmentActivity fragmentActivity){
         TextView actionbar_title = view.findViewById(R.id.actionbar_title);
         actionbar_title.setText(title);
         ImageView actionbar_back = view.findViewById(R.id.actionbar_back);
@@ -161,7 +177,6 @@ public class JasgabUtils {
             }
         });
     }
-
 
     public static List<Bill> orderBills(List<Bill> bills) {
         Collections.sort(bills, new Comparator<Bill>() {
@@ -197,4 +212,45 @@ public class JasgabUtils {
         }
     }
 
+    private static boolean compareLoginData(String dateRequestSrt) {
+        DateTime dateRequest = DateTime.parse(dateRequestSrt, DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss"));
+        DateTime dateLate = DateTime.now().minusHours(-6);
+
+        return dateLate.isBefore(dateRequest);
+    }
+
+    public static void checkAPP(Activity activity){
+        try {
+            if(!checkInternet(activity)){
+                activity.startActivity(new Intent(activity, NoConnectionActivity.class));
+                activity.finishAffinity();
+            }
+
+            Auth auth = AuthDAO.start(activity).select();
+            if(auth == null){
+                activity.startActivity(new Intent(activity, MainActivity.class));
+                activity.finishAffinity();
+                return;
+            }
+
+            Customer customer = CustomerDAO.start(activity).selectCustomer();
+            if(customer == null){
+                activity.startActivity(new Intent(activity, LoginActivity.class));
+                activity.finishAffinity();
+                return;
+            }
+
+            if(JasgabUtils.compareLoginData(customer.getDateRequest())){
+                Intent intent = new Intent(activity, LoadingActivity.class);
+                intent.putExtra("loading", LoadingActivity.LOGIN);
+                activity.startActivity(intent);
+                activity.finishAffinity();
+            }
+        } catch (Exception ignored) {
+            AuthDAO.start(activity).delete();
+            CustomerDAO.start(activity).delete();
+            activity.startActivity(new Intent(activity, MainActivity.class));
+            activity.finishAffinity();
+        }
+    }
 }

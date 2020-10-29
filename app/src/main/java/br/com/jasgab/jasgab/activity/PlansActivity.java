@@ -95,7 +95,7 @@ public class PlansActivity extends AppCompatActivity {
             plans_benefits.setVisibility(View.VISIBLE);
             plans_benefits_container.setVisibility(View.VISIBLE);
             recommended_plan.setVisibility(View.INVISIBLE);
-            plans_button.setText("ALTERAR PLANO");
+            plans_button.setText(R.string.plans_button_change);
 
             Plan plan = mPlans.get(position);
 
@@ -116,7 +116,7 @@ public class PlansActivity extends AppCompatActivity {
             plans_benefits.setVisibility(View.INVISIBLE);
             plans_benefits_container.setVisibility(View.INVISIBLE);
             recommended_plan.setVisibility(View.VISIBLE);
-            plans_button.setText("CONTINUAR");
+            plans_button.setText(R.string.plans_button_best_plan);
         }
     }
 }

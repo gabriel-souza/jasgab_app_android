@@ -1,7 +1,9 @@
 package br.com.jasgab.jasgab.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,14 +20,12 @@ import android.widget.TextView;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
-import br.com.jasgab.jasgab.dialog.NoWifiDialog;
 import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.util.MaskUtil;
 import br.com.jasgab.jasgab.util.VerifyCpf;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
 import br.com.jasgab.jasgab.dialog.LoginDialog;
-import br.com.jasgab.jasgab.model.Auth;
 import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model_http.RequestCustomer;
 import br.com.jasgab.jasgab.model_http.ResponseCustomer;
@@ -37,16 +37,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private CustomerDAO customerDAO;
-    private EditText login_cpf;
-    private InputMethodManager manager;
-    private ProgressBar login_submit_progressbar;
-    private RelativeLayout login_submit;
-    private String cpf;
-    private TextView login_error, msg_login_sign_up, msg_login_terms;
-    private CheckBox login_terms;
-    private Auth auth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,54 +44,56 @@ public class LoginActivity extends AppCompatActivity {
 
         JasgabUtils.hideActionBar(getSupportActionBar());
         JasgabUtils.checkInternetActivity(this, this);
-        customerDAO = CustomerDAO.start(this);
 
-        setLayout();
-        run();
+        loadLayout();
+        businessRules();
     }
 
-    private void setLayout(){
+    private EditText login_cpf;
+    private InputMethodManager manager;
+    private ProgressBar login_submit_progressbar;
+    private RelativeLayout login_submit;
+    private String cpf;
+    private TextView login_error, login_sign_up_text, login_terms_text;
+    private CheckBox login_terms;
+    private void loadLayout(){
         login_submit = findViewById(R.id.login_submit);
         login_cpf = findViewById(R.id.login_cpf);
         login_submit_progressbar = findViewById(R.id.login_submit_progressbar);
         login_terms = findViewById(R.id.login_terms);
         login_error = findViewById(R.id.login_error);
+        login_sign_up_text = findViewById(R.id.login_sign_up_text);
+        login_terms_text = findViewById(R.id.login_terms_text);
 
-        msg_login_sign_up = findViewById(R.id.msg_login_sign_up);
-        msg_login_sign_up.setText(Html.fromHtml(getResources().getString(R.string.msg_login_sign_up)));
-
-        msg_login_terms = findViewById(R.id.msg_login_terms);
-        msg_login_terms.setText(Html.fromHtml(getResources().getString(R.string.msg_login_terms)));
+        login_sign_up_text.setText(Html.fromHtml(getResources().getString(R.string.login_sign_up_text)));
+        login_terms_text.setText(Html.fromHtml(getResources().getString(R.string.login_terms_text)));
     }
 
-    private void run(){
-        auth = AuthDAO.start(this).select();
-        if(auth == null){
+    private void businessRules(){
+        if(AuthDAO.start(this).select() == null){
             startActivity(new Intent(this, MainActivity.class));
             finishAffinity();
             return;
         }
 
-        ResponseCustomer responseCustomer = customerDAO.select();
-        if(responseCustomer != null) {
-            end();
+        if(CustomerDAO.start(this).select() != null) {
+            loginEnd();
+            return;
         }
-
-        login_cpf.addTextChangedListener(MaskUtil.insert(login_cpf, MaskType.CPF));
-        login_cpf.requestFocus();
 
         manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if(manager != null) {
             manager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         }
 
+        login_cpf.addTextChangedListener(MaskUtil.insert(login_cpf, MaskType.CPF));
+        login_cpf.requestFocus();
         login_cpf.setOnKeyListener(new View.OnKeyListener()
         {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent event)
             {
-                if (keyCode == KeyEvent.KEYCODE_ENTER)
-                {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
                     login(view);
                     return true;
                 }
@@ -112,21 +104,21 @@ public class LoginActivity extends AppCompatActivity {
         login_terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                msg_login_terms.setTextColor(getResources().getColor(R.color.black));
+                login_terms_text.setTextColor(getResources().getColor(R.color.black));
             }
         });
 
-        msg_login_sign_up.setOnClickListener(new View.OnClickListener() {
+        login_sign_up_text.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SignUpActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SignUpActivity.class);
                 startActivity(intent);
             }
         });
 
-        msg_login_terms.setOnClickListener(new View.OnClickListener() {
+        login_terms_text.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jasgab.com.br/contratos.html"));
                 startActivity(browserIntent);
             }
@@ -140,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void login(View view) {
         JasgabUtils.checkInternetActivity(this, this);
 
@@ -148,74 +141,69 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(!login_terms.isChecked()){
-            msg_login_terms.setTextColor(getResources().getColor(R.color.red));
+            login_terms_text.setTextColor(getResources().getColor(R.color.red));
             return;
         }
 
         login_submit_progressbar.setVisibility(View.VISIBLE);
 
         cpf = login_cpf.getText().toString();
-        if(!VerifyCpf.isCPF(cpf)){
+        if(VerifyCpf.isCPF(cpf)){
+            login_error.setVisibility(View.INVISIBLE);
+            login_cpf.setBackground(getDrawable(R.drawable.edittext_white));
+        }else{
             login_submit_progressbar.setVisibility(View.INVISIBLE);
             login_error.setVisibility(View.VISIBLE);
             login_cpf.setBackground(getDrawable(R.drawable.edittext_white_error));
             return;
-        }else{
-            login_error.setVisibility(View.INVISIBLE);
-            login_cpf.setBackground(getDrawable(R.drawable.edittext_white));
         }
 
         try {
-            Call<ResponseCustomer> call = new JasgabApi().customer(new RequestCustomer(cpf), auth.getToken());
+            Call<ResponseCustomer> call = new JasgabApi().customer(new RequestCustomer(cpf), AuthDAO.start(this).select().getToken());
             call.enqueue(new Callback<ResponseCustomer>() {
                 @Override
-                public void onResponse(Call<ResponseCustomer> call, Response<ResponseCustomer> response) {
+                public void onResponse(@NonNull Call<ResponseCustomer> call, @NonNull Response<ResponseCustomer> response) {
                     ResponseCustomer responseCustomer = response.body();
                     login_submit_progressbar.setVisibility(View.INVISIBLE);
-                    if (responseCustomer != null) {
-                        if (responseCustomer.getStatus()) {
-                            success(responseCustomer.getCustomer());
-                        } else {
-                            fail();
-                        }
-                    } else {
-                        fail();
+                    if (responseCustomer != null && responseCustomer.getStatus() && responseCustomer.getCustomer() != null) {
+                        loginSuccess(responseCustomer.getCustomer());
+                        return;
                     }
+                    loginFail();
                 }
 
                 @Override
-                public void onFailure(Call<ResponseCustomer> call, Throwable t) {
-                    internetErro();
+                public void onFailure(@NonNull Call<ResponseCustomer> call, @NonNull Throwable t) {
+                    internetError();
                 }
-
             });
 
         }
-        catch (Exception ignored){ }
-    }
-
-    private void success(Customer customer) {
-        if(customer != null) {
-            customer.setCpf(cpf);
-            customerDAO.insertCustomer(customer);
+        catch (Exception e){
+            internetError();
         }
-        end();
     }
 
-    private void fail(){
+    private void loginSuccess(Customer customer) {
+        customer.setCpf(cpf);
+        CustomerDAO.start(this).insertCustomer(customer);
+        loginEnd();
+    }
+
+    private void loginEnd(){
+        Intent intent = new Intent(this, LoadingActivity.class);
+        intent.putExtra("loading", LoadingActivity.LOGIN);
+        startActivity(intent);
+        finishAffinity();
+    }
+
+    private void loginFail(){
         LoginDialog dialog = new LoginDialog();
         dialog.show(getSupportFragmentManager(), "");
     }
 
-    private void internetErro(){
-        NoWifiDialog dialog = new NoWifiDialog();
-        dialog.show(getSupportFragmentManager(), "");
-    }
-
-    private void end(){
-        Intent intent = new Intent(this, LoadingActivity.class);
-        intent.putExtra("loading", LoadingActivity.LOGIN);
-        startActivity(intent);
+    private void internetError(){
+        startActivity(new Intent(this, NoConnectionActivity.class));
         finishAffinity();
     }
 }

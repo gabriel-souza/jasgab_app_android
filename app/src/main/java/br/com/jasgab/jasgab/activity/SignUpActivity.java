@@ -1,8 +1,6 @@
 package br.com.jasgab.jasgab.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,22 +9,24 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.Objects;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.model.Auth;
+import br.com.jasgab.jasgab.model.CustomerNew;
 import br.com.jasgab.jasgab.model_http.ResponseAddress;
 import br.com.jasgab.jasgab.model_http.ResponseCustomer;
-import br.com.jasgab.jasgab.model.CustomerNew;
 import br.com.jasgab.jasgab.pattern.MaskType;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import br.com.jasgab.jasgab.util.MaskUtil;
 import br.com.jasgab.jasgab.util.VerifyCpf;
 import retrofit2.Call;
@@ -38,17 +38,17 @@ public class SignUpActivity extends AppCompatActivity {
     Auth auth;
     EditText sign_up_name, sign_up_cpf, sign_up_rg, sign_up_born, sign_up_phone, sign_up_email, sign_up_zipCode, sign_up_addressnumber, sign_up_complement;
     Spinner sign_up_due_date, sign_up_payment_method;
-    TextView actionbar_text, sign_up_address, sign_up_address_complements;
+    TextView sign_up_address, sign_up_address_complements;
     ProgressBar sign_up_submit_progressbar;
     RelativeLayout sign_up_submit;
-    ImageView actionbar_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
+        JasgabUtils.hideActionBar(getActionBar());
+        JasgabUtils.setActionBar("Cadastro", getWindow().getDecorView(), this);
 
         run();
     }
@@ -82,16 +82,6 @@ public class SignUpActivity extends AppCompatActivity {
         sign_up_submit = findViewById(R.id.sign_up_submit);
         sign_up_address = findViewById(R.id.sign_up_address);
         sign_up_address_complements = findViewById(R.id.sign_up_address_complements);
-
-        actionbar_text = findViewById(R.id.actionbar_title);
-        actionbar_back = findViewById(R.id.actionbar_back);
-        actionbar_text.setText("Cadastro");
-        actionbar_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         //EditText Mask
         sign_up_cpf.addTextChangedListener(MaskUtil.insert(sign_up_cpf, MaskType.CPF));
@@ -150,20 +140,16 @@ public class SignUpActivity extends AppCompatActivity {
             Call<ResponseAddress> call = new JasgabApi().getAddress(customerNew, auth.getToken());
             call.enqueue(new Callback<ResponseAddress>() {
                 @Override
-                public void onResponse(Call<ResponseAddress> call, Response<ResponseAddress> response) {
+                public void onResponse(@NonNull Call<ResponseAddress> call, @NonNull Response<ResponseAddress> response) {
                     ResponseAddress responseAddress = response.body();
-                    if (responseAddress != null) {
-                        if (responseAddress.isOk()) {
-                            addressFound(responseAddress);
-                        } else {
-                            addressNotFound();
-                        }
+                    if (responseAddress != null && responseAddress.isOk()) {
+                        addressFound(responseAddress);
                     } else {
                         addressNotFound();
                     }
                 }
                 @Override
-                public void onFailure(Call<ResponseAddress> call, Throwable t) {
+                public void onFailure(@NonNull Call<ResponseAddress> call, @NonNull Throwable t) {
                     addressNotFound();
                 }
             });
@@ -177,7 +163,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void addressNotFound(){
-        sign_up_address.setText("Endereço não encontrado.");
+        sign_up_address.setText(R.string.sign_up_address_notfound);
         sign_up_address_complements.setText("");
     }
 
@@ -205,7 +191,7 @@ public class SignUpActivity extends AppCompatActivity {
             Call<ResponseCustomer> call = new JasgabApi().customerNew(customerNew, auth.getToken());
             call.enqueue(new Callback<ResponseCustomer>() {
                 @Override
-                public void onResponse(Call<ResponseCustomer> call, Response<ResponseCustomer> response) {
+                public void onResponse(@NonNull Call<ResponseCustomer> call, @NonNull Response<ResponseCustomer> response) {
                     ResponseCustomer responseCustomer = response.body();
                     sign_up_submit_progressbar.setVisibility(View.INVISIBLE);
                     if (responseCustomer != null) {
@@ -220,7 +206,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseCustomer> call, Throwable t) {
+                public void onFailure(@NonNull Call<ResponseCustomer> call, @NonNull Throwable t) {
                     fail();
                 }
 
@@ -232,7 +218,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void success(){
         Intent intent = new Intent(this, LoadingActivity.class);
-        intent.putExtra("loading", LoadingActivity.SIGNUP);
+        intent.putExtra("loading", LoadingActivity.SIGN);
         startActivity(intent);
         finish();
     }
@@ -297,10 +283,11 @@ public class SignUpActivity extends AppCompatActivity {
         return isValid;
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setErro(int layoutId, int textViewId){
         ConstraintLayout layout = findViewById(layoutId);
         TextView textView = findViewById(textViewId);
-        layout.setBackground(getResources().getDrawable(R.drawable.background_ed_sign_up_error));
+        layout.setBackground(getResources().getDrawable(R.drawable.background_ed_sign_up_error, null));
         textView.setTextColor(getResources().getColor(R.color.red));
     }
 }

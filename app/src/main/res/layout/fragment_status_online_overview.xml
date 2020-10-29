@@ -8,44 +8,42 @@
 
     <TextView
         android:id="@+id/status_online_wifi"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="100dp"
-        android:text="WIFI"
-        style="@style/text"
-        android:textSize="@dimen/text_title"
+        android:layout_marginBottom="10dp"
+        android:text="Wi-Fi"
         android:textColor="@color/blue_grayish"
+        android:textSize="@dimen/text_title"
+        app:layout_constraintBottom_toTopOf="@+id/status_online_devices"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/status_online_devices"
+        style="@style/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:text="Carregando dispositivos conectados"
-        style="@style/text"
-        android:textSize="@dimen/text_body_one"
+        android:layout_marginBottom="50dp"
+        android:text="@string/status_online_devices_loading"
         android:textColor="@color/blue_grayish"
+        android:textSize="@dimen/text_body_one"
+        app:layout_constraintBottom_toTopOf="@+id/status_online_overview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_online_wifi" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/status_online_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_online_devices">
-
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/status_online_overview_internet"
@@ -64,14 +62,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_status_online_overview_internet"
+                android:id="@+id/status_online_overview_internet_text"
                 style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Internet"
-                android:textSize="@dimen/text_body_one"
                 android:textColor="@color/blue_grayish"
+                android:textSize="@dimen/text_body_one"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ic_status_online_overview_internet"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -95,14 +93,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_status_online_overview_wifi"
+                android:id="@+id/status_online_overview_wifi_text"
                 style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Localização do Wifi"
-                android:textSize="@dimen/text_body_one"
                 android:textColor="@color/blue_grayish"
+                android:textSize="@dimen/text_body_one"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ic_status_online_overview_wifi"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -118,31 +116,30 @@
 
             <TextView
                 android:id="@+id/status_online_overview_devices_ic"
+                style="@style/text_pattern_flat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
-                style="@style/text_pattern_flat"
-                android:textSize="@dimen/text_title"
                 android:background="@drawable/ic_status_online_overview_devices"
+                android:text="1"
+                android:textSize="@dimen/text_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView_status_online_overview_devices"
+                android:id="@+id/status_online_overview_devices_text"
                 style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Aparelhos connectados"
-                android:textSize="@dimen/text_body_one"
+                android:text="Carregando dispositivos"
                 android:textColor="@color/blue_grayish"
+                android:textSize="@dimen/text_body_one"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/status_online_overview_devices_ic"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

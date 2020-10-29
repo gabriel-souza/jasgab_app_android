@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,11 +48,11 @@ public class PayBarcodeActivity extends AppCompatActivity {
         TextView barcode_price = findViewById(R.id.barcode_price);
         TextView barcode_person = findViewById(R.id.barcode_person);
         TextView barcode_barcode = findViewById(R.id.bill_barcode);
+        TextView barcode_barcode_info = findViewById(R.id.barcode_barcode_info);
 
         Button barcode_bill_status = findViewById(R.id.barcode_status);
         Button barcode_copy_paste = findViewById(R.id.barcode_copy_paste);
         Button barcode_save = findViewById(R.id.barcode_save);
-        Button barcode_send = findViewById(R.id.barcode_send);
 
         //GET CUSTOMER DATA
         CustomerDAO customerDAO = CustomerDAO.start(this);
@@ -78,13 +80,30 @@ public class PayBarcodeActivity extends AppCompatActivity {
         barcode_person.setText(customer.getName());
         barcode_barcode.setText(bill.getBarcode());
 
+        if(bill.getBarcode().isEmpty()){
+            barcode_barcode_info.setVisibility(View.GONE);
+            barcode_barcode.setVisibility(View.GONE);
+            barcode_copy_paste.setVisibility(View.GONE);
+        }
+
         barcode_copy_paste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("barcode", bill.getBarcode());
-                clipboard.setPrimaryClip(clipData);
-                Toast.makeText(getApplicationContext(), "Código de barra copiado!", Toast.LENGTH_SHORT).show();
+                if(clipboard != null) {
+                    clipboard.setPrimaryClip(clipData);
+                    //TODO RETORNO
+                    Toast.makeText(getApplicationContext(), "Código de barra copiado!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        barcode_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(bill.getPathPdf()));
+                startActivity(browserIntent);
             }
         });
     }

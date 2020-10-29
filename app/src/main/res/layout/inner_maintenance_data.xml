@@ -10,7 +10,7 @@
     android:paddingHorizontal="20dp">
 
     <TextView
-        android:id="@+id/status_offline_forecastreturn"
+        android:id="@+id/status_offline_forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_black"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_offline_forecastreturn">
+        app:layout_constraintTop_toBottomOf="@+id/status_offline_forecast">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/status_offline_message"
+                android:id="@+id/status_offline_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"

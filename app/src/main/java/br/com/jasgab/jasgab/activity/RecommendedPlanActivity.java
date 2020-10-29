@@ -23,7 +23,9 @@ public class RecommendedPlanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_plan);
-        getSupportActionBar().hide();
+
+        JasgabUtils.hideActionBar(getActionBar());
+        JasgabUtils.setActionBar("Mudar de Plano", getWindow().getDecorView(), this);
 
         Integer planType = getIntent().getIntExtra("PlanType", PlanType.ESSENCIAL);
         plan = getRecommendedPlan(planType);
@@ -43,9 +45,6 @@ public class RecommendedPlanActivity extends AppCompatActivity {
     }
 
     private void setLayout(){
-        //ACTIONBAR
-        JasgabUtils.setActionBar("Mudar de Plano", getWindow().getDecorView(), this);
-
         //BUTTON
         Button recommended_plan_button = findViewById(R.id.recommendedplan_submit);
         recommended_plan_button.setOnClickListener(new View.OnClickListener() {

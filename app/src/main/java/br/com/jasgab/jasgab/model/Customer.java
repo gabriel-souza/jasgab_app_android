@@ -29,6 +29,9 @@ public class Customer {
     @SerializedName("phone")
     @Expose
     private String phone;
+    @SerializedName("data_request")
+    @Expose
+    private String date_request;
     @SerializedName("zip_code")
     @Expose
     private String zipCode;
@@ -95,6 +98,14 @@ public class Customer {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getDateRequest() {
+        return date_request;
+    }
+
+    public void setDateRequest(String data_request) {
+        this.date_request = data_request;
     }
 
     public String getZipCode() {

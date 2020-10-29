@@ -2,65 +2,74 @@ package br.com.jasgab.jasgab.activity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tomer.fadingtextview.FadingTextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.api.JasgabApi;
 import br.com.jasgab.jasgab.crud.AuthDAO;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
-import br.com.jasgab.jasgab.model.Auth;
-import br.com.jasgab.jasgab.model.Customer;
 import br.com.jasgab.jasgab.model_http.RequestCustomer;
 import br.com.jasgab.jasgab.model_http.ResponseCustomer;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.tomer.fadingtextview.FadingTextView.MINUTES;
+import static java.util.concurrent.TimeUnit.MINUTES;
 
 public class LoadingActivity extends AppCompatActivity {
-    Context context;
-    public static final int LOGIN = 1, SIGNUP = 2;
+    public static final int LOGIN = 1, SIGN = 2;
     int display = LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        context = this;
         display = Objects.requireNonNull(getIntent().getExtras()).getInt("loading", LOGIN);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        JasgabUtils.hideActionBar(getSupportActionBar());
 
+        businessRules();
+    }
+
+    private void businessRules(){
         startTextAnimation();
         startCluodAnimation();
 
         switch (display){
             case LOGIN:
-                getCustomerData();
+                loading();
                 break;
-            case SIGNUP:
+            case SIGN:
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        goToBegin();
+                        loadingError();
                     }
                 }, 20000);
-
                 break;
         }
-
     }
 
     private void startTextAnimation(){
@@ -71,11 +80,11 @@ public class LoadingActivity extends AppCompatActivity {
 
         switch (display){
             case LOGIN:
-                loading_title.setTimeout(60, MINUTES);
+                loading_title.setTimeout(2, MINUTES);
                 loading_title_array = getResources().getStringArray(R.array.loading_title_login);
                 loading_sub_title_array = getResources().getStringArray(R.array.loading_sub_title_login);
                 break;
-            case SIGNUP:
+            case SIGN:
                 loading_title_array = getResources().getStringArray(R.array.loading_title_sign_up);
                 loading_sub_title_array = getResources().getStringArray(R.array.loading_sub_title_sign_up);
                 break;
@@ -114,62 +123,55 @@ public class LoadingActivity extends AppCompatActivity {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(animatorA, animatorB, animatorC, animatorD);
         animatorSet.start();
-
     }
 
-    private void getCustomerData(){
-        Auth auth = AuthDAO.start(this).select();
-        //If auth not found on DB return to LaunchPage
-        if(auth == null){
+    private void loading(){
+        if(AuthDAO.start(this).select() == null){
             startActivity(new Intent(this, MainActivity.class));
             finishAffinity();
             return;
         }
 
-        Customer customer = CustomerDAO.start(this).selectCustomer();
-        //If customer not found on DB return to Login
-        if(customer == null){
+        if(CustomerDAO.start(this).selectCustomer() == null){
             startActivity(new Intent(this, LoginActivity.class));
             finishAffinity();
             return;
         }
 
-        final String cpf = customer.getCpf();
-
-        Call<ResponseCustomer> call = new JasgabApi().customer_data(new RequestCustomer(cpf), auth.getToken());
+        Call<ResponseCustomer> call = new JasgabApi().customer_data(new RequestCustomer(CustomerDAO.start(this).selectCustomer().getCpf()), AuthDAO.start(this).select().getToken());
         call.enqueue(new Callback<ResponseCustomer>() {
             @Override
-            public void onResponse(Call<ResponseCustomer> call, Response<ResponseCustomer> response) {
+            public void onResponse(@NonNull Call<ResponseCustomer> call, @NonNull Response<ResponseCustomer> response) {
                 ResponseCustomer responseCustomer = response.body();
-                if(responseCustomer != null){
-                    if(responseCustomer.getStatus()){
-                        responseCustomer.getCustomer().setCpf(cpf);
-                        CustomerDAO.start(context).inserir(responseCustomer);
-                        customerDataFound();
-                    }else{
-                        goToBegin();
-                    }
+                if(responseCustomer != null && responseCustomer.getStatus()){
+                    loadingSuccess(responseCustomer);
+                    return;
                 }
-                else{
-                    goToBegin();
-                }
+                loadingError();
             }
 
             @Override
-            public void onFailure(Call<ResponseCustomer> call, Throwable t) {
-                goToBegin();
+            public void onFailure(@NonNull Call<ResponseCustomer> call, @NonNull Throwable t) {
+                loadingError();
             }
         });
     }
 
-    private void customerDataFound(){
-        startActivity(new Intent(this, HomeActivity.class));
+    private void loadingSuccess(ResponseCustomer responseCustomer){
+        responseCustomer.getCustomer().setCpf(CustomerDAO.start(this).selectCustomer().getCpf());
+        responseCustomer.getCustomer().setDateRequest(DateTime.now().toString(DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss")));
+        CustomerDAO.start(this).inserir(responseCustomer);
+
         finishAffinity();
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
-    private void goToBegin(){
+    private void loadingError(){
+        AuthDAO.start(this).delete();
         CustomerDAO.start(this).delete();
-        startActivity(new Intent(this, MainActivity.class));
+
         finishAffinity();
+        startActivity(new Intent(this, MainActivity.class));
     }
+
 }
