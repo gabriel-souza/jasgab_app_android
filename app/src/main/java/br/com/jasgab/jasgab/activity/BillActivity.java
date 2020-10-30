@@ -32,17 +32,6 @@ public class BillActivity extends AppCompatActivity {
         JasgabUtils.setActionBar("Pagamento", getWindow().getDecorView(), this);
         JasgabUtils.checkAPP(this);
 
-        //requestMultiplePermissions();
-
-        Button bill_send_recipe = findViewById(R.id.bill_send_receipt);
-        bill_send_recipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ReceiptDialog dialog = new ReceiptDialog();
-                dialog.show(getSupportFragmentManager(), "");
-            }
-        });
-
         setLayout();
     }
 
