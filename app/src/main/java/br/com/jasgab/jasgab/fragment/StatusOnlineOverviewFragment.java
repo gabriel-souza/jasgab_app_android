@@ -47,7 +47,7 @@ public class StatusOnlineOverviewFragment extends Fragment {
 
         String wifiName = InternetUtils.getWifiName(requireContext()).replace("\"", "");
         if(wifiName.equals("<unknown ssid>")){
-            wifiName = "não encontrado";
+            wifiName = "";
         }
         status_online_wifi.setText(String.format(getString(R.string.status_online_wifi), wifiName));
     }

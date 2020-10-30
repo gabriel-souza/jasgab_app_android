@@ -26,7 +26,6 @@
         <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
 
         <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.ReceiptActivity" />
         <activity android:name=".activity.BillActivity" />
         <activity android:name=".activity.HelpActivity" />
         <activity android:name=".activity.BillPdfActivity" />

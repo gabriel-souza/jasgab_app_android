@@ -95,7 +95,7 @@
     <string name="overview_price">R$ %s mensal</string>
     <string name="overview_duedate">Vencimento em %d dias</string>
     <string name="status_offline_forecast">Previsão de retorno as %s horas</string>
-    <string name="status_online_wifi">Rede Wi-Fi: %s</string>
+    <string name="status_online_wifi">Rede Wi-Fi %s</string>
     <string name="status_online_devices_loading">Carregando…</string>
     <string name="status_online_devices_found">%d Aparelhos Conectados.</string>
     <string name="status_online_devices_text">Aparelhos Conectados.</string>

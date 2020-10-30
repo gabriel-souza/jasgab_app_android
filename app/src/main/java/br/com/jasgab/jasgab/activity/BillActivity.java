@@ -14,7 +14,6 @@ import java.util.List;
 
 import br.com.jasgab.jasgab.R;
 import br.com.jasgab.jasgab.crud.CustomerDAO;
-import br.com.jasgab.jasgab.dialog.ReceiptDialog;
 import br.com.jasgab.jasgab.model.Bill;
 import br.com.jasgab.jasgab.model.Plan;
 import br.com.jasgab.jasgab.util.JasgabUtils;

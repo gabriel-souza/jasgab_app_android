@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import br.com.jasgab.jasgab.R;
+import br.com.jasgab.jasgab.util.JasgabUtils;
 
 public class FAQFragment extends Fragment {
     View view;
@@ -20,6 +21,8 @@ public class FAQFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_faq, container, false);
 
+        JasgabUtils.checkAPP(requireActivity());
+        JasgabUtils.setActionBarHome("Dúvida", view, requireContext(), requireActivity());
 
         return view;
     }
